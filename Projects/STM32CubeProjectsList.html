@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Projects Overview</title>
+    <style>
+      .descriptionColumn { min-width:550px;}
+      em{color:red;font-weight: bold;}
+      importantLink {font-size:10pt; font-family: "Verdana","sans-serif" color:black;}
+      article{border: 1px solid #828282;margin: 20px 0px 20px 9px;}
+      body{font-family: Verdana;font-size: 10pt; color: black;margin-left: 40px;}
+      .picture{text-align: center}
+      .copyright{text-align: center}
+      h1{text-align: center;font-size: 20pt; font-family: Verdana; color: rgb(51, 102, 255);}
+    </style>
+  </head>
+  <body>
+
+    <h1>STM32CubeC0 Firmware Examples for STM32C0xx Series</h1>
+
+    <p class="copyright">Copyright 2022 STMicroelectronics</p>
+
+    <div class="picture">
+      <img alt="" id="_x0000_i1025" src="../_htmresc/st_logo_2020.png" style="border: 0px solid ; width: 104px; height: 77px;"/>
+    </div>
+
+    <p>The STM32CubeC0 Firmware package comes with a rich set of examples running on STMicroelectronics boards, organized by board and provided with preconfigured projects for the main supported toolchains.</p>
+
+    <div class="picture">
+      <img alt="" src="../_htmresc/STM32Cube.bmp"/>
+    </div>
+
+    <p>The examples are classified depending on the STM32Cube level they apply to, and are named as follows:</p>
+
+    <ul>
+      <li id="Examples"><b>Examples</b> uses only the HAL and BSP drivers (Middleware not used), having as objective to demonstrate the product/peripherals features and usage. The examples are organized per peripheral (a folder for each peripheral, ex. TIM) and offers different complexity level from basic usage of a given peripheral (ex. PWM generation using timer) till integration of several peripherals(use DAC for signals generation with synchronization from TIM6 and DMA). Board resources usage is reduced to the strict minimum.</li>
+      <li id="Examples_LL"><b>Examples_LL</b> uses only the LL drivers (HAL and Middleware not used), offering optimum implementation of typical use cases of the peripheral features and configuration procedures. The examples are organized per peripheral (a folder for each peripheral, ex. TIM) and runs exclusively on Nucleo board.</li>
+      <li id="Examples_MIX"><b>Examples_MIX</b> uses only HAL, BSP and LL drivers (Middleware are not used), having as objective to demonstrate how to use both HAL and LL APIs in the same application, to combine the advantages of both APIs (HAL offers high level and functionalities oriented APIs, with high portability level and hide product or IPs complexity to end user. While LL offers low level APIs at registers level with better optimization). The examples are organized per peripheral (a folder for each peripheral, ex. TIM) and runs exclusively on Nucleo board.</li>
+      <li id="Applications"><b>Applications</b> intends to demonstrate the product performance and how to use the different Middleware stacks available. The Applications are organized per Middleware (a folder for each Middleware, ex. USB Host) or product feature that need high level firmware bricks (ex. Audio). Integration Applications that use several Middleware stacks are provided as well.</li>
+      <li>A Template project is provided to allow user to quickly build any firmware application on a given board.</li>
+    </ul>
+
+    <p>The examples are located under STM32Cube_FW_C0_VX.Y.Z\Projects\, and all of them have the same structure:</p>
+
+    <ul>
+      <li>\Inc folder that contains all header files.</li>
+      <li>\Src folder for the sources code.</li>
+      <li>\EWARM, \MDK-ARM and \STM32CubeIDE folders contain the preconfigured project for each toolchain.</li>
+      <li>A readme describing the example behavior and the environment required to run the example.</li>
+    </ul>
+
+    <p>To run the example, you have to do the following:</p>
+
+    <ul>
+      <li>Open the example using your preferred toolchain.</li>
+      <li>Rebuild all files and load the image into target memory.</li>
+      <li>Run the example by following the readme instructions.</li>
+      <li>
+        <i><u>Note</u>: refer to section "Development Toolchains and Compilers" and "Supported Devices and EVAL, Nucleo and Discovery boards" of the Firmware package release notes to know about the SW/HW environment used for the Firmware development and validation. The correct operation of the provided examples is not guaranteed on some environments, for example when using different compiler or board versions.</i>
+      </li>
+    </ul>
+
+    <p>The provided examples can be tailored to run on any compatible hardware; user simply need to update the BSP drivers for his board, if it has the same hardware functions (LED, LCD display, pushbuttons...etc.). The BSP is based on a modular architecture that allows it to be ported easily to any hardware by just implementing the low level routines.</p>
+
+    <p>
+      <div>The table below contains the list of examples provided within STM32Cube_FW_C0 Firmware package.</div>
+      <div>In this table, the label <b>CubeMX</b> means the projects have been created using <a href="https://www.st.com/en/development-tools/stm32cubemx.html" target="_blank">STM32CubeMX</a>, the STM32Cube initialization code generator. Those projects can be opened with this tools to modify the projects itself. The others projects are manually created to demonstrate the product features.</div>
+    </p>
+
+    <p id="STM32C0xxImportantLink"></p>
+		<table border='1' bgcolor='#f0f0fF' >
+			<tr align=center style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;">
+				<td><b>Level</b></td>
+				<td><b>Module Name</b></td>
+				<td><b>Project Name</b></td>
+				<td class="descriptionColumn"><b>Description</b></td>
+				<td>STM32C0316-DK</td>
+				<td>STM32C0116-DK</td>
+				<td>NUCLEO-C031C6</td>
+			</tr>
+      <tr align=center>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=2><p id="Templates">Templates</p></td>
+        <td align=left rowspan=1><p id="-">-</p></td>
+        <td align=left><p id="Starter project">Starter project</p></td>
+        <td align=left>
+This projects provides a reference template that can be used to build any firmware application.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+        <td colspan="3"><b>Total number of templates: 3</b></td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr align=center>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=2><p id="Templates_LL">Templates_LL</p></td>
+        <td align=left rowspan=1><p id="-">-</p></td>
+        <td align=left><p id="Starter project">Starter project</p></td>
+        <td align=left>
+This projects provides a reference template through the LL API that can be used to build any firmware application.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+        <td colspan="3"><b>Total number of templates_ll: 3</b></td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr align=center>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=17><p id="Examples">Examples</p></td>
+        <td align=left rowspan=1><p id="ADC">ADC</p></td>
+        <td align=left><p id="ADC_MultiChannelSingleConversion">ADC_MultiChannelSingleConversion</p></td>
+        <td align=left>
+How to use an ADC peripheral to convert several channels. ADC conversions are 
+performed successively in a scan sequence.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="CORTEX">CORTEX</p></td>
+        <td align=left><p id="CORTEXM_SysTick">CORTEXM_SysTick</p></td>
+        <td align=left>
+How to use the default SysTick configuration with a 1 ms timebase to toggle LEDs.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="FLASH">FLASH</p></td>
+        <td align=left><p id="FLASH_EraseProgram">FLASH_EraseProgram</p></td>
+        <td align=left>
+How to configure and use the FLASH HAL API to erase and program the internal Flash memory.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="GPIO">GPIO</p></td>
+        <td align=left><p id="GPIO_EXTI">GPIO_EXTI</p></td>
+        <td align=left>
+How to configure external interrupt lines.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="GPIO_IOToggle">GPIO_IOToggle</p></td>
+        <td align=left>
+How to configure and use GPIOs through the HAL API.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="HAL">HAL</p></td>
+        <td align=left><p id="HAL_TimeBase">HAL_TimeBase</p></td>
+        <td align=left>
+How to customize HAL using a general-purpose timer as main source of time base, instead of Systick.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="I2C">I2C</p></td>
+        <td align=left><p id="I2C_TwoBoards_AdvComIT">I2C_TwoBoards_AdvComIT</p></td>
+        <td align=left>
+How to handle several I2C data buffer transmission/reception between
+a master and a slave device using an interrupt.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="I2C_TwoBoards_ComDMA">I2C_TwoBoards_ComDMA</p></td>
+        <td align=left>
+How to handle I2C data buffer transmission/reception between two boards via DMA.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="PWR">PWR</p></td>
+        <td align=left><p id="PWR_SLEEP">PWR_SLEEP</p></td>
+        <td align=left>
+How to enter the Sleep mode and wake up from this mode by using an interrupt.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="PWR_STANDBY">PWR_STANDBY</p></td>
+        <td align=left>
+How to enter the Standby mode and wake up from this mode by using an external
+reset or the WKUP pin.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="RCC">RCC</p></td>
+        <td align=left><p id="RCC_LSEConfig">RCC_LSEConfig</p></td>
+        <td align=left>
+Enabling/disabling of the low-speed external(LSE) RC oscillator (about 32 KHz) at run time, using the RCC HAL API.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="RTC">RTC</p></td>
+        <td align=left><p id="RTC_Calendar">RTC_Calendar</p></td>
+        <td align=left>
+Configuration of the calendar using the RTC HAL API.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="RTC_TimeStamp">RTC_TimeStamp</p></td>
+        <td align=left>
+Configuration of the RTC HAL API to demonstrate the timestamp feature.
+</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="SPI">SPI</p></td>
+        <td align=left><p id="SPI_FullDuplex_ComDMA_Master">SPI_FullDuplex_ComDMA_Master</p></td>
+        <td align=left>
+Data buffer transmission/reception between two boards via SPI using DMA.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="SPI_FullDuplex_ComDMA_Slave">SPI_FullDuplex_ComDMA_Slave</p></td>
+        <td align=left>
+Data buffer transmission/reception between two boards via SPI using DMA.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="UART">UART</p></td>
+        <td align=left><p id="UART_Printf">UART_Printf</p></td>
+        <td align=left>
+Re-routing of the C library printf function to the UART.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+        <td colspan="3"><b>Total number of examples: 32</b></td>
+        <td>8</td>
+        <td>8</td>
+        <td>16</td>
+      </tr>
+      <tr align=center>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=44><p id="Examples_LL">Examples_LL</p></td>
+        <td align=left rowspan=7><p id="ADC">ADC</p></td>
+        <td align=left><p id="ADC_AnalogWatchdog_Init">ADC_AnalogWatchdog_Init</p></td>
+        <td align=left>
+How to use an ADC peripheral with an ADC analog watchdog to monitor a channel
+and detect when the corresponding conversion data is outside the window
+thresholds.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="ADC_ContinuousConversion_TriggerSW_Init">ADC_ContinuousConversion_TriggerSW_Init</p></td>
+        <td align=left>
+How to use an ADC peripheral to convert a single channel continuously,
+from a software start.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="ADC_Oversampling_Init">ADC_Oversampling_Init</p></td>
+        <td align=left>
+How to use an ADC peripheral with oversampling.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="ADC_SingleConversion_TriggerSW_DMA_Init">ADC_SingleConversion_TriggerSW_DMA_Init</p></td>
+        <td align=left>
+How to use an ADC peripheral to perform a single ADC conversion on a channel 
+at each software start. Converted data is transferred by DMA into a table in RAM memory.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="ADC_SingleConversion_TriggerSW_IT_Init">ADC_SingleConversion_TriggerSW_IT_Init</p></td>
+        <td align=left>
+How to use ADC to convert a single channel at each SW start,
+conversion performed using programming model: interrupt.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="ADC_SingleConversion_TriggerSW_Init">ADC_SingleConversion_TriggerSW_Init</p></td>
+        <td align=left>
+How to use ADC to convert a single channel at each SW start,
+conversion performed using programming model: polling.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="ADC_SingleConversion_TriggerTimer_DMA_Init">ADC_SingleConversion_TriggerTimer_DMA_Init</p></td>
+        <td align=left>
+How to use an ADC peripheral to perform a single ADC conversion on a channel 
+at each trigger event from a timer. Converted data is transferred by DMA 
+into a table in RAM memory.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="CORTEX">CORTEX</p></td>
+        <td align=left><p id="CORTEX_MPU">CORTEX_MPU</p></td>
+        <td align=left>
+Presentation of the MPU feature. This example configures a memory area as 
+privileged read-only, and attempts to perform read and write operations in
+different modes.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="CRC">CRC</p></td>
+        <td align=left><p id="CRC_CalculateAndCheck">CRC_CalculateAndCheck</p></td>
+        <td align=left>
+How to configure the CRC calculation unit to compute a CRC code for a given data
+buffer, based on a fixed generator polynomial (default value 0x4C11DB7). The
+peripheral initialization is done using LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="CRC_UserDefinedPolynomial">CRC_UserDefinedPolynomial</p></td>
+        <td align=left>
+How to configure and use the CRC calculation unit to compute an 8-bit CRC code
+for a given data buffer, based on a user-defined generating polynomial. The
+peripheral initialization is done using LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="DMA">DMA</p></td>
+        <td align=left><p id="DMA_CopyFromFlashToMemory_Init">DMA_CopyFromFlashToMemory_Init</p></td>
+        <td align=left>
+How to use a DMA channel to transfer a word data buffer from Flash memory to embedded SRAM. The peripheral initialization uses LL
+initialization functions to demonstrate LL init usage.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="EXTI">EXTI</p></td>
+        <td align=left><p id="EXTI_ToggleLedOnIT_Init">EXTI_ToggleLedOnIT_Init</p></td>
+        <td align=left>
+This example describes how to configure the EXTI and use GPIOs to toggle the user LEDs available on the board when
+a Joystick Selection push-button is pressed. This example is based on the STM32C0xx LL API. Peripheral initialization is done using LL
+initialization function to demonstrate LL init usage.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="GPIO">GPIO</p></td>
+        <td align=left><p id="GPIO_InfiniteLedToggling_Init">GPIO_InfiniteLedToggling_Init</p></td>
+        <td align=left>
+How to configure and use GPIOs to toggle the on-board user LEDs
+every 250 ms.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=3><p id="I2C">I2C</p></td>
+        <td align=left><p id="I2C_TwoBoards_MasterRx_SlaveTx_IT_Init">I2C_TwoBoards_MasterRx_SlaveTx_IT_Init</p></td>
+        <td align=left>
+How to handle the reception of one data byte from an I2C slave device
+by an I2C master device. Both devices operate in interrupt mode. The peripheral
+is initialized with LL unitary service functions to optimize for performance
+and size.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="I2C_TwoBoards_MasterTx_SlaveRx_Init">I2C_TwoBoards_MasterTx_SlaveRx_Init</p></td>
+        <td align=left>
+How to transmit data bytes from an I2C master device using polling mode
+to an I2C slave device using interrupt mode. The peripheral is initialized
+with LL unitary service functions to optimize for performance and size.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="I2C_TwoBoards_WakeUpFromStop_IT_Init">I2C_TwoBoards_WakeUpFromStop_IT_Init</p></td>
+        <td align=left>
+How to handle the reception of a data byte from an I2C slave device in
+Stop0 mode by an I2C master device, both using interrupt mode. The
+peripheral is initialized with LL unitary service functions to optimize for
+performance and size.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="IWDG">IWDG</p></td>
+        <td align=left><p id="IWDG_RefreshUntilUserEvent_Init">IWDG_RefreshUntilUserEvent_Init</p></td>
+        <td align=left>
+How to configure the IWDG peripheral to ensure periodical counter update and
+generate an MCU IWDG reset when a User push-button is pressed. The peripheral
+is initialized with LL unitary service functions to optimize for performance and size.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="PWR">PWR</p></td>
+        <td align=left><p id="PWR_EnterStandbyMode">PWR_EnterStandbyMode</p></td>
+        <td align=left>
+How to enter the Standby mode and wake up from this mode by using an external
+reset or a wakeup pin.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="PWR_EnterStopMode">PWR_EnterStopMode</p></td>
+        <td align=left>
+How to enter the Stop 0 mode.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="RCC">RCC</p></td>
+        <td align=left><p id="RCC_OutputSystemClockOnMCO">RCC_OutputSystemClockOnMCO</p></td>
+        <td align=left>
+Configuration of MCO pin (PA8) to output the system clock.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="RTC">RTC</p></td>
+        <td align=left><p id="RTC_Alarm_Init">RTC_Alarm_Init</p></td>
+        <td align=left>
+Configuration of the RTC LL API to configure and generate an alarm using the RTC peripheral. The peripheral
+initialization uses the LL initialization function.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="RTC_TimeStamp_Init">RTC_TimeStamp_Init</p></td>
+        <td align=left>
+Configuration of the Timestamp using the RTC LL API. The peripheral initialization
+uses LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="SPI">SPI</p></td>
+        <td align=left><p id="SPI_TwoBoards_FullDuplex_IT_Master_Init">SPI_TwoBoards_FullDuplex_IT_Master_Init</p></td>
+        <td align=left>
+Data buffer transmission and receptionvia SPI using Interrupt mode. This
+example is based on the STM32C0xx SPI LL API. The peripheral
+initialization uses LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="SPI_TwoBoards_FullDuplex_IT_Slave_Init">SPI_TwoBoards_FullDuplex_IT_Slave_Init</p></td>
+        <td align=left>
+Data buffer transmission and receptionvia SPI using Interrupt mode. This
+example is based on the STM32C0xx SPI LL API. The peripheral
+initialization uses LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=5><p id="TIM">TIM</p></td>
+        <td align=left><p id="TIM_DMA_Init">TIM_DMA_Init</p></td>
+        <td align=left>
+Use of the DMA with a timer update request 
+to transfer data from memory to Timer Capture Compare Register 3 (TIMx_CCR3). This 
+example is based on the STM32C0xx TIM LL API. The peripheral initialization 
+uses LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="TIM_InputCapture_Init">TIM_InputCapture_Init</p></td>
+        <td align=left>
+Use of the TIM peripheral to measure a periodic signal frequency
+provided either by an external signal generator or by
+another timer instance. This example is based on the STM32C0xx TIM
+LL API. The peripheral initialization uses LL unitary service functions
+for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="TIM_OutputCompare_Init">TIM_OutputCompare_Init</p></td>
+        <td align=left>
+Configuration of the TIM peripheral to generate an output 
+waveform in different output compare modes. This example is based on the 
+STM32C0xx TIM LL API. The peripheral initialization uses 
+LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="TIM_PWMOutput_Init">TIM_PWMOutput_Init</p></td>
+        <td align=left>
+Use of a timer peripheral to generate a 
+PWM output signal and update the PWM duty cycle. This example is based on the 
+STM32C0xx TIM LL API. The peripheral initialization uses 
+LL initialization function to demonstrate LL Init.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="TIM_TimeBase_Init">TIM_TimeBase_Init</p></td>
+        <td align=left>
+- Configuration of the TIM peripheral to generate a timebase.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=12><p id="USART">USART</p></td>
+        <td align=left><p id="USART_Communication_Rx_IT_Continuous_Init">USART_Communication_Rx_IT_Continuous_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral for continuously receiving characters
+from HyperTerminal (PC) in Asynchronous mode using Interrupt mode. Peripheral initialization is
+done using LL unitary services functions for optimization purpose (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Rx_IT_Continuous_VCP_Init">USART_Communication_Rx_IT_Continuous_VCP_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral for continuously receiving characters
+from HyperTerminal (PC) in Asynchronous mode using Interrupt mode. Peripheral initialization is
+done using LL unitary services functions for optimization purpose (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Rx_IT_Init">USART_Communication_Rx_IT_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral for receiving characters
+from HyperTerminal (PC) in Asynchronous mode using Interrupt mode. Peripheral initialization is done
+using LL initialization function to demonstrate LL init usage.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Rx_IT_VCP_Init">USART_Communication_Rx_IT_VCP_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral for receiving characters
+from HyperTerminal (PC) in Asynchronous mode using Interrupt mode. Peripheral initialization is done
+using LL initialization function to demonstrate LL init usage.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_TxRx_DMA_Init">USART_Communication_TxRx_DMA_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral
+to send characters asynchronously to/from an HyperTerminal (PC) in
+DMA mode. This example is based on STM32C0xx USART LL API. Peripheral
+initialization is done using LL unitary services functions for optimization
+purpose (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Tx_IT_Init">USART_Communication_Tx_IT_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral to send characters
+asynchronously to HyperTerminal (PC) in Interrupt mode. This example is based on
+STM32C0xx USART LL API. Peripheral initialization is done using LL unitary services
+functions for optimization purpose (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Tx_IT_VCP_Init">USART_Communication_Tx_IT_VCP_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripheral to send characters
+asynchronously to HyperTerminal (PC) in Interrupt mode. This example is based on
+STM32C0xx USART LL API. Peripheral initialization is done using LL unitary services
+functions for optimization purpose (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Tx_Init">USART_Communication_Tx_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripherals to send characters
+asynchronously to an HyperTerminal (PC) in Polling mode. If the transfer could not
+be completed within the allocated time, a timeout allows to exit from the sequence
+with a Timeout error code. This example is based on STM32C0xx USART LL API. Peripheral
+initialization is done using LL unitary services functions for optimization purpose
+(performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_Communication_Tx_VCP_Init">USART_Communication_Tx_VCP_Init</p></td>
+        <td align=left>
+This example shows how to configure GPIO and USART peripherals to send characters
+asynchronously to an HyperTerminal (PC) in Polling mode. If the transfer could not
+be completed within the allocated time, a timeout allows to exit from the sequence
+with a Timeout error code. This example is based on STM32C0xx USART LL API. Peripheral
+initialization is done using LL unitary services functions for optimization purpose
+(performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_HardwareFlowControl_Init">USART_HardwareFlowControl_Init</p></td>
+        <td align=left>
+Configuration of GPIO and  peripheral 
+to receive characters asynchronously from an HyperTerminal (PC) in Interrupt mode 
+with the Hardware Flow Control feature enabled. This example is based on STM32C0xx 
+USART LL API. The peripheral initialization 
+uses LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_SyncCommunication_FullDuplex_IT_Init">USART_SyncCommunication_FullDuplex_IT_Init</p></td>
+        <td align=left>
+Configuration of GPIO, USART, DMA and SPI peripherals to transmit 
+bytes between a USART and an SPI (in slave mode) in Interrupt mode. This example is based on the STM32C0xx USART LL API 
+(the SPI uses the DMA to receive/transmit characters sent from/received by the USART). The peripheral 
+initialization uses LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="USART_WakeUpFromStop_Init">USART_WakeUpFromStop_Init</p></td>
+        <td align=left>  
+Configuration of GPIO and USART1 peripherals to allow the characters received on USART_RX pin to wake up the MCU from low-power mode. 
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="UTILS">UTILS</p></td>
+        <td align=left><p id="UTILS_ReadDeviceInfo">UTILS_ReadDeviceInfo</p></td>
+        <td align=left>
+This example reads the UID, Device ID and Revision ID and saves 
+them into a global information buffer.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="WWDG">WWDG</p></td>
+        <td align=left><p id="WWDG_RefreshUntilUserEvent_Init">WWDG_RefreshUntilUserEvent_Init</p></td>
+        <td align=left>
+Configuration of the WWDG to periodically update the counter and
+generate an MCU WWDG reset when a user button is pressed. The peripheral initialization
+uses the LL unitary service functions for optimization purposes (performance and size).
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+        <td colspan="3"><b>Total number of examples_ll: 57</b></td>
+        <td>7</td>
+        <td>7</td>
+        <td>43</td>
+      </tr>
+      <tr align=center>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=9><p id="Examples_MIX">Examples_MIX</p></td>
+        <td align=left rowspan=1><p id="ADC">ADC</p></td>
+        <td align=left><p id="ADC_SingleConversion_TriggerSW_IT">ADC_SingleConversion_TriggerSW_IT</p></td>
+        <td align=left>
+How to use ADC to convert a single channel at each SW start,
+conversion performed using programming model: interrupt.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="CRC">CRC</p></td>
+        <td align=left><p id="CRC_PolynomialUpdate">CRC_PolynomialUpdate</p></td>
+        <td align=left>
+How to use the CRC peripheral through the STM32C0xx CRC HAL and LL API.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="DMA">DMA</p></td>
+        <td align=left><p id="DMA_FLASHToRAM">DMA_FLASHToRAM</p></td>
+        <td align=left>
+How to use a DMA to transfer a word data buffer from Flash memory to embedded
+SRAM through the STM32C0xx DMA HAL and LL API. The LL API is used for 
+performance improvement.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="SPI">SPI</p></td>
+        <td align=left><p id="SPI_FullDuplex_ComPolling_Master">SPI_FullDuplex_ComPolling_Master</p></td>
+        <td align=left>
+Data buffer transmission/reception between two boards via SPI using Polling mode.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="SPI_FullDuplex_ComPolling_Slave">SPI_FullDuplex_ComPolling_Slave</p></td>
+        <td align=left>
+Data buffer transmission/reception between two boards via SPI using Polling mode.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="TIM">TIM</p></td>
+        <td align=left><p id="TIM_PWMInput">TIM_PWMInput</p></td>
+        <td align=left>
+Use of the TIM peripheral to measure an external signal frequency and
+duty cycle.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=2><p id="UART">UART</p></td>
+        <td align=left><p id="UART_HyperTerminal_IT">UART_HyperTerminal_IT</p></td>
+        <td align=left>
+Use of a UART to transmit data (transmit/receive)
+between a board and an HyperTerminal PC application in Interrupt mode. This example
+describes how to use the USART peripheral through the STM32C0xx UART HAL
+and LL API, the LL API being used for performance improvement.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="UART_HyperTerminal_TxPolling_RxIT">UART_HyperTerminal_TxPolling_RxIT</p></td>
+        <td align=left>
+Use of a UART to transmit data (transmit/receive)
+between a board and an HyperTerminal PC application both in Polling and Interrupt
+modes. This example describes how to use the USART peripheral through
+the STM32C0xx UART HAL and LL API, the LL API being used for performance improvement.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+        <td colspan="3"><b>Total number of examples_mix: 8</b></td>
+        <td>0</td>
+        <td>0</td>
+        <td>8</td>
+      </tr>
+      <tr align=center>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=9><p id="Applications">Applications</p></td>
+        <td align=left rowspan=1><p id="-">-</p></td>
+        <td align=left><p id="OpenBootloader">OpenBootloader</p></td>
+        <td align=left>
+This application exploits OpenBootloader Middleware to demonstrate how to develop an IAP application
+and how use it.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=1><p id="FileX">FileX</p></td>
+        <td align=left><p id="Fx_SRAM_File_Edit_Standalone">Fx_SRAM_File_Edit_Standalone</p></td>
+        <td align=left></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left rowspan=6><p id="ThreadX">ThreadX</p></td>
+        <td align=left><p id="Tx_CMSIS_Wrapper">Tx_CMSIS_Wrapper</p></td>
+        <td align=left></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="Tx_FreeRTOS_Wrapper">Tx_FreeRTOS_Wrapper</p></td>
+        <td align=left></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="Tx_LowPower">Tx_LowPower</p></td>
+        <td align=left></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="Tx_Thread_Creation">Tx_Thread_Creation</p></td>
+        <td align=left>
+This application provides an example of Azure RTOS ThreadX stack usage, it shows how to develop an application using the ThreadX thread management APIs.
+</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="Tx_Thread_MsgQueue">Tx_Thread_MsgQueue</p></td>
+        <td align=left>
+This application provides an example of Azure RTOS ThreadX stack usage, it shows how to develop an application using the ThreadX message queue APIs.
+</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>CubeMx</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="Tx_Thread_Sync">Tx_Thread_Sync</p></td>
+        <td align=left></td>
+        <td><font size="5" color=green>CubeMx</font></td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+        <td colspan="3"><b>Total number of applications: 8</b></td>
+        <td>3</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+      <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
+      	<td colspan="4"><b>Total number of projects: 111</b></td>
+      	<td>20</td>
+      	<td>18</td>
+      	<td>73</td>
+      </tr>
+    </table>
+  </body>
+</html>

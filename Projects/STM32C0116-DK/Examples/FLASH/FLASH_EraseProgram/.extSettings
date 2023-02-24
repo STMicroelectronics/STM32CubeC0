@@ -1,0 +1,8 @@
+[ProjectFiles]
+HeaderPath=..\..\..\..\..\..\Drivers\BSP\STM32C0116-DK
+[Others]
+Define=
+HALModule=ADC
+[Groups]
+Doc=../README.md;
+Drivers/BSP/STM32C0116-DK=../../../../../../Drivers/BSP/STM32C0116-DK/stm32c0116_discovery.c;

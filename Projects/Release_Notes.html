@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Release Notes for Projects of STM32CubeC0 Firmware
+Package</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="_htmresc/mini-st_2020.css" />
+  <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="row">
+<div class="col-sm-12 col-lg-4">
+<center>
+<h1 id="release-notes-for-stm32cubec0-firmware-projects">Release Notes
+for <mark> STM32CubeC0 Firmware Projects </mark></h1>
+<p>Copyright © 2022 STMicroelectronics<br />
+</p>
+<a href="https://www.st.com" class="logo"><img
+src="_htmresc/st_logo_2020.png" alt="ST logo" /></a>
+</center>
+<h1 id="purpose">Purpose</h1>
+<p>The projects are a set of applicative tasks that aim to explain and
+provide use cases of the different products features based on the
+products hardware (Boards, STM32 Core(s) features, interconnections and
+peripherals) and built around the different firmware components. They
+can be directly used or adapted by the STM32CubeC0 Firmware Package
+users. They provide basic functionalities, show main features or
+demonstrate performance. They are provided with preconfigured projects
+for the main supported toolchains.</p>
+<p>In the STM32CubeC0 Firmware Package, the projects are organized in a
+sequential scheme based on the following levels:</p>
+<ul>
+<li>Boards : Hardware platform (discovery and nucleo boards)</li>
+<li>Project Category:
+<ul>
+<li>Applications</li>
+<li>Examples</li>
+<li>Examples_LL</li>
+<li>Examples_MIX</li>
+<li>Templates</li>
+<li>Templates_LL</li>
+</ul></li>
+</ul>
+<p>The exhaustive list of projects is provided in this table: <a
+href="STM32CubeProjectsList.html">STM32CubeProjectsList</a>.</p>
+</div>
+<section id="update-history" class="col-sm-12 col-lg-8">
+<h1>Update History</h1>
+<div class="collapse">
+<input type="checkbox" id="collapse-section2" checked aria-hidden="true">
+<label for="collapse-section2" aria-hidden="true"><strong>V1.0.1 /
+12-January-2023</strong></label>
+<div>
+<h2 id="main-changes">Main Changes</h2>
+<ul>
+<li>Patch Release of STM32CubeC0 Projects (STM32Cube for STM32C0 Series)
+<ul>
+<li>“NUCLEO-C031C6/Examples/ADC/ADC_MultiChannelSingleConversion”
+example is updated to use “__LL_ADC_CALC_TEMPERATURE_TYP_PARAMS()”</li>
+<li>Add missing
+“STM32C0316-DK/Examples_LL/PWR/PWR_EnterStopMode/STM32CubeIDE/Application/User”
+files.</li>
+</ul></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<p><small>The Project categories flagged by “<span
+class="icon-st-update"></span>” have changed since the previous release.
+“<span class="icon-st-add"></span>” are new.</small></p>
+<h3 id="projects">Projects</h3>
+<table>
+<caption>Projects <strong>STM32C0316-DK</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Examples_LL <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Examples_LL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Templates</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">LL Templates</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Templates_LL</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Projects <strong>STM32C0116-DK</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Examples_LL</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Examples_LL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Templates</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">LL Templates</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Templates_LL</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Projects <strong>NUCLEO-C031C6</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Examples <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Examples_LL</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Examples_LL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Examples_MIX</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Examples_MIX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Templates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">LL Templates</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Templates_LL</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true">
+<label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 /
+09-February-2022</strong></label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
+<ul>
+<li>First official Release of STM32CubeC0 Projects (STM32Cube for
+STM32C0 Series)</li>
+</ul>
+<h2 id="contents-1">Contents</h2>
+<h3 id="projects-1">Projects</h3>
+<table>
+<caption>Projects <strong>STM32C0316-DK</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Examples_LL</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Examples_LL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Templates</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0316-DK</td>
+<td style="text-align: left;">LL Templates</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0316-DK/Templates_LL</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Projects <strong>STM32C0116-DK</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Examples_LL</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Examples_LL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Templates</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0116-DK</td>
+<td style="text-align: left;">LL Templates</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/STM32C0116-DK/Templates_LL</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Projects <strong>NUCLEO-C031C6</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Examples_LL</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Examples_LL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Examples_MIX</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Examples_MIX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Templates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-C031C6</td>
+<td style="text-align: left;">LL Templates</td>
+<td style="text-align: left;">V1.0.0</td>
+<td style="text-align: center;">Projects/NUCLEO-C031C6/Templates_LL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong> To reduce the RAM and flash size in different
+projects, please to consider reducing the formatter support for Printf
+and Scanf to small in EWARM project settings.</p>
+<h2 id="known-limitations">Known Limitations</h2>
+<p>N/A</p>
+<h2 id="development-toolchains-and-compilers">Development Toolchains and
+Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V8.50.9 +
+ST-LINK</li>
+<li>RealView Microcontroller Development Kit (MDK-ARM) toolchain V5.36 +
+ST-LINK</li>
+<li>STM32CubeIDE v1.9.0 using GCC10 as compiler version</li>
+</ul>
+<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<ul>
+<li><strong>STM32C011xx</strong> and <strong>STM32C031xx</strong>
+devices</li>
+<li>STM32C0316-DK</li>
+<li>STM32C0116-DK</li>
+<li>NUCLEO-C031C6</li>
+</ul>
+<h2 id="backward-compatibility">Backward Compatibility</h2>
+<ul>
+<li>Not applicable</li>
+</ul>
+</div>
+</div>
+</section>
+</div>
+<footer class="sticky">
+<em>This release note uses up to date web standards and, for this
+reason, should not be opened with Internet Explorer but preferably with
+popular browsers such as Google Chrome, Mozilla Firefox, Opera or
+Microsoft Edge.</em>
+</footer>
+</body>
+</html>
