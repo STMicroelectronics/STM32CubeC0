@@ -1,5 +1,5 @@
 
-## <b>Tx_CMSIS_Wrapper application description</b>
+## <b>Tx_CMSIS_Wrapper Application Description</b>
 
 This application provides an example of CMSIS RTOS adaptation layer for Azure RTOS ThreadX, it shows how to develop an application using the CMSIS RTOS 2 APIs.
 It demonstrates how to create multiple threads using CMSIS RTOS 2 for ThreadX APIs.
@@ -105,7 +105,7 @@ To optimize the application footprint, the following ThreadX configuration optio
 
 ### <b>Keywords</b>
 
-RTOS, ThreadX, Thread, CMSIS RTOS, Semaphore, Mutex
+RTOS, ThreadX, Threading, CMSIS RTOS, Semaphore, Mutex
 
 ### <b>Hardware and Software environment</b>
 

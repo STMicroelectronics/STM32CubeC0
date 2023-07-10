@@ -1,3 +1,4 @@
+
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -5,7 +6,7 @@
   * @author  MCD Application Team
   * @brief   FileX applicative header file
   ******************************************************************************
-    * @attention
+  * @attention
   *
   * Copyright (c) 2022 STMicroelectronics.
   * All rights reserved.
@@ -27,9 +28,9 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "fx_api.h"
+#include "fx_stm32_sram_driver.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "fx_stm32_sram_driver.h"
 #include "main.h"
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -57,6 +58,7 @@ VOID MX_FileX_Process(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+
 /* USER CODE BEGIN PD */
 
 /* USER CODE END PD */

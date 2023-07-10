@@ -6,15 +6,15 @@ It demonstrates how to send and receive messages between threads using ThreadX m
 The main entry function tx_application_define() is then called by ThreadX during kernel start, at this stage, the application creates 3 threads with different 
 priorities and 2 message queues :
 
-  - MsgSenderThreadOne (Priority : 5; Preemption Threshold : 5)
+  - tx_app_thread (Priority : 5; Preemption Threshold : 5)
   - MsgSenderThreadTwo (Priority : 5; Preemption Threshold : 5)
   - MsgReceiverThread (Priority : 10; Preemption Threshold : 10)
-  - MsgQueueOne (shared by MsgSenderThreadOne and MsgReceiverThread)
+  - MsgQueueOne (shared by tx_app_thread and MsgReceiverThread)
   - MsgQueueTwo (shared by MsgSenderThreadTwo and MsgReceiverThread)
 
-<i> MsgSenderThreadOne</i> puts the message <i>TOGGLE_LED</i> on <i>MsgQueueOne</i> each 200 ms.
+<i> tx_app_thread</i> puts the message <i>TOGGLE_LED</i> on <i>MsgQueueOne</i> each 200 ms.
 
-<i>MsgSenderThreadTwo</i> puts the message <i>TOGGLE_LED</i> on <i>MsgQueueTwo</i> each 600 ms.
+<i>MsgSenderThreadTwo</i> puts the message <i>TOGGLE_LED</i> on <i>MsgQueueTwo</i> each 500 ms.
 
 <i>MsgReceiverThread</i> listen on both message queues :
 
@@ -62,7 +62,7 @@ To optimize the application footprint, the following ThreadX configuration optio
 #### <b>ThreadX usage hints</b>
 
  - ThreadX uses the Systick as time base, thus it is mandatory that the HAL uses a separate time base through the TIM IPs.
- - ThreadX is configured with 100 ticks/sec by default, this should be taken into account when using delays or timeouts at application. It is always possible to reconfigure it in the "tx_user.h", the "TX_TIMER_TICKS_PER_SECOND" define,but this should be reflected in "tx_initialize_low_level.s" file too.
+ - ThreadX is configured with 100 ticks/sec by default, this should be taken into account when using delays or timeouts at application. It is always possible to reconfigure it in the "tx_user.h", the "TX_TIMER_TICKS_PER_SECOND" define,but this should be reflected in "tx_initialize_low_level.S" file too.
  - ThreadX is disabling all interrupts during kernel start-up to avoid any unexpected behavior, therefore all system related calls (HAL, BSP) should be done either at the beginning of the application or inside the thread entry functions.
  - ThreadX offers the "tx_application_define()" function, that is automatically called by the tx_kernel_enter() API.
    It is highly recommended to use it to create all applications ThreadX related resources (threads, semaphores, memory pools...)  but it should not in any way contain a system API call (HAL or BSP).
@@ -97,11 +97,11 @@ To optimize the application footprint, the following ThreadX configuration optio
        Caution: Make sure that ThreadX does not need more than the provided heap memory (64KBytes in this example).	 
        Read more in STM32CubeIDE User Guide, chapter: "Linker script".
 	  
-    + The "tx_initialize_low_level.s" should be also modified to enable the "USE_DYNAMIC_MEMORY_ALLOCATION" flag.
+    + The "tx_initialize_low_level.S" should be also modified to enable the "USE_DYNAMIC_MEMORY_ALLOCATION" flag.
 
 ### <b>Keywords</b>
 
-RTOS, ThreadX, Thread, Message Queue, Event chaining
+RTOS, ThreadX, Threading, Message Queue, Event chaining
 
 ### <b>Hardware and Software environment</b>
 

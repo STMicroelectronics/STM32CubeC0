@@ -5,7 +5,7 @@
   * @author  MCD Application Team
   * @brief   FileX applicative file
   ******************************************************************************
-   * @attention
+  * @attention
   *
   * Copyright (c) 2022 STMicroelectronics.
   * All rights reserved.
@@ -33,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define DEFAULT_SECTOR_SIZE     128
+#define DEFAULT_SECTOR_SIZE     512
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -42,6 +42,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 /* USER CODE BEGIN PV */
 /* Define FileX global data structures.  */
 /* FileX SRAM disk media instance */
@@ -55,6 +56,7 @@ extern UART_HandleTypeDef huart2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+
 /* USER CODE BEGIN PFP */
 
 #if defined ( __GNUC__) && !defined(__clang__)
@@ -65,7 +67,6 @@ extern UART_HandleTypeDef huart2;
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 /* USER CODE END PFP */
-
 /**
   * @brief  Application FileX Initialization.
   * @param memory_ptr: memory pointer
@@ -75,9 +76,15 @@ UINT MX_FileX_Init(void)
 {
   UINT ret = FX_SUCCESS;
   /* USER CODE BEGIN MX_FileX_Init */
-  /* Initialize FileX.  */
-  fx_system_initialize();
+
   /* USER CODE END MX_FileX_Init */
+
+/* Initialize FileX.  */
+  fx_system_initialize();
+
+  /* USER CODE BEGIN MX_FileX_Init 1*/
+
+  /* USER CODE END MX_FileX_Init 1*/
 
   return ret;
 }
@@ -106,7 +113,7 @@ VOID MX_FileX_Process(VOID)
                             0,                                      // Hidden sectors
                             FX_SRAM_DISK_SIZE / DEFAULT_SECTOR_SIZE,// Total sectors
                             DEFAULT_SECTOR_SIZE,                    // Sector size
-                            8,                                      // Sectors per cluster
+                            4,                                      // Sectors per cluster
                             1,                                      // Heads
                             1);                                     // Sectors per track
 

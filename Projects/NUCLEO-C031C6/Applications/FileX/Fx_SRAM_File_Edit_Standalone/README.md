@@ -1,5 +1,5 @@
 
-## <b>Fx_SRAM_File_Edit_Standalone application description</b>
+## <b>Fx_SRAM_File_Edit_Standalone Application Description</b>
 
 This application provides an example of FileX stack usage on NUCLEO-C031C6 board, running in standalone mode (without ThreadX). It demonstrates how to create a Fat File system on the internal SRAM memory using FileX.
 
@@ -16,7 +16,7 @@ As stated earlier, the present application runs in standalone mode without Threa
 
 #### <b>Expected success behavior</b>
 
-Successful operation is marked by a toggeling green LED light.
+Successful operation is marked by a toggling green LED light.
 
 Also, information regarding executing operation on the SRAM-Disk is printed to the serial port.
 
@@ -47,10 +47,11 @@ None
 
     #define FX_DISABLE_CONSECUTIVE_DETECT
 
+ 4. Also for optimization purposes, in STM32CubeIDE project Debug mode, the Optimization level should be set to "Optimize for Debug (-Og)".
+
 #### <b>FileX/LevelX usage hints</b>
 
 - When calling the fx_media_format() API, it is highly recommended to understand all the parameters used by the API to correctly generate a valid filesystem.
-- FileX is using data buffers, passed as arguments to fx_media_open(), fx_media_read() and fx_media_write() API, it is recommended that these buffers are multiple of sector size and be "4 bytes" aligned to avoid unaligned access issues.
 
 ### <b>Keywords</b>
 

@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32C031C6Tx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32C0xx_DFP.0.0.1</PackID>
+          <PackID>Keil.STM32C0xx_DFP.1.0.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IRAM(0x20000000-0x20002FFF) IROM(0x8000000-0x8007FFF) CLOCK(8000000) CPUTYPE("Cortex-M0+") TZ</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -186,6 +186,7 @@
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
             <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -339,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>TX_INCLUDE_USER_DEFINE_FILE,USE_HAL_DRIVER,STM32C031xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../../../../../../Drivers/STM32C0xx_HAL_Driver/Inc;../../../../../../Drivers/STM32C0xx_HAL_Driver/Inc/Legacy;../../../../../../Drivers/CMSIS/Device/ST/STM32C0xx/Include;../../../../../../Middlewares/ST/threadx/common/inc;../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/inc;../../../../../../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;../../../../../../Drivers/STM32C0xx_HAL_Driver/Inc;../../../../../../Drivers/STM32C0xx_HAL_Driver/Inc/Legacy;../../../../../../Middlewares/ST/threadx/common/inc;../../../../../../Drivers/CMSIS/Device/ST/STM32C0xx/Include;../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/inc;../../../../../../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -552,6 +553,66 @@
               <FileName>tx_initialize_kernel_setup.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_initialize_kernel_setup.c</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_context_restore.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_context_restore.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_context_save.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_context_save.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_interrupt_control.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_interrupt_control.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_interrupt_disable.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_interrupt_disable.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_interrupt_restore.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_interrupt_restore.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_schedule.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_schedule.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_stack_build.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_stack_build.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_system_return.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_system_return.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_timer_interrupt.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_timer_interrupt.S</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_stack_error_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_stack_error_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_stack_error_notify.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_stack_error_notify.c</FilePath>
+            </File>
+            <File>
+              <FileName>tx_thread_system_resume.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_system_resume.c</FilePath>
             </File>
             <File>
               <FileName>tx_block_allocate.c</FileName>
@@ -899,16 +960,6 @@
               <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_stack_analyze.c</FilePath>
             </File>
             <File>
-              <FileName>tx_thread_stack_error_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_stack_error_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_stack_error_notify.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_stack_error_notify.c</FilePath>
-            </File>
-            <File>
               <FileName>tx_thread_suspend.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_suspend.c</FilePath>
@@ -917,11 +968,6 @@
               <FileName>tx_thread_system_preempt_check.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_system_preempt_check.c</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_system_resume.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/common/src/tx_thread_system_resume.c</FilePath>
             </File>
             <File>
               <FileName>tx_thread_system_suspend.c</FileName>
@@ -1317,51 +1363,6 @@
               <FileName>txe_timer_info_get.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Middlewares/ST/threadx/common/src/txe_timer_info_get.c</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_context_restore.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_context_restore.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_context_save.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_context_save.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_interrupt_control.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_interrupt_control.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_interrupt_disable.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_interrupt_disable.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_interrupt_restore.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_interrupt_restore.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_schedule.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_schedule.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_stack_build.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_stack_build.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_thread_system_return.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_thread_system_return.S</FilePath>
-            </File>
-            <File>
-              <FileName>tx_timer_interrupt.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../Middlewares/ST/threadx/ports/cortex_m0/ac6/src/tx_timer_interrupt.S</FilePath>
             </File>
           </Files>
         </Group>

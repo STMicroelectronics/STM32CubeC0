@@ -53,9 +53,10 @@ __ramfunc static HAL_StatusTypeDef OPENBL_FLASH_SendBusyState(uint32_t Timeout);
 __ramfunc static HAL_StatusTypeDef OPENBL_FLASH_WaitForLastOperation(uint32_t Timeout);
 __ramfunc static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(FLASH_EraseInitTypeDef *pEraseInit, uint32_t *pPageError);
 #else
-__attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_SendBusyState(uint32_t Timeout);
-__attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_WaitForLastOperation(uint32_t Timeout);
-__attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(FLASH_EraseInitTypeDef *pEraseInit, uint32_t *pPageError);
+__attribute__((section(".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_SendBusyState(uint32_t Timeout);
+__attribute__((section(".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_WaitForLastOperation(uint32_t Timeout);
+__attribute__((section(".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(
+  FLASH_EraseInitTypeDef *pEraseInit, uint32_t *pPageError);
 #endif /* (__ICCARM__) */
 
 /* Exported variables --------------------------------------------------------*/
@@ -424,10 +425,10 @@ ErrorStatus OPENBL_FLASH_Erase(uint8_t *p_Data, uint32_t DataLength)
 }
 
 /**
- * @brief  This function is used to Set Flash busy state variable to activate busy state sending
- *         during flash operations
- * @retval None.
-*/
+  * @brief  This function is used to Set Flash busy state variable to activate busy state sending
+  *         during flash operations
+  * @retval None.
+  */
 void OPENBL_Enable_BusyState_Flag(void)
 {
   /* Enable Flash busy state sending */
@@ -435,9 +436,9 @@ void OPENBL_Enable_BusyState_Flag(void)
 }
 
 /**
- * @brief  This function is used to disable the send of busy state in I2C non stretch mode.
- * @retval None.
-*/
+  * @brief  This function is used to disable the send of busy state in I2C non stretch mode.
+  * @retval None.
+  */
 void OPENBL_Disable_BusyState_Flag(void)
 {
   /* Disable Flash busy state sending */
@@ -543,9 +544,11 @@ static ErrorStatus OPENBL_FLASH_DisableWriteProtection(void)
   * @retval HAL_Status
   */
 #if defined (__ICCARM__)
-__ramfunc static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(FLASH_EraseInitTypeDef *pEraseInit, uint32_t *pSectorError)
+__ramfunc static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(FLASH_EraseInitTypeDef *pEraseInit,
+                                                              uint32_t *pSectorError)
 #else
-__attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(FLASH_EraseInitTypeDef *pEraseInit, uint32_t *pSectorError)
+__attribute__((section(".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_ExtendedErase(
+  FLASH_EraseInitTypeDef *pEraseInit, uint32_t *pSectorError)
 #endif /* (__ICCARM__) */
 {
   HAL_StatusTypeDef status;
@@ -606,7 +609,7 @@ __attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_Ext
 #if defined (__ICCARM__)
 __ramfunc static HAL_StatusTypeDef OPENBL_FLASH_WaitForLastOperation(uint32_t Timeout)
 #else
-__attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_WaitForLastOperation(uint32_t Timeout)
+__attribute__((section(".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_WaitForLastOperation(uint32_t Timeout)
 #endif /* (__ICCARM__) */
 {
   uint32_t error;
@@ -661,7 +664,7 @@ __attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_Wai
 #if defined (__ICCARM__)
 __ramfunc static HAL_StatusTypeDef OPENBL_FLASH_SendBusyState(uint32_t Timeout)
 #else
-__attribute__ ((section (".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_SendBusyState(uint32_t Timeout)
+__attribute__((section(".ramfunc"))) static HAL_StatusTypeDef OPENBL_FLASH_SendBusyState(uint32_t Timeout)
 #endif /* (__ICCARM__) */
 {
   uint32_t error;

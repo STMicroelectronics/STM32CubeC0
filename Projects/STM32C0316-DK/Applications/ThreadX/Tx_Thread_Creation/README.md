@@ -71,7 +71,7 @@ To optimize the application footprint, the following ThreadX configuration optio
     + For MDK-ARM:
 	```
     either define the RW_IRAM1 region in the ".sct" file
-    or modify the line below in "tx_low_level_initilize.s to match the memory region being used
+    or modify the line below in "tx_initialize_low_level.S to match the memory region being used
         LDR r1, =|Image$$RW_IRAM1$$ZI$$Limit|
 	```
     + For STM32CubeIDE add the following section into the .ld file:
@@ -95,7 +95,7 @@ To optimize the application footprint, the following ThreadX configuration optio
          
 ### <b>Keywords</b>
 
-RTOS, ThreadX, Thread, Event flags, Preemption threshold
+RTOS, ThreadX, Threading, Event flags, Preemption threshold
 
 
 ### <b>Hardware and Software environment</b>

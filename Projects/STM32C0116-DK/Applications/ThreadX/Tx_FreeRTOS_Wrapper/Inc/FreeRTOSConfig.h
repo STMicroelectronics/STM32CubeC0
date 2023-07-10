@@ -52,7 +52,7 @@
 /* #define configUSE_PORT_OPTIMISED_TASK_SELECTION  0 */
 
 /* #define configMESSAGE_BUFFER_LENGTH_TYPE         size_t */
-#define configSTACK_DEPTH_TYPE                     uint16_t
+#define configSTACK_DEPTH_TYPE                     uint32_t
 
 /* #define configUSE_CO_ROUTINES                    0   */
 /* #define configMAX_CO_ROUTINE_PRIORITIES          (2) */
@@ -89,5 +89,10 @@
 /* Set to 1 to support auto initialization, see documentation for details. */
 #define TX_FREERTOS_AUTO_INIT 0
 
+/* ThreadX FreeRTOS Port API*/
+void *txfr_malloc(size_t len);
+void txfr_free(void *p);
+void txfr_thread_wrapper(ULONG id);
+void txfr_timer_callback_wrapper(ULONG id);
 
 #endif /* #ifndef FREERTOS_CONFIG_H */

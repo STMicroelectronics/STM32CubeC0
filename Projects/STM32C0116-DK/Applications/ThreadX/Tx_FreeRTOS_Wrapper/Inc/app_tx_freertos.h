@@ -18,8 +18,8 @@
   */
 /* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __APP_THREADX_H__
-#define __APP_THREADX_H__
+#ifndef __APP_TX_FREERTOS_H__
+#define __APP_TX_FREERTOS_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,8 +30,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "main.h"
 #include "FreeRTOS.h"
+#include "main.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -58,7 +58,7 @@ UINT App_TX_FreeRTOS_Init(void);
 
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
-#define APP_STACK_SIZE                   512
+#define APP_STACK_SIZE                   128
 #define LED_THREAD_PRIO                  5
 /* USER CODE END Private defines */
 
@@ -69,4 +69,4 @@ UINT App_TX_FreeRTOS_Init(void);
 #ifdef __cplusplus
  }
 #endif
-#endif /* __APP_THREADX_H__ */
+#endif /* __APP_TX_FREERTOS_H__ */

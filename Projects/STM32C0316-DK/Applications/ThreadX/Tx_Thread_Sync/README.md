@@ -1,5 +1,5 @@
 
-## <b>Tx_Thread_Sync application description</b>
+## <b>Tx_Thread_Sync Application Description</b>
 
 This application provides an example of Azure RTOS ThreadX stack usage, it shows how to develop an application using the ThreadX synchronization APIs.
 The main entry function tx_application_define() is called by ThreadX during kernel start, at this stage, the application creates 2 threads with the same priorities :
@@ -82,7 +82,7 @@ To optimize the application footprint, the following ThreadX configuration optio
     + For MDK-ARM:
 	```
     either define the RW_IRAM1 region in the ".sct" file
-    or modify the line below in "tx_low_level_initilize.s to match the memory region being used
+    or modify the line below in "tx_initialize_low_level.S to match the memory region being used
         LDR r1, =|Image$$RW_IRAM1$$ZI$$Limit|
 	```
     + For STM32CubeIDE add the following section into the .ld file:
@@ -107,7 +107,7 @@ To optimize the application footprint, the following ThreadX configuration optio
 
 ### <b>Keywords</b>
 
-RTOS, ThreadX, Thread, Semaphore, Mutex
+RTOS, ThreadX, Threading, Semaphore, Mutex
 
 ### <b>Hardware and Software environment</b>
 

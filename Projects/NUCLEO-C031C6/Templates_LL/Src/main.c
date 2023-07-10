@@ -118,7 +118,7 @@ void SystemClock_Config(void)
   LL_RCC_HSI_SetCalibTrimming(64);
   LL_RCC_SetHSIDiv(LL_RCC_HSI_DIV_1);
   /* Set AHB prescaler*/
-  LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+  LL_RCC_SetAHBPrescaler(LL_RCC_HCLK_DIV_1);
 
   /* Sysclk activation on the HSI */
   LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_HSI);

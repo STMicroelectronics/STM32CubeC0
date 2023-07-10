@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "app_azure_rtos.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,18 +42,16 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+  TX_THREAD tx_app_thread;
 /* USER CODE BEGIN PV */
-TX_THREAD ThreadOne;
-TX_THREAD ThreadTwo;
-APP_SYNC_TYPE SyncObject;
-
+  TX_THREAD ThreadTwo;
+  APP_SYNC_TYPE SyncObject;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-VOID ThreadOne_Entry(ULONG thread_input);
 VOID ThreadTwo_Entry(ULONG thread_input);
-static VOID Led_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x, UINT delay);
+static void Led_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x, uint32_t iter ,uint32_t delay);
 static VOID App_Delay(ULONG Delay);
 /* USER CODE END PFP */
 
@@ -67,35 +65,36 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   UINT ret = TX_SUCCESS;
   TX_BYTE_POOL *byte_pool = (TX_BYTE_POOL*)memory_ptr;
 
-   /* USER CODE BEGIN App_ThreadX_MEM_POOL */
+  /* USER CODE BEGIN App_ThreadX_MEM_POOL */
 
   /* USER CODE END App_ThreadX_MEM_POOL */
+CHAR *pointer;
+
+  /* Allocate the stack for Thread One  */
+  if (tx_byte_allocate(byte_pool, (VOID**) &pointer,
+                       TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+  {
+    return TX_POOL_ERROR;
+  }
+   /* Create Thread One.  */
+  if (tx_thread_create(&tx_app_thread, "Thread One", ThreadOne_Entry, 0, pointer,
+                       TX_APP_STACK_SIZE, TX_APP_THREAD_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
+                       TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+  {
+    return TX_THREAD_ERROR;
+  }
 
   /* USER CODE BEGIN App_ThreadX_Init */
-  CHAR *pointer;
-
-  /* Allocate the stack for ThreadOne.  */
-  if (tx_byte_allocate(byte_pool, (VOID **) &pointer, APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
-  {
-    ret = TX_POOL_ERROR;
-  }
-
-  /* Create ThreadOne.  */
-  if (tx_thread_create(&ThreadOne, "Thread One", ThreadOne_Entry, 0, pointer, APP_STACK_SIZE, THREAD_ONE_PRIO,
-                       THREAD_ONE_PREEMPTION_THRESHOLD, DEFAULT_TIME_SLICE, TX_AUTO_START) != TX_SUCCESS)
-  {
-    ret = TX_THREAD_ERROR;
-  }
 
   /* Allocate the stack for ThreadTwo.  */
-  if (tx_byte_allocate(byte_pool, (VOID **) &pointer, APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+  if (tx_byte_allocate(byte_pool, (VOID **) &pointer, TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
   {
     ret = TX_POOL_ERROR;
   }
 
   /* Create ThreadTwo.  */
-  if (tx_thread_create(&ThreadTwo, "Thread Two", ThreadTwo_Entry, 0, pointer, APP_STACK_SIZE, THREAD_TWO_PRIO,
-                       THREAD_TWO_PREEMPTION_THRESHOLD, DEFAULT_TIME_SLICE, TX_AUTO_START) != TX_SUCCESS)
+  if (tx_thread_create(&ThreadTwo, "Thread Two", ThreadTwo_Entry, 0, pointer, TX_APP_STACK_SIZE, TX_APP_THREAD_PRIO,
+                       TX_APP_THREAD_PREEMPTION_THRESHOLD, TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
   {
     ret = TX_THREAD_ERROR;
   }
@@ -108,6 +107,46 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   /* USER CODE END App_ThreadX_Init */
 
   return ret;
+}
+/**
+  * @brief  Function implementing the ThreadOne_Entry thread.
+  * @param  thread_input: Not used.
+  * @retval None
+  */
+void ThreadOne_Entry(ULONG thread_input)
+{
+  /* USER CODE BEGIN ThreadOne_Entry */
+  UNUSED(thread_input);
+  ULONG iteration = 0;
+
+  /* Infinite loop */
+  while(1)
+  {
+    /* try to acquire the sync object without waiting */
+    if (APP_SYNC_GET(&SyncObject, TX_NO_WAIT) == TX_SUCCESS)
+    {
+      printf("** ThreadOne : SyncObject acquired ** \n");
+
+      /*sync object acquired, toggle the LED_GREEN each 500ms for 5s */
+      Led_Toggle(LED1_GPIO_Port, LED1_Pin, 10, 50);
+      /*release the sync object */
+      APP_SYNC_PUT(&SyncObject);
+
+       printf("** ThreadOne : SyncObject released ** \n");
+
+      tx_thread_sleep(1);
+    }
+    else
+    {
+
+      if ((iteration % 2000000) == 0)
+      {
+        printf("** ThreadOne : waiting for SyncObject !! **\n");
+      }
+    }
+    iteration++;
+  }
+  /* USER CODE END ThreadOne_Entry */
 }
 
   /**
@@ -129,44 +168,6 @@ void MX_ThreadX_Init(void)
 }
 
 /* USER CODE BEGIN 1 */
-/**
-  * @brief  Function implementing the ThreadOne thread.
-  * @param  thread_input: Not used
-  * @retval None
-  */
-void ThreadOne_Entry(ULONG thread_input)
-{
-  UNUSED(thread_input);
-  ULONG iteration = 0;
-
-  /* Infinite loop */
-  while(1)
-  {
-    /* try to acquire the sync object without waiting */
-    if (APP_SYNC_GET(&SyncObject, TX_NO_WAIT) == TX_SUCCESS)
-    {
-      printf("** ThreadOne : SyncObject acquired ** \n");
-
-      /*sync object acquired, toggle the LED_GREEN each 500ms for 5s */
-      Led_Toggle(GPIOA, GPIO_PIN_5,50);
-      /*release the sync object */
-      APP_SYNC_PUT(&SyncObject);
-
-       printf("** ThreadOne : SyncObject released ** \n");
-
-      tx_thread_sleep(1);
-    }
-    else
-    {
-
-      if ((iteration % 2000000) == 0)
-      {
-        printf("** ThreadOne : waiting for SyncObject !! **\n");
-      }
-    }
-    iteration++;
-  }
-}
 
 /**
   * @brief  Function implementing the ThreadTwo thread.
@@ -187,7 +188,7 @@ void ThreadTwo_Entry(ULONG thread_input)
       printf("** ThreadTwo : SyncObject acquired ** \n");
 
       /*Sync object acquired toggle the LED_GREEN each 200ms for 2s*/
-      Led_Toggle(GPIOA, GPIO_PIN_5,20);
+      Led_Toggle(LED1_GPIO_Port, LED1_Pin,10,20);
 
       /*release the sync object*/
       APP_SYNC_PUT(&SyncObject);
@@ -212,18 +213,18 @@ void ThreadTwo_Entry(ULONG thread_input)
   * @brief Critical section function that needs acquiring SyncObject.
   * @param  led: LED to toggle
   * @param  iter: Number of iterations
+  * @param  delay: delay per iteration
   * @retval None
   */
-static VOID Led_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x, UINT delay)
+static void Led_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x, uint32_t iter ,uint32_t delay)
 {
-  UINT i;
+  uint32_t i;
 
-  HAL_GPIO_WritePin(GPIOx, GPIO_PIN_x, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOx, GPIO_PIN_x, GPIO_PIN_SET);
 
-  for (i =0; i < 10; i++)
+  for (i =0; i < iter; i++)
   {
     HAL_GPIO_TogglePin(GPIOx, GPIO_PIN_x);
-    /* Toggle the Led each delay */
     App_Delay(delay);
   }
 

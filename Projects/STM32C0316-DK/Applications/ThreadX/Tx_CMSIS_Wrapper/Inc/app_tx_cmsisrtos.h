@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    ThreadX/Tx_CMSIS_Wrapper/CM4/Inc/app_tx_cmsisrtos.h
+  * @file    ThreadX/Tx_CMSIS_Wrapper/Inc/app_tx_cmsisrtos.h
   * @author  MCD Application Team
   * @brief   ThreadX CMSIS RTOS Wrapper applicative header file
   ******************************************************************************
@@ -18,8 +18,8 @@
   */
 /* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __APP_THREADX_H__
-#define __APP_THREADX_H__
+#ifndef __APP_TX_CMSISRTOS_H__
+#define __APP_TX_CMSISRTOS_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -94,4 +94,4 @@ uint32_t App_TX_CmsisRTOS_Init(void);
 #ifdef __cplusplus
  }
 #endif
-#endif /* __APP_THREADX_H__ */
+#endif /* __APP_TX_CMSISRTOS_H__ */

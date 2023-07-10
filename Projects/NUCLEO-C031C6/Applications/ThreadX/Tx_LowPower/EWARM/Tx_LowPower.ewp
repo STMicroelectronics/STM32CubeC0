@@ -32,11 +32,11 @@
         </option>
         <option>
           <name>Input description</name>
-          <state>Full formatting, without multibyte support.</state>
+          <state>No specifier n, no float nor long long, no scan set, no assignment suppressing, without multibyte support.</state>
         </option>
         <option>
           <name>Output description</name>
-          <state>Full formatting, without multibyte support.</state>
+          <state>No specifier a, A, no specifier n, no float nor long long, without multibyte support.</state>
         </option>
         <option>
           <name>GOutputBinary</name>
@@ -66,7 +66,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>8.50.6.28611</state>
+          <state>8.50.9.33458</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -173,7 +173,7 @@
         <option>
           <name>OGPrintfVariant</name>
           <version>0</version>
-          <state>1</state>
+          <state>3</state>
         </option>
         <option>
           <name>OGPrintfMultibyteSupport</name>
@@ -182,7 +182,7 @@
         <option>
           <name>OGScanfVariant</name>
           <version>0</version>
-          <state>1</state>
+          <state>3</state>
         </option>
         <option>
           <name>OGScanfMultibyteSupport</name>
@@ -319,7 +319,7 @@
         </option>
         <option>
           <name>CCRequirePrototypes</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCDiagWarnAreErr</name>
@@ -354,8 +354,8 @@
           <state>$PROJ_DIR$/../Inc</state>
           <state>$PROJ_DIR$/../../../../../../Drivers/STM32C0xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../../../../../../Drivers/STM32C0xx_HAL_Driver/Inc/Legacy</state>
-          <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Device/ST/STM32C0xx/Include</state>
           <state>$PROJ_DIR$/../../../../../../Middlewares/ST/threadx/common/inc</state>
+          <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Device/ST/STM32C0xx/Include</state>
           <state>$PROJ_DIR$/../../../../../../Middlewares/ST/threadx/ports/cortex_m0/iar/inc</state>
           <state>$PROJ_DIR$/../../../../../../Middlewares/ST/threadx/utility/low_power</state>
           <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Include</state>
@@ -486,7 +486,7 @@
       <name>AARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>10</version>
+        <version>11</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -641,6 +641,10 @@
         <option>
           <name>AsmNoLiteralPool</name>
           <state>0</state>
+        </option>
+        <option>
+          <name>PreInclude</name>
+          <state></state>
         </option>
       </data>
     </settings>
@@ -1014,7 +1018,7 @@
         </option>
         <option>
           <name>IlinkTrustzoneImportLibraryOut</name>
-          <state>Tx_LowPower_import_lib.o</state>
+          <state></state>
         </option>
         <option>
           <name>OILinkExtraOption</name>
@@ -1183,6 +1187,45 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_initialize_kernel_setup.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_iar.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_context_restore.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_context_save.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_interrupt_control.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_interrupt_disable.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_interrupt_restore.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_schedule.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_stack_build.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_system_return.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_timer_interrupt.s</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_stack_error_handler.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_stack_error_notify.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_system_resume.c</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_block_allocate.c</name>
@@ -1392,19 +1435,10 @@
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_stack_analyze.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_stack_error_handler.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_stack_error_notify.c</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_suspend.c</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_system_preempt_check.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_system_resume.c</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\tx_thread_system_suspend.c</name>
@@ -1642,36 +1676,6 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\common\src\txe_timer_info_get.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_iar.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_context_restore.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_context_save.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_interrupt_control.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_interrupt_disable.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_interrupt_restore.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_schedule.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_stack_build.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_thread_system_return.s</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\threadx\ports\cortex_m0\iar\src\tx_timer_interrupt.s</name>
         </file>
       </group>
       <group>

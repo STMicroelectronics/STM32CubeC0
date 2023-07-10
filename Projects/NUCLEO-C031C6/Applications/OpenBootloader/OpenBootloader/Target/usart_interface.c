@@ -66,9 +66,9 @@ static void OPENBL_USART_Init(void)
 /* Exported functions --------------------------------------------------------*/
 
 /**
- * @brief  This function is used to configure USART pins and then initialize the used USART instance.
- * @retval None.
- */
+  * @brief  This function is used to configure USART pins and then initialize the used USART instance.
+  * @retval None.
+  */
 void OPENBL_USART_Configuration(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct;
@@ -96,9 +96,9 @@ void OPENBL_USART_Configuration(void)
 }
 
 /**
- * @brief  This function is used to De-initialize the USART pins and instance.
- * @retval None.
- */
+  * @brief  This function is used to De-initialize the USART pins and instance.
+  * @retval None.
+  */
 void OPENBL_USART_DeInit(void)
 {
   /* Only de-initialize the USART if it is not the current detected interface */
@@ -111,9 +111,9 @@ void OPENBL_USART_DeInit(void)
 }
 
 /**
- * @brief  This function is used to detect if there is any activity on USART protocol.
- * @retval None.
- */
+  * @brief  This function is used to detect if there is any activity on USART protocol.
+  * @retval None.
+  */
 uint8_t OPENBL_USART_ProtocolDetection(void)
 {
   /* Check if the USARTx is addressed */
@@ -122,7 +122,7 @@ uint8_t OPENBL_USART_ProtocolDetection(void)
     /* Read byte in order to flush the 0x7F synchronization byte */
     OPENBL_USART_ReadByte();
 
-    /* Aknowledge the host */
+    /* Acknowledge the host */
     OPENBL_USART_SendByte(ACK_BYTE);
 
     UsartDetected = 1;
@@ -136,9 +136,9 @@ uint8_t OPENBL_USART_ProtocolDetection(void)
 }
 
 /**
- * @brief  This function is used to get the command opcode from the host.
- * @retval Returns the command.
- */
+  * @brief  This function is used to get the command opcode from the host.
+  * @retval Returns the command.
+  */
 uint8_t OPENBL_USART_GetCommandOpcode(void)
 {
   uint8_t command_opc = 0x0;
@@ -188,11 +188,11 @@ void OPENBL_USART_SendByte(uint8_t Byte)
 }
 
 /**
- * @brief  This function is used to process and execute the special commands.
- *         The user must define the special commands routine here.
- * @param  SpecialCmd Pointer to the OPENBL_SpecialCmdTypeDef structure.
- * @retval Returns NACK status in case of error else returns ACK status.
- */
+  * @brief  This function is used to process and execute the special commands.
+  *         The user must define the special commands routine here.
+  * @param  SpecialCmd Pointer to the OPENBL_SpecialCmdTypeDef structure.
+  * @retval Returns NACK status in case of error else returns ACK status.
+  */
 void OPENBL_USART_SpecialCommandProcess(OPENBL_SpecialCmdTypeDef *SpecialCmd)
 {
   switch (SpecialCmd->OpCode)

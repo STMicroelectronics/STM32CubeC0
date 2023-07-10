@@ -42,20 +42,18 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+  TX_THREAD tx_app_thread;
+  TX_QUEUE tx_app_msg_queue;
 /* USER CODE BEGIN PV */
-TX_THREAD              MsgSenderThreadOne;
-TX_THREAD              MsgReceiverThread;
-TX_THREAD              MsgSenderThreadTwo;
-TX_QUEUE               MsgQueueOne;
-TX_QUEUE               MsgQueueTwo;
-
+  TX_THREAD              MsgReceiverThread;
+  TX_THREAD              MsgSenderThreadTwo;
+  TX_QUEUE               MsgQueueTwo;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-void    MsgSenderThreadOne_Entry(ULONG thread_input);
-void    MsgSenderThreadTwo_Entry(ULONG thread_input);
-void    MsgReceiverThread_Entry(ULONG thread_input);
+void   MsgSenderThreadTwo_Entry(ULONG thread_input);
+void   MsgReceiverThread_Entry(ULONG thread_input);
 /* USER CODE END PFP */
 
 /**
@@ -68,91 +66,108 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   UINT ret = TX_SUCCESS;
   TX_BYTE_POOL *byte_pool = (TX_BYTE_POOL*)memory_ptr;
 
-   /* USER CODE BEGIN App_ThreadX_MEM_POOL */
+  /* USER CODE BEGIN App_ThreadX_MEM_POOL */
 
   /* USER CODE END App_ThreadX_MEM_POOL */
+CHAR *pointer;
+
+  /* Allocate the stack for Message Queue Sender Thread One  */
+  if (tx_byte_allocate(byte_pool, (VOID**) &pointer,
+                       TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+  {
+    return TX_POOL_ERROR;
+  }
+   /* Create Message Queue Sender Thread One.  */
+  if (tx_thread_create(&tx_app_thread, "Message Queue Sender Thread One", MsgSenderThreadOne_Entry, 0, pointer,
+                       TX_APP_STACK_SIZE, TX_APP_THREAD_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
+                       TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+  {
+    return TX_THREAD_ERROR;
+  }
+  /* Allocate the stack for Message Queue One.  */
+  if (tx_byte_allocate(byte_pool, (VOID **) &pointer,
+                       TX_APP_MSG_QUEUE_FULL_SIZE * sizeof(ULONG), TX_NO_WAIT) != TX_SUCCESS)
+  {
+    return TX_POOL_ERROR;
+  }
+  /* Create Message Queue One.  */
+  if (tx_queue_create(&tx_app_msg_queue, "Message Queue One", TX_APP_SINGLE_MSG_SIZE,
+                      pointer, TX_APP_MSG_QUEUE_FULL_SIZE * sizeof(ULONG)) != TX_SUCCESS)
+  {
+    return TX_QUEUE_ERROR;
+  }
 
   /* USER CODE BEGIN App_ThreadX_Init */
-  CHAR *pointer;
-
-  /* Allocate the stack for MsgSenderThreadOne.  */
-  if (tx_byte_allocate(byte_pool, (VOID **) &pointer,
-                       APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
-  {
-    ret = TX_POOL_ERROR;
-  }
-  
-  /* Create MsgSenderThreadOne.  */
-  if (tx_thread_create(&MsgSenderThreadOne, "Message Queue Sender Thread One", 
-                       MsgSenderThreadOne_Entry, 0, pointer, APP_STACK_SIZE, 
-                       SENDER_THREAD_PRIO, SENDER_THREAD_PREEMPTION_THRESHOLD, 
-                       TX_NO_TIME_SLICE, TX_AUTO_START) != TX_SUCCESS)
-  {
-    ret = TX_THREAD_ERROR;
-  }
-  
   /* Allocate the stack for MsgSenderThreadTwo.  */
   if (tx_byte_allocate(byte_pool, (VOID **) &pointer,
-                       APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+                       TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
   {
     ret = TX_POOL_ERROR;
   }
   
   /* Create MsgSenderThreadTwo.  */
   if (tx_thread_create(&MsgSenderThreadTwo, "Message Queue Sender Thread Two",
-                       MsgSenderThreadTwo_Entry, 0, pointer, APP_STACK_SIZE, 
-                       SENDER_THREAD_PRIO, SENDER_THREAD_PREEMPTION_THRESHOLD,
+                       MsgSenderThreadTwo_Entry, 0, pointer, TX_APP_STACK_SIZE,
+                       TX_APP_THREAD_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
                        TX_NO_TIME_SLICE, TX_AUTO_START) != TX_SUCCESS)
   {
     ret = TX_THREAD_ERROR;
   }
-  
   /* Allocate the stack for MsgReceiverThread.  */
   if (tx_byte_allocate(byte_pool, (VOID **) &pointer,
-                       APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+                       TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
   {
     ret = TX_POOL_ERROR;
   }
   
   /* Create MsgReceiverThread.  */
-  if (tx_thread_create(&MsgReceiverThread, "Message Queue Receiver Thread", 
-                       MsgReceiverThread_Entry, 0, pointer, APP_STACK_SIZE, 
+  if (tx_thread_create(&MsgReceiverThread, "Message Queue Receiver Thread",
+                       MsgReceiverThread_Entry, 0, pointer, TX_APP_STACK_SIZE,
                        RECEIVER_THREAD_PRIO, RECEIVER_THREAD_PREEMPTION_THRESHOLD,
                        TX_NO_TIME_SLICE, TX_AUTO_START) != TX_SUCCESS)
   {
     ret = TX_THREAD_ERROR;
   }
   
-  /* Allocate the MsgQueueOne.  */
-  if (tx_byte_allocate(byte_pool, (VOID **) &pointer,
-                       APP_QUEUE_SIZE*sizeof(ULONG), TX_NO_WAIT) != TX_SUCCESS)
-  {
-    ret = TX_POOL_ERROR;
-  }
-  
-  /* Create the MsgQueueOne shared by MsgSenderThreadOne and MsgReceiverThread */
-  if (tx_queue_create(&MsgQueueOne, "Message Queue One",TX_1_ULONG,
-                      pointer, APP_QUEUE_SIZE*sizeof(ULONG)) != TX_SUCCESS)
-  {
-    ret = TX_QUEUE_ERROR;
-  }
-  
   /* Allocate the MsgQueueTwo.  */
   if (tx_byte_allocate(byte_pool, (VOID **) &pointer,
-                       APP_QUEUE_SIZE*sizeof(ULONG), TX_NO_WAIT) != TX_SUCCESS)
+                       TX_APP_MSG_QUEUE_FULL_SIZE *sizeof(ULONG), TX_NO_WAIT) != TX_SUCCESS)
   {
     ret = TX_POOL_ERROR;
   }
   
   /* Create the MsgQueueTwo shared by MsgSenderThreadTwo and MsgReceiverThread.  */
   if (tx_queue_create(&MsgQueueTwo, "Message Queue Two", TX_1_ULONG,
-                      pointer, APP_QUEUE_SIZE*sizeof(ULONG)) != TX_SUCCESS)
+                      pointer, TX_APP_MSG_QUEUE_FULL_SIZE *sizeof(ULONG)) != TX_SUCCESS)
   {
     ret = TX_QUEUE_ERROR;
   }
   /* USER CODE END App_ThreadX_Init */
 
   return ret;
+}
+/**
+  * @brief  Function implementing the MsgSenderThreadOne_Entry thread.
+  * @param  thread_input: Not used.
+  * @retval None
+  */
+void MsgSenderThreadOne_Entry(ULONG thread_input)
+{
+  /* USER CODE BEGIN MsgSenderThreadOne_Entry */
+  ULONG Msg = TOGGLE_LED;
+  (void) thread_input;
+  /* Infinite loop */
+  while(1)
+  {
+    /* Send message to MsgQueueOne.  */
+    if (tx_queue_send(&tx_app_msg_queue, &Msg, TX_WAIT_FOREVER) != TX_SUCCESS)
+    {
+      Error_Handler();
+    }
+    /* Sleep for 200ms */
+    tx_thread_sleep(20);
+  }
+  /* USER CODE END MsgSenderThreadOne_Entry */
 }
 
   /**
@@ -175,32 +190,10 @@ void MX_ThreadX_Init(void)
 
 /* USER CODE BEGIN 1 */
 /**
-  * @brief  Function implementing the MsgSenderThreadOne thread.
-  * @param  thread_input: Not used 
-  * @retval None
-  */
-void MsgSenderThreadOne_Entry(ULONG thread_input)
-{
-  ULONG Msg = TOGGLE_LED;
-  (void) thread_input;
-  /* Infinite loop */
-  while(1)
-  {
-    /* Send message to MsgQueueOne.  */
-    if (tx_queue_send(&MsgQueueOne, &Msg, TX_WAIT_FOREVER) != TX_SUCCESS)
-    {
-      Error_Handler();
-    }
-    /* Sleep for 200ms */
-    tx_thread_sleep(20);
-  }
-}
-
-/**
-  * @brief  Function implementing the MsgSenderThreadTwo thread.
-  * @param  thread_input: Not used 
-  * @retval None
-  */
+* @brief  Function implementing the MsgSenderThreadTwo thread.
+* @param  thread_input: Not used
+* @retval None
+*/
 void MsgSenderThreadTwo_Entry(ULONG thread_input)
 {
   ULONG Msg = TOGGLE_LED;
@@ -213,16 +206,16 @@ void MsgSenderThreadTwo_Entry(ULONG thread_input)
     {
       Error_Handler();
     }
-    /* Sleep for 600ms */
-    tx_thread_sleep(60);
+    /* Sleep for 500s */
+    tx_thread_sleep(50);
   }
 }
 
 /**
-  * @brief  Function implementing the MsgReceiverThread thread.
-  * @param  thread_input: Not used 
-  * @retval None
-  */
+* @brief  Function implementing the MsgReceiverThread thread.
+* @param  thread_input: Not used
+* @retval None
+*/
 void MsgReceiverThread_Entry(ULONG thread_input)
 {
   ULONG RMsg = 0;
@@ -232,7 +225,7 @@ void MsgReceiverThread_Entry(ULONG thread_input)
   while (1)
   {
     /* Determine whether a message MsgQueueOne or MsgQueueTwo is available */
-    status = tx_queue_receive(&MsgQueueOne, &RMsg, TX_NO_WAIT);
+    status = tx_queue_receive(&tx_app_msg_queue, &RMsg, TX_NO_WAIT);
     if (status == TX_SUCCESS)
     {
       /* Check Message value */
@@ -243,7 +236,7 @@ void MsgReceiverThread_Entry(ULONG thread_input)
       else
       {
         /* Toggle LED GREEN */
-        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+        HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
         printf("MsgReceiverThread_Entry: MsgQueueOne is available\n");
       }
     }
@@ -260,7 +253,7 @@ void MsgReceiverThread_Entry(ULONG thread_input)
         else
         {
           /* Toggle LED GREEN */
-          HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+          HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
           printf("MsgReceiverThread_Entry: MsgQueueTwo is available\n");
         }
       }

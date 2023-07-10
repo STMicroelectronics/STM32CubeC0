@@ -22,7 +22,7 @@
 <body>
 <div class="row">
 <section id="fx_sram_file_edit_standalone-application-description" class="col-sm-12 col-lg-8">
-<h2><b>Fx_SRAM_File_Edit_Standalone application description</b></h2>
+<h2><b>Fx_SRAM_File_Edit_Standalone Application Description</b></h2>
 <p>This application provides an example of FileX stack usage on NUCLEO-C031C6 board, running in standalone mode (without ThreadX). It demonstrates how to create a Fat File system on the internal SRAM memory using FileX.</p>
 <p>The application is designed to execute file operations on the SRAM-Disk device, it provides all required software code for properly managing it.</p>
 <p>The application’s main calls the MX_FileX_Process() function that handles file operations. At this stage, all FileX resources are created and the SRAM driver is initialized. After that, the MX_FileX_Process will start by formatting the SRAM-Disk using FileX services. The resulting file system is a FAT32 compatible, with 128 bytes per sector.</p>
@@ -31,7 +31,7 @@
 <pre><code>#define FX_SINGLE_THREAD
 #define FX_STANDALONE_ENABLE</code></pre>
 <h4 id="expected-success-behavior"><b>Expected success behavior</b></h4>
-<p>Successful operation is marked by a toggeling green LED light.</p>
+<p>Successful operation is marked by a toggling green LED light.</p>
 <p>Also, information regarding executing operation on the SRAM-Disk is printed to the serial port.</p>
 <h4 id="error-behaviors"><b>Error behaviors</b></h4>
 <p>On failure, an error message is printed to the serial port while the green LED is switched OFF.</p>
@@ -50,11 +50,11 @@
 #define FX_DISABLE_BUILD_OPTIONS
 #define FX_DISABLE_ONE_LINE_FUNCTION
 #define FX_DISABLE_CONSECUTIVE_DETECT</code></pre>
+<li>Also for optimization purposes, in STM32CubeIDE project Debug mode, the Optimization level should be set to "Optimize for Debug (-Og)".</li>
 </ol>
 <h4 id="filexlevelx-usage-hints"><b>FileX/LevelX usage hints</b></h4>
 <ul>
 <li>When calling the fx_media_format() API, it is highly recommended to understand all the parameters used by the API to correctly generate a valid filesystem.</li>
-<li>FileX is using data buffers, passed as arguments to fx_media_open(), fx_media_read() and fx_media_write() API, it is recommended that these buffers are multiple of sector size and be “4 bytes” aligned to avoid unaligned access issues.</li>
 </ul>
 <h3 id="keywords"><b>Keywords</b></h3>
 <p>RTOS, ThreadX, FileX, File System, FAT32, SRAM, SRAM-DISK</p>

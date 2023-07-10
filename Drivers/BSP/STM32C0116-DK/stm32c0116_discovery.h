@@ -298,7 +298,7 @@ typedef struct
 #define JOY1_RELEASE_RESET()            __HAL_RCC_ADC_RELEASE_RESET()
 
 /* Definition for ADCx Channel Pin */
-#define JOY1_CHANNEL_GPIO_PIN           GPIO_PIN_4
+#define JOY1_CHANNEL_GPIO_PIN           GPIO_PIN_8
 #define JOY1_CHANNEL_GPIO_PORT          GPIOA
 
 /* Definition for ADCx's Channel */

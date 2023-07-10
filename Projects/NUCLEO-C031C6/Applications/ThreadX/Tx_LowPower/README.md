@@ -1,6 +1,7 @@
-## <b>Tx_LowPower application description</b>
+## <b>Tx_LowPower Application Description</b>
 
 This application provides an example of Azure RTOS ThreadX stack usage, it shows how to develop an application using ThreadX low power feature.
+It demonstrates how to configure the LowPower feature of Azure RTOS ThreadX stack. In addition, it shows how to use ThreadX MACRO related to the LowPower feature.
 The main entry function tx_application_define() is then called by ThreadX during kernel start, at this stage, the application creates 1 thread and 1 semaphore:
 
   - MainThread (Prio : 10; Preemption Threshold : 10)
@@ -8,14 +9,14 @@ The main entry function tx_application_define() is then called by ThreadX during
 
 - 'MainThread':
   + Main thread tries to acquire the 'Semaphore'.
-  + On Success toggles the 'GREEN LED' each 500 ms for 5 secs.
-  + On Failure it switches to supended mode waiting for the 'Semaphore' to be released.
+  + On Success toggles the 'LED_GREEN' each 500 ms for 5 secs.
+  + On Failure is switches to supended mode waiting for the 'Semaphore' to be released.
   + The steps above are repeated indefinitely.
 
-When the "MainThread" is in suspended state, waiting for the 'Semaphore', the system is in idle state and the scheduler decides to enter in low power mode
+When the "tx_app_thread" is in suspended state, waiting for the 'Semaphore', the system is in idle state and the scheduler decides to enter in low power mode
 by calling the TX_LOW_POWER_USER_ENTER that makes the system enter the STOP Mode via the HAL_PWR_EnterSTOPMode() API.
 
-As soon as the User button is pressed, the 'Semaphore' is released, and the 'MainThread' passes in Active state.
+As soon as the User button is pressed, the 'Semaphore' is released, and the 'tx_app_thread' passes in Active state.
 
 The scheduler exits the STOP Mode by calling the TX_LOW_POWER_EXIT.
 
@@ -25,8 +26,8 @@ When exiting the STOP Mode, the MCU is in Run mode (Range 1 or Range 2 depending
 
 ####  <b>Expected success behavior</b>
 
-  - GREEN LED is Off when system is in LowPower mode.
-  - GREEN LED toggles every 500ms for 5 seconds each time user press the User button.
+  - LED_GREEN is Off when system is in LowPower mode.
+  - LED_GREEN toggles every 500ms for 5 seconds each time user press the User button.
 
 #### <b>Error behaviors</b>
 
@@ -123,7 +124,7 @@ For keeping track of time while in low power mode, there are two possibilities:
 
 ### <b>Keywords</b>
 
-RTOS, ThreadX, Thread, Semaphore, PWR, STOP Mode, Interrupt, EXTI, Wakeup, LowPower
+RTOS, ThreadX, Threading, Semaphore, PWR, STOP Mode, Interrupt, EXTI, Wakeup, LowPower
 
 
 ### <b>Hardware and Software environment</b>

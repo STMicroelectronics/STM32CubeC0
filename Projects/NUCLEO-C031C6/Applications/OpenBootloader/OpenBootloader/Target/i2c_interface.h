@@ -47,9 +47,9 @@ __ramfunc void OPENBL_I2C_WaitNack(void);
 __ramfunc void OPENBL_I2C_WaitStop(void);
 __ramfunc void OPENBL_I2C_SendBusyByte(void);
 #else
-__attribute__ ((section (".ramfunc"))) void OPENBL_I2C_WaitNack(void);
-__attribute__ ((section (".ramfunc"))) void OPENBL_I2C_WaitStop(void);
-__attribute__ ((section (".ramfunc"))) void OPENBL_I2C_SendBusyByte(void);
+__attribute__((section(".ramfunc"))) void OPENBL_I2C_WaitNack(void);
+__attribute__((section(".ramfunc"))) void OPENBL_I2C_WaitStop(void);
+__attribute__((section(".ramfunc"))) void OPENBL_I2C_SendBusyByte(void);
 #endif /* (__ICCARM__) */
 
 #endif /* I2C_INTERFACE_H */

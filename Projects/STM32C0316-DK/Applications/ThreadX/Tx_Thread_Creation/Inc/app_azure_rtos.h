@@ -5,7 +5,7 @@
   * @author  MCD Application Team
   * @brief   app_azure_rtos application header file
   ******************************************************************************
-  * @attention
+   * @attention
   *
   * Copyright (c) 2022 STMicroelectronics.
   * All rights reserved.
@@ -27,9 +27,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 
+#include "app_threadx.h"
 #include "stm32c0xx_hal.h"
 #include "app_azure_rtos_config.h"
-#include "app_threadx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
