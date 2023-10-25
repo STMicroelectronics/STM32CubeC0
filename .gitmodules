@@ -1,0 +1,8 @@
+[submodule "Drivers/STM32C0xx_HAL_Driver"]
+	path = Drivers/STM32C0xx_HAL_Driver
+	url = https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git
+	branch = main
+[submodule "Drivers/CMSIS/Device/ST/STM32C0xx"]
+	path = Drivers/CMSIS/Device/ST/STM32C0xx
+	url = https://github.com/STMicroelectronics/cmsis_device_c0.git
+	branch = main
