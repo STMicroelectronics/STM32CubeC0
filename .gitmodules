@@ -6,3 +6,15 @@
 	path = Drivers/CMSIS/Device/ST/STM32C0xx
 	url = https://github.com/STMicroelectronics/cmsis_device_c0.git
 	branch = main
+[submodule "Drivers/BSP/STM32C0xx_Nucleo"]
+	path = Drivers/BSP/STM32C0xx_Nucleo
+	url = https://github.com/STMicroelectronics/nucleo-c031c6-bsp.git
+	branch = main
+[submodule "Drivers/BSP/STM32C0116-DK"]
+	path = Drivers/BSP/STM32C0116-DK
+	url = https://github.com/STMicroelectronics/stm32c0116-dk-bsp.git
+	branch = main
+[submodule "Drivers/BSP/STM32C0316-DK"]
+	path = Drivers/BSP/STM32C0316-DK
+	url = https://github.com/STMicroelectronics/stm32c0316-dk-bsp.git
+	branch = main
