@@ -18,3 +18,7 @@
 	path = Drivers/BSP/STM32C0316-DK
 	url = https://github.com/STMicroelectronics/stm32c0316-dk-bsp.git
 	branch = main
+[submodule "Drivers/BSP/Components/Common"]
+	path = Drivers/BSP/Components/Common
+	url = https://github.com/STMicroelectronics/stm32-bsp-common
+	branch = main
