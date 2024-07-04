@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../_htmresc/mini-st_2020.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="oemisb_appli-application-description"><b>OEMiSB_Appli
+application Description</b></h2>
+<p>This project provides a OEMiSB boot path application example. Boot is
+performed through OEMiSB boot path after integrity checks of the project
+firmware image.</p>
+<p>The application will display a menu on the console. If data is
+available, three menus are provided that allow reading, writing and
+erasing data.</p>
+<p>The maximum system clock frequency at 48Mhz is configured.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>OEMiSB, boot path, Root Of Trust, Security, mcuboot</p>
+<h3 id="directory-contents"><strong>Directory contents</strong></h3>
+<ul>
+<li>OEMiSB_Appli/Src/main.c Main program</li>
+<li>OEMiSB_Appli/Src/stm32c0xx_it.c Interrupt handlers</li>
+<li>OEMiSB_Appli/Src/system_stm32c0xx.c System init file</li>
+<li>OEMiSB_Appli/Src/main.h Main program header file</li>
+<li>OEMiSB_Appli/Src/stm32c0xx_hal_conf.h HAL driver Configuration
+file</li>
+<li>OEMiSB_Appli/Src/stm32c0xx_it.h Interrupt handlers header file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><strong>Hardware and Software
+environment</strong></h3>
+<ul>
+<li>This example runs on STM32C071xx devices.</li>
+<li>This example has been tested with STMicroelectronics NUCLEO-C071RB
+board and can be easily tailored to any other supported device
+and development board.</li>
+<li>To print the application menu in your UART console you have to
+configure it using these parameters: Speed: 115200, Data: 8bits, Parity:
+None, stop bits: 1, Flow control: none.</li>
+</ul>
+<h3 id="how-to-use-it"><strong>How to use it ?</strong></h3>
+<p>This project is targeted to boot through <strong>OEMiSB boot
+path</strong>.</p>
+<p>Before compiling the project, you should first start the provisioning
+process. During the provisioning process, the linker files of the
+project will be automatically updated.</p>
+<p>The <strong>provisioning process</strong>
+(ROT_Provisioning/OEMiSB/provisioning.bat) is divided in 3 majors steps
+:</p>
+<ul>
+<li><p>Step 1 : Product configuration</p>
+<ul>
+<li>Select RDP Level</li>
+<li>Select data area size</li>
+</ul></li>
+<li><p>Step 2 : Image generation</p>
+<ul>
+<li>Build OEMiSB_Boot project</li>
+<li>Build OEMiSB_Appli project</li>
+</ul></li>
+<li><p>Step 3 : Provisioning</p>
+<ul>
+<li>Programming the option bytes</li>
+<li>Flashing the images</li>
+<li>Setting the RDP level</li>
+</ul></li>
+</ul>
+<p>After application startup, check in your “UART console” the menu is
+well displayed:</p>
+<pre><code>======================================================================
+=              (C) COPYRIGHT 2023 STMicroelectronics                 =
+=                                                                    =
+=                          OEMiSB User App                           =
+======================================================================
+
+============================= Main Menu ==============================
+  Read flash data ------------------------------------------ 1
+  Write flash data ----------------------------------------- 2
+  Erase flash data ----------------------------------------- 3
+ Selection :
+</code></pre>
+<p>It is possible to read, write or erase data</p>
+<h4 id="notes"><b>Notes:</b></h4>
+<ol>
+</li>
+<li><p>Two versions of ROT_AppliConfig are available: windows executable and python version. By default, the windows executable is selected. It
+is possible to switch to python version by:</p>
+<ul>
+<li>installing python (Python 3.10 or newer) with the required modules listed in requirements.txt.<pre><code>pip install -r requirements.txt
+</code></pre>
+</li>
+<li>having python in execution path variable  </li>
+<li>deleting main.exe in Utilities\PC_Software\ROT_AppliConfig\dist</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</body>
+</html>

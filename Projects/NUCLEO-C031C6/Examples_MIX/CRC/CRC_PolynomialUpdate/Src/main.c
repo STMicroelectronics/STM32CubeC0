@@ -91,6 +91,7 @@ static void MX_CRC_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* STM32C0xx HAL library initialization:

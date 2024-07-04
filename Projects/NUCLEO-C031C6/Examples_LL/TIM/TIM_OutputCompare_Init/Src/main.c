@@ -85,6 +85,7 @@ __STATIC_INLINE void     Configure_OCMode(uint32_t OCMode);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
 
@@ -155,6 +156,7 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
+
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
   /* HSI configuration and activation */
@@ -256,9 +258,6 @@ static void MX_GPIO_Init(void)
   LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
 
   /**/
-  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTC, LL_EXTI_CONFIG_LINE13);
-
-  /**/
   EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_13;
   EXTI_InitStruct.LineCommand = ENABLE;
   EXTI_InitStruct.Mode = LL_EXTI_MODE_IT;
@@ -266,10 +265,13 @@ static void MX_GPIO_Init(void)
   LL_EXTI_Init(&EXTI_InitStruct);
 
   /**/
+  LL_GPIO_SetPinMode(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_MODE_INPUT);
+
+  /**/
   LL_GPIO_SetPinPull(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_PULL_UP);
 
   /**/
-  LL_GPIO_SetPinMode(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_MODE_INPUT);
+  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTC, LL_EXTI_CONFIG_LINE13);
 
   /* EXTI interrupt init*/
   NVIC_SetPriority(EXTI4_15_IRQn, 0);

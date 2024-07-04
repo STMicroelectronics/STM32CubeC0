@@ -64,6 +64,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   /* STM32C0xx HAL library initialization:
        - Configure the Flash prefetch

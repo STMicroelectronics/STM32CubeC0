@@ -77,6 +77,7 @@ static uint32_t GetPage(uint32_t Address);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   /* STM32C0xx HAL library initialization:
        - Configure the Flash prefetch

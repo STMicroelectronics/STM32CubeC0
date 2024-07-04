@@ -36,7 +36,7 @@
 ENTRY(Reset_Handler)
 
 /* Highest address of the user mode stack */
-_estack = ORIGIN(RAM) + LENGTH(RAM); /* end of "RAM" Ram type memory */
+_estack = ORIGIN(RAM1) + LENGTH(RAM1); /* end of "RAM" Ram type memory */
 
 _Min_Heap_Size = 0x200; /* required amount of heap */
 _Min_Stack_Size = 0x400; /* required amount of stack */
@@ -44,7 +44,8 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 /* Memories definition */
 MEMORY
 {
-  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 12K
+  RAM1    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 11K
+  RAM2    (xrw)    : ORIGIN = 0x20002C00,   LENGTH = 1K
   FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 32K
 }
 
@@ -85,13 +86,15 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .ARM.extab   : {
+  .ARM.extab (READONLY) : /* The READONLY keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
+  {
     . = ALIGN(4);
     *(.ARM.extab* .gnu.linkonce.armextab.*)
     . = ALIGN(4);
   } >FLASH
 
-  .ARM : {
+  .ARM (READONLY) : /* The READONLY keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
+  {
     . = ALIGN(4);
     __exidx_start = .;
     *(.ARM.exidx*)
@@ -99,7 +102,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .preinit_array     :
+  .preinit_array (READONLY) : /* The READONLY keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
   {
     . = ALIGN(4);
     PROVIDE_HIDDEN (__preinit_array_start = .);
@@ -108,7 +111,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .init_array :
+  .init_array (READONLY) : /* The READONLY keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
   {
     . = ALIGN(4);
     PROVIDE_HIDDEN (__init_array_start = .);
@@ -118,7 +121,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .fini_array :
+  .fini_array (READONLY) : /* The READONLY keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
   {
     . = ALIGN(4);
     PROVIDE_HIDDEN (__fini_array_start = .);
@@ -130,6 +133,7 @@ SECTIONS
 
   /* Used by the startup to initialize data */
   _sidata = LOADADDR(.data);
+  _siRamFunc = LOADADDR(.data);
 
   /* Initialized data sections into "RAM" Ram type memory */
   .data :
@@ -138,14 +142,24 @@ SECTIONS
     _sdata = .;        /* create a global symbol at data start */
     *(.data)           /* .data sections */
     *(.data*)          /* .data* sections */
-    *(.RamFunc)        /* .RamFunc sections */
-    *(.RamFunc*)       /* .RamFunc* sections */
 
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
 
-  } >RAM AT> FLASH
+  } >RAM1 AT> FLASH
 
+    .RamFunc :
+  {
+    . = ALIGN(4);
+    _sRamFunc = .;        /* create a global symbol at data start */
+
+    *(.RamFunc)        /* .RamFunc sections */
+    *(.RamFunc*)       /* .RamFunc* sections */
+
+    . = ALIGN(4);
+    _eRamFunc = .;        /* define a global symbol at data end */
+
+  } >RAM2 AT> FLASH
   /* Uninitialized data section into "RAM" Ram type memory */
   . = ALIGN(4);
   .bss :
@@ -160,7 +174,7 @@ SECTIONS
     . = ALIGN(4);
     _ebss = .;         /* define a global symbol at bss end */
     __bss_end__ = _ebss;
-  } >RAM
+  } >RAM1
 
   /* User_heap_stack section, used to check that there is enough "RAM" Ram  type memory left */
   ._user_heap_stack :
@@ -171,7 +185,7 @@ SECTIONS
     . = . + _Min_Heap_Size;
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
-  } >RAM
+  } >RAM1
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

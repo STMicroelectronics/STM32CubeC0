@@ -104,6 +104,7 @@ uint8_t  Buffercmp8(uint8_t *pBuffer1, uint8_t *pBuffer2, uint8_t BufferLength);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
 
@@ -161,6 +162,7 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
+
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
   /* HSI configuration and activation */
@@ -467,9 +469,6 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(LED4_GPIO_Port, LED4_Pin);
 
   /**/
-  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTC, LL_EXTI_CONFIG_LINE13);
-
-  /**/
   EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_13;
   EXTI_InitStruct.LineCommand = ENABLE;
   EXTI_InitStruct.Mode = LL_EXTI_MODE_IT;
@@ -477,10 +476,13 @@ static void MX_GPIO_Init(void)
   LL_EXTI_Init(&EXTI_InitStruct);
 
   /**/
+  LL_GPIO_SetPinMode(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_MODE_INPUT);
+
+  /**/
   LL_GPIO_SetPinPull(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_PULL_NO);
 
   /**/
-  LL_GPIO_SetPinMode(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_MODE_INPUT);
+  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTC, LL_EXTI_CONFIG_LINE13);
 
   /**/
   GPIO_InitStruct.Pin = LED4_Pin;

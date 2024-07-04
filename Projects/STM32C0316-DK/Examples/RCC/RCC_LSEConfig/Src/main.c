@@ -69,6 +69,7 @@ static void DisableLSE_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   GPIO_InitTypeDef  GPIO_InitStruct;
   /* USER CODE END 1 */

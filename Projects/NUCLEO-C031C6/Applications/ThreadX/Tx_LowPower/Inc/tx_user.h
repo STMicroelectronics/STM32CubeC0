@@ -60,6 +60,10 @@
 /*                                            optimized the definition of */
 /*                                            TX_TIMER_TICKS_PER_SECOND,  */
 /*                                            resulting in version 6.1.11 */
+/*  10-31-2023      Xiuwen Cai              Modified comment(s),          */
+/*                                            added option for random     */
+/*                                            number stack filling,       */
+/*                                            resulting in version 6.3.0  */
 /*                                                                        */
 /**************************************************************************/
 
@@ -85,6 +89,7 @@
         TX_REACTIVATE_INLINE
         TX_DISABLE_STACK_FILLING
         TX_INLINE_THREAD_RESUME_SUSPEND
+        TX_DISABLE_ERROR_CHECKING
 
    For minimum size, the following should be defined:
 
@@ -131,7 +136,19 @@
    which places an 0xEF pattern in each byte of each thread's stack.  This is used by
    debuggers with ThreadX-awareness and by the ThreadX run-time stack checking feature.  */
 
-#define TX_DISABLE_STACK_FILLING
+/*#define TX_DISABLE_STACK_FILLING*/
+
+/* Determine whether or not stack checking is enabled. By default, ThreadX stack checking is
+   disabled. When the following is defined, ThreadX thread stack checking is enabled.  If stack
+   checking is enabled (TX_ENABLE_STACK_CHECKING is defined), the TX_DISABLE_STACK_FILLING
+   define is negated, thereby forcing the stack fill which is necessary for the stack checking
+   logic.  */
+
+/*#define TX_ENABLE_STACK_CHECKING*/
+
+/* Determine if random number is used for stack filling. By default, ThreadX uses a fixed
+   pattern for stack filling. When the following is defined, ThreadX uses a random number
+   for stack filling. This is effective only when TX_ENABLE_STACK_CHECKING is defined.  */
 
 /* Determine if preemption-threshold should be disabled. By default, preemption-threshold is
    enabled. If the application does not use preemption-threshold, it may be disabled to reduce
@@ -223,18 +240,6 @@
 */
 
 /*#define TX_NO_FILEX_POINTER*/
-
-/* Determinate if the basic alignment type is defined. */
-
-/*#define ALIGN_TYPE_DEFINED*/
-
-/* Define basic alignment type used in block and byte pool operations. */
-
-/*#define ALIGN_TYPE  ULONG*/
-
-/* Define the TX_MEMSET macro to the standard library function. */
-
-/*#define TX_MEMSET  memset((a),(b),(c))*/
 
 /* Define if the safety critical configuration is enabled. */
 

@@ -81,6 +81,7 @@ static void Flush_Buffer(uint8_t *pBuffer, uint16_t BufferLength);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   /* STM32C0xx HAL library initialization:
        - Configure the Flash prefetch

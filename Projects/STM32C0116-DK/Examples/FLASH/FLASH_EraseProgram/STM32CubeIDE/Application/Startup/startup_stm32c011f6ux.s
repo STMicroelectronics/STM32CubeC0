@@ -70,6 +70,25 @@ LoopCopyDataInit:
   bcc CopyDataInit
   ldr r2, =_sbss
   b LoopFillZerobss
+
+  /* Copy the RamFunc segment initializers from flash to SRAM */
+  movs r1, #0
+  b LoopCopyRamFuncInit
+
+CopyRamFuncInit:
+  ldr r3, =_siRamFunc
+  ldr r3, [r3, r1]
+  str r3, [r0, r1]
+  adds r1, r1, #4
+
+LoopCopyRamFuncInit:
+  ldr r0, =_sRamFunc
+  ldr r3, =_eRamFunc
+  adds r2, r0, r1
+  cmp r2, r3
+  bcc CopyRamFuncInit
+  ldr r2, =_sbss
+  b LoopFillZerobss
 /* Zero fill the bss segment. */
 FillZerobss:
   movs r3, #0
@@ -117,7 +136,6 @@ Infinite_Loop:
 ******************************************************************************/
    .section .isr_vector,"a",%progbits
   .type g_pfnVectors, %object
-  .size g_pfnVectors, .-g_pfnVectors
 
 
 g_pfnVectors:
@@ -169,6 +187,8 @@ g_pfnVectors:
   .word  0                                 /* reserved                     */
   .word  0                                 /* reserved                     */
   .word  0                                 /* reserved                     */
+
+  .size g_pfnVectors, .-g_pfnVectors
 /*******************************************************************************
 *
 * Provide weak aliases for each Exception handler to the Default_Handler.

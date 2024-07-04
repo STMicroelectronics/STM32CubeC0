@@ -52,13 +52,20 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-#if defined (__ICCARM__) || defined (__ARMCC_VERSION)
+#if defined(__ICCARM__)
+__ATTRIBUTES size_t __write(int, const unsigned char *, size_t);
+#endif /* __ICCARM__ */
+
+#if defined(__ICCARM__)
+/* New definition from EWARM V9, compatible with EWARM8 */
+int iar_fputc(int ch);
+#define PUTCHAR_PROTOTYPE int iar_fputc(int ch)
+#elif defined ( __CC_ARM ) || defined(__ARMCC_VERSION)
+/* ARM Compiler 5/6*/
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #elif defined(__GNUC__)
-   /* With GCC, small printf (option LD Linker->Libraries->Small printf
-   set to 'Yes') calls __io_putchar() */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#endif /* __ICCARM__ || __ARMCC_VERSION */
+#endif /* __ICCARM__ */
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -72,6 +79,7 @@ static void MX_USART2_UART_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* STM32C0xx HAL library initialization:
@@ -228,6 +236,20 @@ PUTCHAR_PROTOTYPE
   return ch;
 }
 
+#if defined(__ICCARM__)
+size_t __write(int file, unsigned char const *ptr, size_t len)
+{
+  size_t idx;
+  unsigned char const *pdata = ptr;
+
+  for (idx = 0; idx < len; idx++)
+  {
+    iar_fputc((int)*pdata);
+    pdata++;
+  }
+  return len;
+}
+#endif /* __ICCARM__ */
 /* USER CODE END 4 */
 
 /**

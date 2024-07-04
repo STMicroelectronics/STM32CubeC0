@@ -71,6 +71,7 @@ static void RTC_CalendarShow(uint8_t *showtime, uint8_t *showdate);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* STM32C0xx HAL library initialization:
@@ -142,7 +143,6 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.LSIState = RCC_LSI_ON;
-
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();

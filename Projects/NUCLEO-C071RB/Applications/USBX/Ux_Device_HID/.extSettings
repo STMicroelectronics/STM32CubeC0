@@ -1,0 +1,6 @@
+[ProjectFiles]
+[Others]
+Define=
+HALModule=TIM;
+[Groups]
+Doc=../README.md;

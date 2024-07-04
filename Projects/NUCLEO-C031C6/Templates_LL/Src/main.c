@@ -61,6 +61,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -107,6 +108,7 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
+
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
   /* HSI configuration and activation */

@@ -139,6 +139,7 @@ void LED_Toggle(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   uint32_t tmp_index;
 
@@ -249,6 +250,7 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
+
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
   /* HSI configuration and activation */
@@ -374,7 +376,18 @@ static void MX_ADC1_Init(void)
   ADC_InitStruct.DataAlignment = LL_ADC_DATA_ALIGN_RIGHT;
   ADC_InitStruct.LowPowerMode = LL_ADC_LP_MODE_NONE;
   LL_ADC_Init(ADC1, &ADC_InitStruct);
-  LL_ADC_REG_SetSequencerConfigurable(ADC1, LL_ADC_REG_SEQ_CONFIGURABLE);
+  LL_ADC_REG_SetSequencerConfigurable(ADC1, LL_ADC_REG_SEQ_FIXED);
+  ADC_REG_InitStruct.TriggerSource = LL_ADC_REG_TRIG_EXT_TIM1_TRGO2;
+  ADC_REG_InitStruct.SequencerLength = LL_ADC_REG_SEQ_SCAN_DISABLE;
+  ADC_REG_InitStruct.SequencerDiscont = LL_ADC_REG_SEQ_DISCONT_DISABLE;
+  ADC_REG_InitStruct.ContinuousMode = LL_ADC_REG_CONV_SINGLE;
+  ADC_REG_InitStruct.DMATransfer = LL_ADC_REG_DMA_TRANSFER_UNLIMITED;
+  ADC_REG_InitStruct.Overrun = LL_ADC_REG_OVR_DATA_OVERWRITTEN;
+  LL_ADC_REG_Init(ADC1, &ADC_REG_InitStruct);
+  LL_ADC_REG_SetSequencerScanDirection(ADC1, LL_ADC_REG_SEQ_SCAN_DIR_FORWARD);
+  LL_ADC_SetOverSamplingScope(ADC1, LL_ADC_OVS_DISABLE);
+  LL_ADC_SetTriggerFrequencyMode(ADC1, LL_ADC_CLOCK_FREQ_MODE_HIGH);
+  LL_ADC_REG_SetSequencerChAdd(ADC1, LL_ADC_CHANNEL_4);
 
    /* Poll for ADC channel configuration ready */
    #if (USE_TIMEOUT == 1)
@@ -395,18 +408,8 @@ static void MX_ADC1_Init(void)
      }
    /* Clear flag ADC channel configuration ready */
    LL_ADC_ClearFlag_CCRDY(ADC1);
-  ADC_REG_InitStruct.TriggerSource = LL_ADC_REG_TRIG_EXT_TIM1_TRGO2;
-  ADC_REG_InitStruct.SequencerLength = LL_ADC_REG_SEQ_SCAN_DISABLE;
-  ADC_REG_InitStruct.SequencerDiscont = LL_ADC_REG_SEQ_DISCONT_DISABLE;
-  ADC_REG_InitStruct.ContinuousMode = LL_ADC_REG_CONV_SINGLE;
-  ADC_REG_InitStruct.DMATransfer = LL_ADC_REG_DMA_TRANSFER_UNLIMITED;
-  ADC_REG_InitStruct.Overrun = LL_ADC_REG_OVR_DATA_OVERWRITTEN;
-  LL_ADC_REG_Init(ADC1, &ADC_REG_InitStruct);
-  LL_ADC_SetOverSamplingScope(ADC1, LL_ADC_OVS_DISABLE);
-  LL_ADC_SetTriggerFrequencyMode(ADC1, LL_ADC_CLOCK_FREQ_MODE_HIGH);
   LL_ADC_REG_SetTriggerEdge(ADC1, LL_ADC_REG_TRIG_EXT_RISING);
   LL_ADC_SetSamplingTimeCommonChannels(ADC1, LL_ADC_SAMPLINGTIME_COMMON_1, LL_ADC_SAMPLINGTIME_79CYCLES_5);
-  LL_ADC_SetSamplingTimeCommonChannels(ADC1, LL_ADC_SAMPLINGTIME_COMMON_2, LL_ADC_SAMPLINGTIME_79CYCLES_5);
   LL_ADC_DisableIT_EOC(ADC1);
   LL_ADC_DisableIT_EOS(ADC1);
 
@@ -424,31 +427,6 @@ static void MX_ADC1_Init(void)
      {
    wait_loop_index--;
      }
-
-  /** Configure Regular Channel
-  */
-  LL_ADC_REG_SetSequencerRanks(ADC1, LL_ADC_REG_RANK_1, LL_ADC_CHANNEL_4);
-
-   /* Poll for ADC channel configuration ready */
-   #if (USE_TIMEOUT == 1)
-   Timeout = ADC_CHANNEL_CONF_RDY_TIMEOUT_MS;
-   #endif /* USE_TIMEOUT */
-   while (LL_ADC_IsActiveFlag_CCRDY(ADC1) == 0)
-     {
-   #if (USE_TIMEOUT == 1)
-   /* Check Systick counter flag to decrement the time-out value */
-   if (LL_SYSTICK_IsActiveCounterFlag())
-     {
-   if(Timeout-- == 0)
-         {
-   Error_Handler();
-         }
-     }
-   #endif /* USE_TIMEOUT */
-     }
-   /* Clear flag ADC channel configuration ready */
-   LL_ADC_ClearFlag_CCRDY(ADC1);
-  LL_ADC_SetChannelSamplingTime(ADC1, LL_ADC_CHANNEL_4, LL_ADC_SAMPLINGTIME_COMMON_1);
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* Configuration of ADC interruptions */

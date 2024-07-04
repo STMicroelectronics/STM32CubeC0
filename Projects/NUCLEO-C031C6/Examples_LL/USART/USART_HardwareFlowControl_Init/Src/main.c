@@ -97,6 +97,7 @@ void     WaitAndCheckEndOfTransfer(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -153,6 +154,7 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
+
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
   /* HSI configuration and activation */
@@ -201,11 +203,12 @@ static void MX_USART1_UART_Init(void)
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
 
   LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
+  LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOB);
   /**USART1 GPIO Configuration
   PA9   ------> USART1_TX
   PA10   ------> USART1_RX
-  PA11 [PA9]   ------> USART1_CTS
-  PA12 [PA10]   ------> USART1_RTS
+  PB3   ------> USART1_RTS
+  PB4   ------> USART1_CTS
   */
   GPIO_InitStruct.Pin = LL_GPIO_PIN_9;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
@@ -223,21 +226,21 @@ static void MX_USART1_UART_Init(void)
   GPIO_InitStruct.Alternate = LL_GPIO_AF_1;
   LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_11;
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_3;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_1;
-  LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  GPIO_InitStruct.Alternate = LL_GPIO_AF_4;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_12;
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_4;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_1;
-  LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  GPIO_InitStruct.Alternate = LL_GPIO_AF_4;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USART1 interrupt Init */
   NVIC_SetPriority(USART1_IRQn, 0);
@@ -254,7 +257,7 @@ static void MX_USART1_UART_Init(void)
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;
   USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
-  USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
+  USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_RTS_CTS;
   USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
   LL_USART_Init(USART1, &USART_InitStruct);
   LL_USART_SetTXFIFOThreshold(USART1, LL_USART_FIFOTHRESHOLD_1_8);
@@ -300,12 +303,10 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOC);
   LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
+  LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOB);
 
   /**/
   LL_GPIO_ResetOutputPin(LED4_GPIO_Port, LED4_Pin);
-
-  /**/
-  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTC, LL_EXTI_CONFIG_LINE13);
 
   /**/
   EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_13;
@@ -315,10 +316,13 @@ static void MX_GPIO_Init(void)
   LL_EXTI_Init(&EXTI_InitStruct);
 
   /**/
+  LL_GPIO_SetPinMode(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_MODE_INPUT);
+
+  /**/
   LL_GPIO_SetPinPull(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_PULL_NO);
 
   /**/
-  LL_GPIO_SetPinMode(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin, LL_GPIO_MODE_INPUT);
+  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTC, LL_EXTI_CONFIG_LINE13);
 
   /**/
   GPIO_InitStruct.Pin = LED4_Pin;

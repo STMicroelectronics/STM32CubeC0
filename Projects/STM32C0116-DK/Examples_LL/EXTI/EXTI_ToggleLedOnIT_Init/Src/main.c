@@ -66,6 +66,7 @@ static void MX_GPIO_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
 
@@ -109,6 +110,7 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
+
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
   /* HSI configuration and activation */
@@ -155,9 +157,6 @@ static void MX_GPIO_Init(void)
   LL_GPIO_SetOutputPin(LED3_GPIO_Port, LED3_Pin);
 
   /**/
-  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTA, LL_EXTI_CONFIG_LINE8);
-
-  /**/
   EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_8;
   EXTI_InitStruct.LineCommand = ENABLE;
   EXTI_InitStruct.Mode = LL_EXTI_MODE_IT;
@@ -165,10 +164,13 @@ static void MX_GPIO_Init(void)
   LL_EXTI_Init(&EXTI_InitStruct);
 
   /**/
+  LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_8, LL_GPIO_MODE_INPUT);
+
+  /**/
   LL_GPIO_SetPinPull(GPIOA, LL_GPIO_PIN_8, LL_GPIO_PULL_NO);
 
   /**/
-  LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_8, LL_GPIO_MODE_INPUT);
+  LL_EXTI_SetEXTISource(LL_EXTI_CONFIG_PORTA, LL_EXTI_CONFIG_LINE8);
 
   /**/
   GPIO_InitStruct.Pin = LED3_Pin;

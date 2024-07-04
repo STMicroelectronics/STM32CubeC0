@@ -1,2 +1,4 @@
+[Others]
+HALModule=TIM;
 [Groups]
 Doc=../README.md;

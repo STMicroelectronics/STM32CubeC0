@@ -22,7 +22,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#if defined(__ICCARM__)
+#include <LowLevelIOInterface.h>
+#endif /* __ICCARM__ */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,13 +39,18 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#if defined ( __GNUC__) && !defined(__clang__)
-/* With GCC, small printf (option LD Linker->Libraries->Small printf
-   set to 'Yes') calls __io_putchar() */
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
+
+#if defined(__ICCARM__)
+/* New definition from EWARM V9, compatible with EWARM8 */
+int iar_fputc(int ch);
+#define PUTCHAR_PROTOTYPE int iar_fputc(int ch)
+#elif defined ( __CC_ARM ) || defined(__ARMCC_VERSION)
+/* ARM Compiler 5/6*/
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
+#elif defined(__GNUC__)
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#endif /* __ICCARM__ */
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -73,6 +80,7 @@ static void MX_USART2_UART_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -103,6 +111,7 @@ int main(void)
   MX_ThreadX_Init();
 
   /* We should never get here as control is now taken by the scheduler */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -215,6 +224,22 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+#if defined(__ICCARM__)
+size_t __write(int file, unsigned char const *ptr, size_t len)
+{
+ size_t idx;
+ unsigned char const *pdata = ptr;
+
+ for (idx = 0; idx < len; idx++)
+ {
+ iar_fputc((int)*pdata);
+ pdata++;
+ }
+ return len;
+}
+#endif /* __ICCARM__ */
+
 /**
   * @brief  Retargets the C library printf function to the USART.
   * @param  None

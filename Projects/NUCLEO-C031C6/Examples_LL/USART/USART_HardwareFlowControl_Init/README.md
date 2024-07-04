@@ -58,9 +58,9 @@ hardware flow control, CTS/RTS, Transmitter, Receiver
       to PC COM port RX signal
     - Connect STM32 MCU board USART1 RX pin (PA.10 connected to pin 33 in CN10)
       to PC COM port TX signal
-    - Connect STM32 MCU board USART1 CTS pin (PA.11 connected to pin 36 in CN7)
+    - Connect STM32 MCU board USART1 CTS pin (PB.04 connected to pin 27 in CN10)
       to PC COM port RTS signal
-    - Connect STM32 MCU board USART1 RTS pin (PA.12 connected to pin 38 in CN7)
+    - Connect STM32 MCU board USART1 RTS pin (PB.03 connected to pin 31 in CN10)
       to PC COM port CTS signal
     - Connect STM32 MCU board GND to PC COM port GND signal
 

@@ -109,6 +109,7 @@ static void MX_ADC1_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   uint32_t tmp_index;
 
@@ -350,6 +351,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
   sConfig.Rank = ADC_REGULAR_RANK_3;
+  sConfig.SamplingTime = ADC_SAMPLINGTIME_COMMON_1;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
