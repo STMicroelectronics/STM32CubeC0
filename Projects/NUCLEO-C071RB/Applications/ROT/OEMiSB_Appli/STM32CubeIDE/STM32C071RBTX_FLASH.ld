@@ -35,8 +35,8 @@
 /* Entry Point */
 ENTRY(Reset_Handler)
 
-FLASH_DATA_AREA_SIZE = 0x1000; /* This define is updated automatically from OEMiSB_Boot project */
-FLASH_BOOT_AREA_SIZE = 0x2000; /* This define is updated automatically from OEMiSB_Boot project */
+FLASH_DATA_AREA_SIZE = 0x1000; /* This define is updated automatically */
+FLASH_BOOT_AREA_SIZE = 0x2000;
 
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM); /* end of "RAM" Ram type memory */

@@ -32,10 +32,23 @@
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 extern void Error_Handler(void);
+
+/*#define DEVICE_64K_FLASH_ENABLE*/    /*Defined: The project is for 64KB flash device*/
+
+/*#define DEVICE_256K_FLASH_ENABLE*/  /*Defined: The project is for 256KB flash device*/
+
+/* Add definition of OEMISB_FLASH_SIZE */
+#if defined(DEVICE_64K_FLASH_ENABLE)
+#define OEMISB_FLASH_SIZE               0x10000
+#elif defined(DEVICE_256K_FLASH_ENABLE)
+#define OEMISB_FLASH_SIZE               0x40000
+#else
+#define OEMISB_FLASH_SIZE               0X20000
+#endif
 /* Definition for USARTx clock resources */
 
-#define DATA_SIZE                        0x8000
-#define DATA_MAX_SIZE                    0x8000
+#define DATA_SIZE                        0x4000
+#define DATA_MAX_SIZE                    0x4000
 #define DATA_MPU_SUB_REG                 0x0
 
 #endif /* __MAIN_H */

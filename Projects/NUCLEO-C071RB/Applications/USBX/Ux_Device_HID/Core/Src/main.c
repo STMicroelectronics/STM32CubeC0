@@ -119,6 +119,8 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_CRSInitTypeDef RCC_CRSInitStruct = {0};
 
+  __HAL_FLASH_SET_LATENCY(FLASH_LATENCY_1);
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */

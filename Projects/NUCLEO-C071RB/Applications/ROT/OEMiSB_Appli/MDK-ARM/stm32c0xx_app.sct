@@ -5,11 +5,11 @@
 ; *************************************************************
 
 
-#define FLASH_DATA_AREA_SIZE 0x10000 /* This define is updated automatically from OEMiSB_Boot project */
+#define FLASH_DATA_AREA_SIZE 0x1000 /* This define is updated automatically */
 #define FLASH_BOOT_AREA_SIZE 0x2000
 
 #define CODE_START 0x08000000 + FLASH_BOOT_AREA_SIZE
-#define APP_CODE_SIZE 0x100000 - FLASH_BOOT_AREA_SIZE - FLASH_DATA_AREA_SIZE
+#define APP_CODE_SIZE 0x20000 - FLASH_BOOT_AREA_SIZE - FLASH_DATA_AREA_SIZE
 
 
 

@@ -72,8 +72,6 @@
 /* Override various options with default values already assigned in fx_api.h or fx_port.h.
   Please also refer to fx_port.h for descriptions on each of these options.  */
 
-/* #define ULONG64_DEFINED */
-
 /* Defined, the direct read sector update of cache is disabled.  */
 
 /* #define FX_DISABLE_DIRECT_DATA_READ_CACHE_FILL */
@@ -136,8 +134,6 @@
 
 /* #define FX_MAX_LAST_NAME_LEN         256 */
 
-#define FX_MAX_SHORT_NAME_LEN                  13       /* Only allowed value is 13.  */
-
 /* #define FX_MAX_LONG_NAME_LEN         256 */
 
 /* Defines the maximum number of logical sectors that can be cached by FileX. The cache memory
@@ -176,6 +172,8 @@
 
 #define FX_SINGLE_THREAD
 
+/* Defined, FileX will be used in standalone mode (without ThreadX) */
+
 #define FX_STANDALONE_ENABLE
 
 /* Defines the number of seconds the time parameters are updated in FileX.  */
@@ -186,7 +184,7 @@
    FX_UPDATE_RATE_IN_SECONDS defined previously. By default, the ThreadX timer tick is 10ms,
    so the default value for this constant is 1000.  */
 
-#define FX_UPDATE_RATE_IN_TICKS     0
+/* #define FX_UPDATE_RATE_IN_TICKS         1000 */
 
 /* If defined, cache is disabled.  */
 
@@ -220,19 +218,16 @@
 
 #define FX_DISABLE_CONSECUTIVE_DETECT
 
-/* Define bitmap cache size for exFAT. Size should be minimum one sector size and maximum 4096. For applications using multiple media devices with varying sector size, the value should be set to the size of largest sector size.
-The FX_EXFAT_MAX_CACHE_SIZE is 2 power of FX_EXFAT_MAX_CACHE_SIZE_NB_BIT.  */
+/* Define bitmap cache size for exFAT. Size should be minimum one sector size and maximum 4096.
+   For applications using multiple media devices with varying sector size, the value should be set to the
+   size of largest sector size. */
 
-/*
-#define FX_EXFAT_MAX_CACHE_SIZE            512
-*/
+/* #define FX_EXFAT_MAX_CACHE_SIZE            512 */
 
 /* Define the size of fault tolerant cache, which is used when freeing FAT chain.
 	The FX_FAULT_TOLERANT_CACHE_SIZE is 2 power of FX_FAULT_TOLERANT_CACHE_SIZE_NB_SIZE.  */
 
-/*
-#define FX_FAULT_TOLERANT_CACHE_SIZE            1024
-*/
+/* #define FX_FAULT_TOLERANT_CACHE_SIZE            1024 */
 
 /* USER CODE BEGIN 2 */
 

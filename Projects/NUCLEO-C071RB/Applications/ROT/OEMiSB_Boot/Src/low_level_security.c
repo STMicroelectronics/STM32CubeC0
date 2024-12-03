@@ -54,7 +54,13 @@ const struct mpu_region_cfg_t mpu_region_boot_cfg[] =
       MPU_REGION_ENABLE,
       MPU_REGION_NUMBER0,
       FLASH_BASE,
+#if defined(DEVICE_64K_FLASH_ENABLE)
+      MPU_REGION_SIZE_64KB,
+#elif defined(DEVICE_256K_FLASH_ENABLE)
+      MPU_REGION_SIZE_256KB,
+#else
       MPU_REGION_SIZE_128KB,
+#endif
       0,
       MPU_TEX_LEVEL0,
       MPU_REGION_PRIV_RO,
@@ -76,7 +82,13 @@ const struct mpu_region_cfg_t mpu_region_boot_cfg[] =
       MPU_REGION_DISABLE,
       MPU_REGION_NUMBER1,
       FLASH_BASE,
+#if defined(DEVICE_64K_FLASH_ENABLE)
+      MPU_REGION_SIZE_64KB,
+#elif defined(DEVICE_256K_FLASH_ENABLE)
+      MPU_REGION_SIZE_256KB,
+#else
       MPU_REGION_SIZE_128KB,
+#endif
       0,
       MPU_TEX_LEVEL0,
       MPU_REGION_PRIV_RO,
@@ -185,7 +197,13 @@ const struct mpu_region_cfg_t mpu_region_boot_cfg[] =
     {
       MPU_REGION_ENABLE,
       MPU_REGION_NUMBER6,
+#if defined(STM32C051xx)
+      0x1FFF2E00UL,
+#elif defined(STM32C092xx)
+      0x1FFF3E00UL,
+#else
       0x1FFF6000UL,
+#endif
       MPU_REGION_SIZE_32KB,
       0,
       MPU_TEX_LEVEL0,
@@ -211,8 +229,8 @@ const struct mpu_region_cfg_t mpu_region_boot_cfg[] =
       MPU_REGION_DISABLE,
 #endif /* (DATA_SIZE > 0) */
       MPU_REGION_NUMBER7,
-      FLASH_BASE + FLASH_SIZE_DEFAULT - DATA_MAX_SIZE,
-      MPU_REGION_SIZE_32KB,
+      FLASH_BASE + OEMISB_FLASH_SIZE - DATA_MAX_SIZE,
+      MPU_REGION_SIZE_16KB,
 #if (DATA_SIZE > 0)
       DATA_MPU_SUB_REG, /* enable sub region */
 #else
@@ -343,7 +361,7 @@ uint32_t LL_SECU_CheckApplicationIntegrity(void)
 
   /* Compute sha256 on the application area */
 
-  mbedtls_sha256_ret((unsigned char const *)(FLASH_BASE + FLASH_BOOT_AREA_SIZE), appli_size, application_computed_sha256, 0);
+  mbedtls_sha256((unsigned char const *)(FLASH_BASE + FLASH_BOOT_AREA_SIZE), appli_size, application_computed_sha256, 0);
 
   FLOW_CONTROL_STEP(uFlowProtectValue, FLOW_STEP_HASH_CH_R1, FLOW_CTRL_HASH_CH_R1);
 

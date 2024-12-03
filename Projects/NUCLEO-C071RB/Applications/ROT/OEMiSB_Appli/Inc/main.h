@@ -31,7 +31,20 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 
-#define DATA_SIZE                        0x8000
+/*#define DEVICE_64K_FLASH_ENABLE*/    /*Defined: The project is for 64KB device*/
+
+/*#define DEVICE_256K_FLASH_ENABLE*/   /*Defined: The project is for 256KB device*/
+
+#define DATA_SIZE                        0x4000
+
+/* Add definition of OEMISB_FLASH_SIZE */
+#if defined(DEVICE_64K_FLASH_ENABLE)
+#define OEMISB_FLASH_SIZE              0x10000
+#elif defined(DEVICE_256K_FLASH_ENABLE)
+#define OEMISB_FLASH_SIZE              0x40000
+#else
+#define OEMISB_FLASH_SIZE              0x20000
+#endif
 
 /* Constants used by Serial Command Line Mode */
 #define TX_TIMEOUT          ((uint32_t)100U)

@@ -10,7 +10,6 @@ fi
 # ==============================================================================
 #                               General
 # ==============================================================================
-# Configure tools installation path
 #Configure tools installation path
 if [ "$OS" == "Windows_NT" ]; then
     stm32programmercli="C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe"
@@ -26,9 +25,11 @@ fi
 #                            OEMiSB boot path
 # ==============================================================================
 # Select application project below
-oemisb_boot_path_project="Applications/ROT/OEMiSB_Appli"
+oemisb_appli_path_project="Applications/ROT/OEMiSB_Appli"
+oemisb_boot_path_project="Applications/ROT/OEMiSB_Boot"
+# Select the Target Device STM32C071XX for 128K device, STM32C051XX for 64K device, STM32C092XX for 256K device
+product_id=STM32C071XX
 # ==============================================================================
-
 # ==============================================================================
 #               !!!! DOT NOT EDIT --- UPDATED AUTOMATICALLY !!!!
 # ==============================================================================

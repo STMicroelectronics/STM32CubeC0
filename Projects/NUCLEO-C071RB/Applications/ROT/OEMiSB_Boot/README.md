@@ -20,8 +20,7 @@ OEMiSB, boot path, Root Of Trust, Security
 -   OEMiSB_Boot/Src/main.c Main program
 -   OEMiSB_Boot/Src/stm32c0xx_it.c Interrupt handlers
 -   OEMiSB_Boot/Src/system_stm32c0xx.c System init file
--   OEMiSB_Boot/Inc/mcuboot_config/mcuboot_config.h Mcuboot
-    configuration file
+-   OEMiSB_Boot/Src/stm32c0xx_hal_msp.c HAL MSP Module
 -   OEMiSB_Boot/Inc/boot.h Header file for boot.c
 -   OEMiSB_Boot/Inc/entropy.h Header file for boot.c
 -   OEMiSB_Boot/Inc/boot_cfg.h Configuration file

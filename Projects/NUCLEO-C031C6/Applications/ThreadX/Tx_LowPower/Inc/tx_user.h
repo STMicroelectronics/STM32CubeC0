@@ -24,7 +24,7 @@
 /*  PORT SPECIFIC C INFORMATION                            RELEASE        */
 /*                                                                        */
 /*    tx_user.h                                           PORTABLE C      */
-/*                                                           6.1.11       */
+/*                                                           6.3.0        */
 /*                                                                        */
 /*  AUTHOR                                                                */
 /*                                                                        */
@@ -97,6 +97,7 @@
         TX_DISABLE_PREEMPTION_THRESHOLD
         TX_DISABLE_REDUNDANT_CLEARING
         TX_DISABLE_NOTIFY_CALLBACKS
+        TX_NO_FILEX_POINTER
         TX_NOT_INTERRUPTABLE
         TX_TIMER_PROCESS_IN_ISR
 
@@ -111,7 +112,6 @@
    to tx_port.h for descriptions on each of these options.  */
 
 /*#define TX_MAX_PRIORITIES                32*/
-/*#define TX_THREAD_USER_EXTENSION                ????*/
 /*#define TX_TIMER_THREAD_STACK_SIZE                1024*/
 /*#define TX_TIMER_THREAD_PRIORITY                0*/
 
@@ -146,9 +146,11 @@
 
 /*#define TX_ENABLE_STACK_CHECKING*/
 
-/* Determine if random number is used for stack filling. By default, ThreadX uses a fixed
-   pattern for stack filling. When the following is defined, ThreadX uses a random number
-   for stack filling. This is effective only when TX_ENABLE_STACK_CHECKING is defined.  */
+/* Determine if random number is used for stack filling. By default, ThreadX uses a fixed pattern
+   for stack filling. When the following is defined, ThreadX uses a random number for stack filling.
+   This is effective only when TX_ENABLE_STACK_CHECKING is defined.  */
+
+/*#define TX_ENABLE_RANDOM_NUMBER_STACK_FILLING*/
 
 /* Determine if preemption-threshold should be disabled. By default, preemption-threshold is
    enabled. If the application does not use preemption-threshold, it may be disabled to reduce
@@ -162,11 +164,28 @@
 
 #define TX_DISABLE_REDUNDANT_CLEARING
 
+/* Determine if no timer processing is required. This option will help eliminate the timer
+   processing when not needed. The user will also have to comment out the call to
+   tx_timer_interrupt, which is typically made from assembly language in
+   tx_initialize_low_level. Note: if TX_NO_TIMER is used, the define TX_TIMER_PROCESS_IN_ISR
+   must also be used.  */
+
+/*
+#define TX_NO_TIMER
+#ifndef TX_TIMER_PROCESS_IN_ISR
+#define TX_TIMER_PROCESS_IN_ISR
+#endif
+*/
+
 /* Determine if the notify callback option should be disabled. By default, notify callbacks are
    enabled. If the application does not use notify callbacks, they may be disabled to reduce
    code size and improve performance.  */
 
 #define TX_DISABLE_NOTIFY_CALLBACKS
+
+/* Defined, the basic parameter error checking is disabled. */
+
+#define TX_DISABLE_ERROR_CHECKING
 
 /* Determine if the tx_thread_resume and tx_thread_suspend services should have their internal
    code in-line. This results in a larger image, but improves the performance of the thread
@@ -229,10 +248,6 @@
 
 /*#define TX_TIMER_TICKS_PER_SECOND                100*/
 
-/* Defined, the basic parameter error checking is disabled. */
-
-#define TX_DISABLE_ERROR_CHECKING
-
 /* Determine if there is a FileX pointer in the thread control block.
    By default, the pointer is there for legacy/backwards compatibility.
    The pointer must also be there for applications using FileX.
@@ -240,6 +255,11 @@
 */
 
 /*#define TX_NO_FILEX_POINTER*/
+
+#ifdef __ICCARM__
+/* Define if the IAR library is supported. */
+/*#define TX_ENABLE_IAR_LIBRARY_SUPPORT*/
+#endif
 
 /* Define if the safety critical configuration is enabled. */
 

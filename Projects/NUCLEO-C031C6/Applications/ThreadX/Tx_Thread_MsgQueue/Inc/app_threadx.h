@@ -45,11 +45,11 @@
 /* USER CODE END EC */
 
 /* Private defines -----------------------------------------------------------*/
-#define TX_APP_STACK_SIZE                                          512
-#define TX_APP_THREAD_PRIO                                         5
-#define TX_APP_SINGLE_MSG_SIZE                                     1
-#define TX_APP_MSG_QUEUE_NB_MSG                                    10
-#define TX_APP_MSG_QUEUE_FULL_SIZE                                 TX_APP_SINGLE_MSG_SIZE * TX_APP_MSG_QUEUE_NB_MSG
+#define TX_APP_STACK_SIZE                       512
+#define TX_APP_THREAD_PRIO                      5
+#define TX_APP_SINGLE_MSG_SIZE                  1
+#define TX_APP_MSG_QUEUE_NB_MSG                 10
+#define TX_APP_MSG_QUEUE_FULL_SIZE              TX_APP_SINGLE_MSG_SIZE * TX_APP_MSG_QUEUE_NB_MSG
 
 /* USER CODE BEGIN PD */
 
@@ -94,4 +94,4 @@ void MsgSenderThreadOne_Entry(ULONG thread_input);
 #ifdef __cplusplus
 }
 #endif
-#endif /* __APP_THREADX_H__ */
+#endif /* __APP_THREADX_H */

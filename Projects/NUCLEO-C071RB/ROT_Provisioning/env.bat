@@ -11,7 +11,11 @@ set stm32tpccli="C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgramm
 ::                            OEMiSB boot path
 :: ==============================================================================
 :: Select application project below
-set oemisb_boot_path_project=Applications/ROT/OEMiSB_Appli
+set oemisb_appli_path_project=Applications/ROT/OEMiSB_Appli
+set oemisb_boot_path_project=Applications/ROT/OEMiSB_Boot
+
+::Select the Target Device STM32C071XX for 128K device, STM32C051XX for 64K device, STM32C092XX for 256K device
+set product_id=STM32C071XX
 :: ==============================================================================
 
 :: ==============================================================================

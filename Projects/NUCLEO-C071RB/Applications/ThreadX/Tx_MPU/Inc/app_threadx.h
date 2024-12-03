@@ -71,4 +71,4 @@ void MX_AZURE_RTOS_Init(void);
 #ifdef __cplusplus
 }
 #endif
-#endif /* __APP_THREADX_H__ */
+#endif /* __APP_THREADX_H */

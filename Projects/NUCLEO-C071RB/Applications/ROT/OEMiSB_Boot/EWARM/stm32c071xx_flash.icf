@@ -2,7 +2,7 @@
 /*-Editor annotation file-*/
 /* IcfEditorFile="$TOOLKIT_DIR$\config\ide\IcfEditor\cortex_v1_0.xml" */
 /*-Specials-*/
-define exported symbol FLASH_BOOT_AREA_SIZE = 0x2000; /* This define is updated automatically from OEMiSB_Boot project */
+define exported symbol FLASH_BOOT_AREA_SIZE = 0x2000;
 define symbol SHA_AREA_SIZE = 64;
 define symbol __ICFEDIT_intvec_start__ = 0x08000000;
 /*-Memory Regions-*/

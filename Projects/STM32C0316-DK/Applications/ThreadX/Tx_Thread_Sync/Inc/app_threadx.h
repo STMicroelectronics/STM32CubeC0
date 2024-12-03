@@ -45,8 +45,8 @@
 /* USER CODE END EC */
 
 /* Private defines -----------------------------------------------------------*/
-#define TX_APP_STACK_SIZE                                          512
-#define TX_APP_THREAD_PRIO                                         10
+#define TX_APP_STACK_SIZE                       512
+#define TX_APP_THREAD_PRIO                      10
 
 /* USER CODE BEGIN PD */
 #define USE_TX_MUTEX
@@ -113,4 +113,4 @@ void ThreadOne_Entry(ULONG thread_input);
 #ifdef __cplusplus
 }
 #endif
-#endif /* __APP_THREADX_H__ */
+#endif /* __APP_THREADX_H */

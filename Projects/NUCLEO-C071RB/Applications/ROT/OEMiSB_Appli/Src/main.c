@@ -212,7 +212,7 @@ void Read_DATA(void)
 {
   uint8_t buffer[NB_BYTES];
 
-  memcpy((void *)buffer, (void *)(FLASH_BASE + FLASH_SIZE_DEFAULT - DATA_SIZE), NB_BYTES);
+  memcpy((void *)buffer, (void *)(FLASH_BASE + OEMISB_FLASH_SIZE - DATA_SIZE), NB_BYTES);
   /* display the first 32 data bytes */
   printf("Data from flash: ");
   for (int i = 0U; i < NB_BYTES; i++)
@@ -226,7 +226,7 @@ void Write_DATA(void)
 {
   uint8_t buffer[NB_BYTES] = {0xA5, 0xA5, 0xA5, 0xA5, 0xA5, 0xA5, 0xA5, 0xA5};
 
-  HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, (uint32_t)(FLASH_BASE + FLASH_SIZE_DEFAULT - DATA_SIZE), *((uint64_t*)buffer));
+  HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, (uint32_t)(FLASH_BASE + OEMISB_FLASH_SIZE - DATA_SIZE), *((uint64_t*)buffer));
   printf("Write in flash: 0x");
   for (int i = 0U; i < NB_BYTES; i++)
   {

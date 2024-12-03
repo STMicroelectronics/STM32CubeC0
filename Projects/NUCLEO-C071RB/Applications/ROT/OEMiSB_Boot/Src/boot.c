@@ -86,7 +86,7 @@ void BootQuit(void)
 
   /* Jump to application by enabling HDP and MPU region 1
      The address of the jump is selected by the HDP area */
-  jump_to_application(0x1FFF6000UL, 0, 0, MPU_REGION_NUMBER1);   // 0x1FFF6000UL to replace by HAL MACRO if available
+  jump_to_application(BL_EXIT_SEC_MEM_BASE, 0, 0, MPU_REGION_NUMBER1);
 
   /* Avoid compiler to pop registers after having changed MSP */
 #if !defined(__ICCARM__)

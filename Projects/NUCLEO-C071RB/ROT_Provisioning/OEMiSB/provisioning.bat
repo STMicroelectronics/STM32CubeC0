@@ -6,11 +6,11 @@ set "projectdir=%~dp0"
 :: Getting the CubeProgammer_cli path
 call ../env.bat
 :: Application binary file
-set appli_binary=%projectdir%..\..\Applications\ROT\OEMiSB_Appli\Binary\OEMiSB_Appli.bin
+set appli_binary=%projectdir%..\..\%oemisb_appli_path_project%\Binary\OEMiSB_Appli.bin
+set boot_binary=%projectdir%..\..\%oemisb_boot_path_project%\Binary\OEMiSB_Boot.bin
 :: Sha.bin
 set sha256=%projectdir%\Binary\sha256.bin
 
-:: Data updated with the postbuild of OEMiSB-Boot
 set SecSize=0x4
 set bootaddress=0x8000000
 set appliaddress=0x8002000
@@ -20,24 +20,30 @@ set connect_no_reset=-c port=SWD mode=Hotplug
 set connect_reset=-c port=SWD mode=UR
 
 :: =============================================== Remove protections and initialize Option Bytes  ==========================================
+if /i "%product_id%" == "STM32C071XX" (
 set remove_protect_init=-ob WRP1A_STRT=0x3f WRP1A_END=0 SEC_SIZE=0 BOOT_LOCK=0
+)
+if /i "%product_id%" == "STM32C051XX" (
+set remove_protect_init=-ob WRP1A_STRT=0x1f WRP1A_END=0 WRP1B_STRT=0x1f WRP1B_END=0 SEC_SIZE=0 BOOT_LOCK=0
+)
+if /i "%product_id%" == "STM32C092XX" (
+set remove_protect_init=-ob WRP1A_STRT=0x7f WRP1A_END=0 WRP1B_STRT=0x7f WRP1B_END=0 SEC_SIZE=0 BOOT_LOCK=0
+)
 :: =============================================== Erase the user flash =====================================================================
 set erase_all=-e all
 
 :: ================================================ hardening ===============================================================================
 set hide_protect=SEC_SIZE=%SecSize%
 
-set boot_lock=BOOT_LOCK=1
-
 set isGeneratedByCubeMX=%PROJECT_GENERATED_BY_CUBEMX%
 :: CubeProgammer path and input files
 set state_change_log="provisioning.log"
 
-set appli_main_h="%cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Appli\Inc\main.h"
-set boot_main_h="%cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Boot\Inc\main.h"
-set boot_cfg_h="%cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Boot\Inc\boot_cfg.h"
-set icf_appli="%cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Appli\EWARM\stm32c071xx_flash.icf"
-set sct_appli="%cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Appli\MDK-ARM\stm32c0xx_app.sct"
+set appli_main_h="%projectdir%..\..\Applications\ROT\OEMiSB_Appli\Inc\main.h"
+set boot_main_h="%projectdir%..\..\Applications\ROT\OEMiSB_Boot\Inc\main.h"
+set boot_cfg_h="%projectdir%..\..\Applications\ROT\OEMiSB_Boot\Inc\boot_cfg.h"
+set icf_appli="%projectdir%..\..\Applications\ROT\OEMiSB_Appli\EWARM\stm32c071xx_flash.icf"
+set sct_appli="%projectdir%..\..\Applications\ROT\OEMiSB_Appli\MDK-ARM\stm32c0xx_app.sct"
 
 :: Initial configuration
 set connect_no_reset=-c port=SWD mode=Hotplug
@@ -83,21 +89,17 @@ goto next
 )
 
 if /i "%RDP_level%" == "1" (
-if "%boot_lock%" == "0" (
 echo.
 set rdp_value=0xBB
 set rdp_str="OB_RDP_LEVEL_1"
 goto next
-) else (
-goto caution_msg
-)
 )
 
 if /i "%RDP_level%" == "2" (
 echo.
 set rdp_value=0xCC
 set rdp_str="OB_RDP_LEVEL_2"
-goto next 
+goto next
 )
 
 echo        WRONG RDP level selected
@@ -107,10 +109,11 @@ goto define_rdp_level
 
 :next
 :: ========================================================= Data size selection ==============================================================
+
 :define_data_size
 set "action=Define data area size in Kbytes"
 echo    * %action%
-set /p "data_size=      %USERREG% [ 0 | 4 | 8 | 12 | 16 | 20 | 24 | 28 | 32 ]: "
+set /p "data_size=      %USERREG% [ 0 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 ]: "
 
 if /i "%data_size%" == "0" (
 echo.
@@ -119,58 +122,58 @@ set subregion_val=0xFF
 goto next1
 )
 
+if /i "%data_size%" == "2" (
+echo.
+set data_hex_val=0x800
+set subregion_val=0x7F
+goto next1
+)
+
 if /i "%data_size%" == "4" (
 echo.
 set data_hex_val=0x1000
-set subregion_val=0x7F
+set subregion_val=0x3F
+goto next1
+)
+
+if /i "%data_size%" == "6" (
+echo.
+set data_hex_val=0x1800
+set subregion_val=0x1F
 goto next1
 )
 
 if /i "%data_size%" == "8" (
 echo.
 set data_hex_val=0x2000
-set subregion_val=0x3F
+set subregion_val=0xF
+goto next1
+)
+
+if /i "%data_size%" == "10" (
+echo.
+set data_hex_val=0x2800
+set subregion_val=0x7
 goto next1
 )
 
 if /i "%data_size%" == "12" (
 echo.
 set data_hex_val=0x3000
-set subregion_val=0x1F
+set subregion_val=0x3
+goto next1
+)
+
+if /i "%data_size%" == "14" (
+echo.
+set data_hex_val=0x3800
+set subregion_val=0x1
 goto next1
 )
 
 if /i "%data_size%" == "16" (
 echo.
 set data_hex_val=0x4000
-set subregion_val=0xF
-goto next1
-)
-
-if /i "%data_size%" == "20" (
-echo.
-set data_hex_val=0x5000
-set subregion_val=0x7
-goto next1
-)
-
-if /i "%data_size%" == "24" (
-echo.
-set data_hex_val=0x6000
-set subregion_val=0x3
-goto next1
-)
-
-if /i "%data_size%" == "28" (
-echo.
-set data_hex_val=0x7000
-set subregion_val=0x1
-goto next1
-)
-
-if /i "%data_size%" == "32" (
-echo.
-set data_hex_val=0x8000
 set subregion_val=0x0
 goto next1
 )
@@ -188,10 +191,20 @@ echo DATA_MPU_SUB_REG=%subregion_val% >> %tmp_file%
 %python%%applicfg% definevalue -l %tmp_file% -m DATA_SIZE -n DATA_SIZE %appli_main_h%
 %python%%applicfg% definevalue -l %tmp_file% -m DATA_MPU_SUB_REG -n DATA_MPU_SUB_REG %boot_main_h%
 %python%%applicfg% linker -l %tmp_file% -m DATA_SIZE -n FLASH_DATA_AREA_SIZE %icf_appli%
-::%python%%applicfg% linker -l %tmp_file% -m DATA_SIZE -n FLASH_DATA_AREA_SIZE %sct_appli%
+%python%%applicfg% linker -l %tmp_file% -m DATA_SIZE -n FLASH_DATA_AREA_SIZE %sct_appli%
 %python%%applicfg% modifyfilevalue --variable OEMISB_OB_RDP_LEVEL_VALUE --value %rdp_str% %boot_cfg_h% --str
 
+if /i "%product_id%" == "STM32C071XX" (
 set /a "wrpend= 0x3F - data_hex_val/0x800"
+)
+
+if /i "%product_id%" == "STM32C051XX" (
+set /a "wrpend= 0x1F - data_hex_val/0x800"
+)
+
+if /i "%product_id%" == "STM32C092XX" (
+set /a "wrpend= 0x7F - data_hex_val/0x800"
+)
 set write_protect=WRP1A_STRT=0x0 WRP1A_END=%wrpend%
 
 :: ========================================================= Project generation steps ========================================================
@@ -208,13 +221,17 @@ echo        Press any key to continue...
 echo.
 if [%1] neq [AUTO] pause >nul
 
-:: ================================================= Option Bytes and flash programming =====================================================  
+:: ================================================= Option Bytes and flash programming =====================================================
 echo Step 3 : Product programming
 set "action=Programming the option bytes and flashing binaries ..."
 set current_log_file=%ob_flash_log%
 
+
 set "action=Remove protection and flash erase"
 echo    * %action%
+%stm32programmercli% %connect_reset% -ob RDP=0xAA >> %state_change_log%
+IF !errorlevel! NEQ 0 goto :step_error
+
 %stm32programmercli% %connect_reset% %remove_protect_init% %erase_all% >> %state_change_log%
 IF !errorlevel! NEQ 0 goto :step_error
 
@@ -225,7 +242,7 @@ echo    * %action%
 
 set "action=OEMiSB application programming"
 echo        - %action%
-%stm32programmercli% %connect_reset% -d %cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Appli\Binary\OEMiSB_Appli.bin %appliaddress% -v >> %state_change_log%
+%stm32programmercli% %connect_reset% -d %appli_binary% %appliaddress% -v >> %state_change_log%
 IF !errorlevel! NEQ 0 goto :step_error
 set "action=OEMiSB_Appli Written"
 echo %action% >> ob_flash_programming.log
@@ -234,7 +251,7 @@ echo %action% >> ob_flash_programming.log
 
 set "action=OEMiSB boot programming"
 echo        - %action%
-%stm32programmercli% %connect_reset% -d %cube_fw_path%\Projects\NUCLEO-C071RB\Applications\ROT\OEMiSB_Boot\Binary\OEMiSB_Boot.bin %bootaddress% -v >> %state_change_log%
+%stm32programmercli% %connect_reset% -d %boot_binary% %bootaddress% -v >> %state_change_log%
 IF !errorlevel! NEQ 0 goto :step_error
 
 set "action=OEMiSB_Boot Written"
@@ -243,7 +260,7 @@ echo %action% >> %state_change_log%
 set "action=OEMiSB application SHA256 programming"
 echo        - %action%
 %python%%applicfg% hashcontent tmp.bin -i %appli_binary% -t "8000" -d %sha256%
-%stm32programmercli% %connect_reset% -d %cube_fw_path%\Projects\NUCLEO-C071RB\ROT_Provisioning\OEMiSB\Binary\sha256.bin %shaaddress% -v --skipErase >> %state_change_log%
+%stm32programmercli% %connect_reset% -d %projectdir%..\..\ROT_Provisioning\OEMiSB\Binary\sha256.bin %shaaddress% -v --skipErase >> %state_change_log%
 IF !errorlevel! NEQ 0 goto :step_error
 set "action=SHA Appli Written"
 echo %action% >> ob_flash_programming.log
@@ -256,9 +273,9 @@ echo        - Hide Protection
 echo        - Boot Lock
 echo        Press any key to continue...
 if [%1] neq [AUTO] pause >nul
-%stm32programmercli% %connect_reset% -ob %write_protect% %hide_protect% %boot_lock% >> %state_change_log%
+%stm32programmercli% %connect_reset% -ob %write_protect% %hide_protect% BOOT_LOCK=1 >> %state_change_log%
 if !errorlevel! neq 0 goto :step_error
-echo. 
+echo.
 
 set "action=Configure Option Bytes Done"
 echo %action% >> %state_change_log%
@@ -267,15 +284,20 @@ echo %action% >> %state_change_log%
 set "action=Setting the final RDP Level %RDP_level%"
 set current_log_file=%state_change_log%
 echo    * %action%
-::%stm32programmercli% %connect_no_reset% -ob RDP=%rdp_value% >> %state_change_log%
+%stm32programmercli% %connect_reset% -ob RDP=%rdp_value% >> %state_change_log%
 :: cub prog issue: not able to return to level0 from level1
 :: Error: Expected value for Option Byte "rdp": 0xAA, found: 0x0
 :: Error: Option Byte Programming failed
 echo.
+if "%rdp_value%" == "0xAA" ( goto final_execution )
+echo    * Please unplug USB cable and plug it again to recover SWD Connection.
+echo        Press any key to continue...
+echo.
+if [%1] neq [AUTO] pause >nul
 :: In the final product state, the connection with the board is lost and the return value of the command cannot be verified
 goto final_execution
 
-:: ============================================================= End functions =============================================================  
+:: ============================================================= End functions =============================================================
 :: All the steps to set the STM32C0 product were executed correctly
 :final_execution
 echo =====
@@ -289,17 +311,6 @@ exit 0
 echo.
 echo =====
 echo ===== Error while executing "%action%".
-echo ===== See %current_log_file% for details. Then try again.
-echo =====
-cmd /k
-exit 1
-
-:: Caution Message when RDP Level 1 and Boot Lock are enabled
-:caution_msg
-echo.
-echo =====
-echo ===== Be careful when performing this action "%action%".
-echo ===== If RDP Level 1 and Boot Lock are enabled then the target is locked.
 echo ===== See %current_log_file% for details. Then try again.
 echo =====
 cmd /k

@@ -2,12 +2,12 @@
 /*-Editor annotation file-*/
 /* IcfEditorFile="$TOOLKIT_DIR$\config\ide\IcfEditor\cortex_v1_0.xml" */
 /*-Specials-*/
-define symbol FLASH_DATA_AREA_SIZE = 0x10000; /* This define is updated automatically from OEMiSB_Boot project */
-define symbol FLASH_BOOT_AREA_SIZE = 0x2000; /* This define is updated automatically from OEMiSB_Boot project */
+define symbol FLASH_DATA_AREA_SIZE = 0x10000; /* This define is updated automatically */
+define symbol FLASH_BOOT_AREA_SIZE = 0x2000;
 define symbol __ICFEDIT_intvec_start__ = 0x08000000 + FLASH_BOOT_AREA_SIZE;
 /*-Memory Regions-*/
 define symbol __ICFEDIT_region_ROM_start__ = 0x08000000 + FLASH_BOOT_AREA_SIZE;
-define symbol __ICFEDIT_region_ROM_end__   = 0x0803FFFF - FLASH_DATA_AREA_SIZE;
+define symbol __ICFEDIT_region_ROM_end__   = 0x0801FFFF - FLASH_DATA_AREA_SIZE;
 define symbol __ICFEDIT_region_RAM_start__ = 0x20000000;
 define symbol __ICFEDIT_region_RAM_end__   = 0x20005FFF;
 /*-Sizes-*/

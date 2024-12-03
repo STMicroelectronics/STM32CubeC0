@@ -137,6 +137,8 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
+  __HAL_FLASH_SET_LATENCY(FLASH_LATENCY_1);
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -213,19 +215,19 @@ static void SwitchSystemClock(void)
    if (__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_HSIUSB48)
     {
       /* clock source is HSE oscillator */
-      /* Set SYSCLK frequency to 240000000 MHz */
+      /* Set SYSCLK frequency to 24 MHz */
       SystemClockHSE_Config();
     }
   else if (__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_HSE)
     {
       /* clock source is HSI oscillator */
-      /* Set SYSCLK frequency to 480000000 MHz  */
+      /* Set SYSCLK frequency to 48 MHz  */
        SystemClockHSI_Config();
     }
     else if (__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_HSI)
     {
       /* clock source is HSIUSB48 oscillator */
-      /* Set SYSCLK frequency to 480000000 MHz */
+      /* Set SYSCLK frequency to 48 MHz */
      
       SystemClockHSIUSB48_Config();
     }
@@ -239,8 +241,8 @@ static void SwitchSystemClock(void)
   *         source.
   *         The system Clock is configured as follows :
   *            System Clock source            = HSE
-  *            SYSCLK(Hz)                     = 240000000
-  *            HCLK(Hz)                       = 240000000
+  *            SYSCLK(Hz)                     = 24000000
+  *            HCLK(Hz)                       = 24000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 1
   *            Flash Latency(WS)              = 1
@@ -288,8 +290,8 @@ static void SystemClockHSE_Config(void)
   *         source.
   *         The system Clock is configured as follows :
   *            System Clock source            = HSI
-  *            SYSCLK(Hz)                     = 480000000
-  *            HCLK(Hz)                       = 480000000
+  *            SYSCLK(Hz)                     = 48000000
+  *            HCLK(Hz)                       = 48000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 1
   *            Flash Latency(WS)              = 1
@@ -339,8 +341,8 @@ static void SystemClockHSI_Config(void)
   *         source.
   *         The system Clock is configured as follows :
   *            System Clock source            = HSIUSB48
-  *            SYSCLK(Hz)                     = 480000000
-  *            HCLK(Hz)                       = 480000000
+  *            SYSCLK(Hz)                     = 48000000
+  *            HCLK(Hz)                       = 48000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 1
   *            Flash Latency(WS)              = 1

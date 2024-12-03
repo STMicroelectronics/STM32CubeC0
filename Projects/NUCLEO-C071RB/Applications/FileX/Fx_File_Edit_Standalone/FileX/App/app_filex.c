@@ -62,7 +62,7 @@ extern UART_HandleTypeDef huart2;
 /* USER CODE END PFP */
 /**
   * @brief  Application FileX Initialization.
-  * @param memory_ptr: memory pointer
+  * @param  None
   * @retval int
   */
 UINT MX_FileX_Init(void)
