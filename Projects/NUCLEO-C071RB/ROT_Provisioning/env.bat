@@ -11,6 +11,7 @@ set stm32tpccli="C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgramm
 ::                            OEMiSB boot path
 :: ==============================================================================
 :: Select application project below
+:: Give relative path of application and boot from NUCLEO-C071RB folder
 set oemisb_appli_path_project=Applications/ROT/OEMiSB_Appli
 set oemisb_boot_path_project=Applications/ROT/OEMiSB_Boot
 
@@ -21,6 +22,5 @@ set product_id=STM32C071XX
 :: ==============================================================================
 ::               !!!! DOT NOT EDIT --- UPDATED AUTOMATICALLY !!!!
 :: ==============================================================================
-set PROJECT_GENERATED_BY_CUBEMX=false
 set cube_fw_path=%~dp0..\..\..\
 set rot_provisioning_path=%~dp0

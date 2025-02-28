@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Readme</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="row">
+<div class="col-sm-12 col-lg-8">
+<h3 id="tim_prescaler_update-example-description"><b>TIM_Prescaler_Update Example Description</b></h3>
+<p>Use of a timer peripheral to change the prescaler value on the fly. This example is based on the STM32C0xx TIM LL API. The peripheral initialization uses LL unitary service functions for optimization purposes (performance and size).</p>
+<p>At the beginning of the main program the SystemClock_Config() function is called to configure the maximum system clock frequency (48 MHz).</p>
+<p>In this example TIM1 input clock (TIM1CLK) frequency is set to the APB clock (PCLK), since APB pre-scaler is equal to 1.</p>
+<ul>
+<li>TIM1CLK = PCLK<br />
+</li>
+<li>PCLK = HCLK<br />
+</li>
+<li>TIM1CLK = HCLK = SystemCoreClock/AHB_DIV = 48 MHz/1 = 48 MHz</li>
+</ul>
+<p>To set the following TIM1 counter clock frequencies (4kHz, 2kHz, 1kHz), the prescaler (PSC) values are calculated as follows:</p>
+<ul>
+<li>PSC = (TIM1CLK / TIM1 counter clock) - 1</li>
+</ul>
+<p>The prescaler values are stored in a table:</p>
+<ul>
+<li>11999 (4kHz)<br />
+</li>
+<li>23999 (2kHz)<br />
+</li>
+<li>47999 (1kHz)</li>
+</ul>
+<p>Auto-reload (ARR) value is set to 999 (counting start from 0) to obtain a timebase period 1000 times longer than the counter clock period.</p>
+<ul>
+<li>4Hz<br />
+</li>
+<li>2Hz<br />
+</li>
+<li>1Hz</li>
+</ul>
+<p>User push-button can be used to modify the timebase period from 500ms to 1s, then 2s. To do so, every time User push-button is pressed, the prescaler register (PSC) is updated.<br />
+In up-counting, update event is generated at each counter overflow (when the counter reaches the auto-reload value).</p>
+<p>The LED1 is toggled every TIM update event, so the LED1 frequency is half the timebase frequency.</p>
+<p>Depending the user’s button push, the LED blinks in the following order:</p>
+<ul>
+<li>default: 2Hz (500ms)<br />
+</li>
+<li>1st push: 1Hz (1s)<br />
+</li>
+<li>2nd push: 500mHz (2s)<br />
+</li>
+<li>3rd push: 2Hz (500ms)<br />
+</li>
+<li>…</li>
+</ul>
+<p>STM32 board LED1 can be used to monitor the example.<br />
+There is also a possibility to display the LED1 pin (PA.05) signal on an oscilloscope.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>Timer, Timebase, Prescaler, Update, Interrupt, LED</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>TIM/TIM_Prescaler_Update/Inc/stm32c0xx_it.h Interrupt handlers header file</li>
+<li>TIM/TIM_Prescaler_Update/Inc/main.h Header for main.c module</li>
+<li>TIM/TIM_Prescaler_Update/Inc/stm32_assert.h Template file to include assert_failed function</li>
+<li>TIM/TIM_Prescaler_Update/Src/stm32c0xx_it.c Interrupt handlers</li>
+<li>TIM/TIM_Prescaler_Update/Src/main.c Main program</li>
+<li>TIM/TIM_Prescaler_Update/Src/system_stm32c0xx.c STM32C0xx system source file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software environment</b></h3>
+<ul>
+<li><p>This example runs on STM32C092RCTx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics NUCLEO-C092RC boards and can be easily tailored to any other supported device and development board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following :</p>
+<ul>
+<li>Open your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

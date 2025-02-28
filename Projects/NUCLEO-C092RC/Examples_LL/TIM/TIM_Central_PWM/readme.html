@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Readme</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="row">
+<div class="col-sm-12 col-lg-8">
+<h3 id="tim_central_pwm-example-description"><b>TIM_Central_PWM Example Description</b></h3>
+<p>Use of a timer peripheral to generate 3 center aligned PWMs output signals. The fourth channel can be used to trigger ADC conversions during the low period of the PWM signals.<br />
+This example is based on the STM32C0xx TIM LL API. The peripheral initialization uses LL unitary service functions for optimization purposes (performance and size).</p>
+<p>At the beginning of the main program the SystemClock_Config() function is called to configure the maximum system clock frequency (48 Mhz).</p>
+<p>In this example TIM1 input clock (TIM1CLK) frequency is set to the APB clock (PCLK), since APB pre-scaler is equal to 1.</p>
+<ul>
+<li>TIM1CLK = PCLK<br />
+</li>
+<li>PCLK = HCLK<br />
+</li>
+<li>TIM1CLK = HCLK = SystemCoreClock/AHB_DIV = 48 MHz/1 = 48 MHz</li>
+</ul>
+<p>To set the TIM1 counter clock frequency to 48 MHz, the pre-scaler (PSC) is kept at 0.</p>
+<p>Auto-reload (ARR) is calculated to get a time base period of 100 us, meaning a time base frequency of 10 kHz.<br />
+As the counter counts up and down for 1 period, we have to take into account that the period is twice the time of the ARR value, so the ARR must be divided by 2.</p>
+<ul>
+<li>ARR = ((TIM1 counter clock / time base frequency)/2) - 1<br />
+</li>
+<li>ARR = ((TIM1 counter clock / 10000)/2) - 1</li>
+<li>ARR = 2400 - 1</li>
+</ul>
+<p>Channels 1, 2 and 3 are set to PWM mode 1, but channel 4 is set to PWM mode 2 and is therefore out of phase with the others.</p>
+<p>The capture/compare register (CCR1) of the output channel 1 is set to a quarter of the auto-reload value meaning a duty cycle (DT) of 25%, the output channel 2 is set to 50% DT and output channel 3 is set to 75% DT.</p>
+<ul>
+<li>CCR1 = (0.25 * ARR) - 1 = 600 - 1</li>
+<li>CCR2 = (0.50 * ARR) - 1 = 1200 - 1</li>
+<li>CCR3 = (0.75 * ARR) - 1 = 1800 - 1</li>
+</ul>
+<p>Channel 4 operates in PWM mode 2 with a 2% duty cycle. It is used as TRGO2 source to shows how ADC conversions can be synchronized on given 3-phase PWM signals (ADC related configuration isn’t in the scope of the present example).</p>
+<ul>
+<li>CCR4 = (0.98 * ARR) - 1 = 2352 - 1</li>
+</ul>
+<p>The following figure shows the expected result:</p>
+<pre><code>               &lt;---------------100us---------------&gt;
+                              _________                             _________
+  tim_oc1   :  ______________|         |___________________________|         |_____________
+                             &lt;--25us--&gt;
+                         __________________                    __________________
+  tim_oc2   :  _________|                  |__________________|                  |_________
+                         &lt;------50us------&gt;
+                    ____________________________          ____________________________
+  tim_oc3   :  ____|                            |________|                            |____
+                    &lt;-----------75us-----------&gt;
+                                                     _
+  tim_oc4   :  _____________________________________| |____________________________________
+                                                   &lt;2us&gt;</code></pre>
+<p>The generated PWM signals can be displayed using an oscilloscope.</p>
+<h4 id="notes"><b>Notes</b></h4>
+<ol type="1">
+<li><p>PWM signal frequency value mentioned above is theoretical (obtained when the system clock frequency is exactly 48 MHz). Since the generated system clock frequency may vary from one board to another observed PWM signal frequency might be slightly different.</p></li>
+<li><p>In PWM mode, preload mode is enabled for the auto-reload register and the capture/compare registers. Registers update is forced by software prior starting the PWM signals generation.</p></li>
+</ol>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>Timer, PWM, Center Aligned, Measure, Noise, Oscilloscope, Output, Signal</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>TIM/TIM_Central_PWM/Inc/stm32c0xx_it.h Interrupt handlers header file</li>
+<li>TIM/TIM_Central_PWM/Inc/main.h Header for main.c module</li>
+<li>TIM/TIM_Central_PWM/Inc/stm32_assert.h Template file to include assert_failed function</li>
+<li>TIM/TIM_Central_PWM/Src/stm32c0xx_it.c Interrupt handlers</li>
+<li>TIM/TIM_Central_PWM/Src/main.c Main program</li>
+<li>TIM/TIM_Central_PWM/Src/system_stm32c0xx.c STM32C0xx system source file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software environment</b></h3>
+<ul>
+<li><p>This example runs on STM32C092RCTx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics NUCLEO-C092RC boards and can be easily tailored to any other supported device and development board.</p></li>
+<li>NUCLEO-C092RC Set-up:
+<ul>
+<li>TIM1_CH1 (PA.0 PIN28 CN7)</li>
+<li>TIM1_CH2 (PA.1 PIN30 CN7)</li>
+<li>TIM1_CH3 (PA.10 PIN33 CN10)</li>
+<li>TIM1_CH4 (PA.11 PIN14 CN10)</li>
+</ul></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following :</p>
+<ul>
+<li>Open your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -5,8 +5,12 @@ setlocal EnableDelayedExpansion
 set "projectdir=%~dp0"
 :: Getting the CubeProgammer_cli path
 call ../env.bat
+
+::Application path
+set appli_dir=..\..\%oemisb_appli_path_project%
+
 :: Application binary file
-set appli_binary=%projectdir%..\..\%oemisb_appli_path_project%\Binary\OEMiSB_Appli.bin
+set appli_binary=%projectdir%%appli_dir%\Binary\OEMiSB_Appli.bin
 set boot_binary=%projectdir%..\..\%oemisb_boot_path_project%\Binary\OEMiSB_Boot.bin
 :: Sha.bin
 set sha256=%projectdir%\Binary\sha256.bin
@@ -35,15 +39,14 @@ set erase_all=-e all
 :: ================================================ hardening ===============================================================================
 set hide_protect=SEC_SIZE=%SecSize%
 
-set isGeneratedByCubeMX=%PROJECT_GENERATED_BY_CUBEMX%
 :: CubeProgammer path and input files
 set state_change_log="provisioning.log"
 
-set appli_main_h="%projectdir%..\..\Applications\ROT\OEMiSB_Appli\Inc\main.h"
+set appli_main_h="%projectdir%%appli_dir%\Inc\main.h"
 set boot_main_h="%projectdir%..\..\Applications\ROT\OEMiSB_Boot\Inc\main.h"
 set boot_cfg_h="%projectdir%..\..\Applications\ROT\OEMiSB_Boot\Inc\boot_cfg.h"
-set icf_appli="%projectdir%..\..\Applications\ROT\OEMiSB_Appli\EWARM\stm32c071xx_flash.icf"
-set sct_appli="%projectdir%..\..\Applications\ROT\OEMiSB_Appli\MDK-ARM\stm32c0xx_app.sct"
+set icf_appli="%projectdir%%appli_dir%\EWARM\stm32c071xx_flash.icf"
+set sct_appli="%projectdir%%appli_dir%\MDK-ARM\stm32c0xx_app.sct"
 
 :: Initial configuration
 set connect_no_reset=-c port=SWD mode=Hotplug

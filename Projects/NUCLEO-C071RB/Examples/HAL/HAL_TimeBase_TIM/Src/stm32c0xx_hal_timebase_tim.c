@@ -44,6 +44,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   uint32_t              uwTimclock = 0;
   uint32_t              uwPrescalerValue = 0;
   uint32_t              pFLatency;
+
   /*Configure the TIM3 IRQ priority */
   if (TickPriority < (1UL << __NVIC_PRIO_BITS))
    {
@@ -60,8 +61,10 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
 
   /* Enable TIM3 clock */
   __HAL_RCC_TIM3_CLK_ENABLE();
+
   /* Get clock configuration */
   HAL_RCC_GetClockConfig(&clkconfig, &pFLatency);
+
   /* Compute TIM3 clock */
   uwTimclock = HAL_RCC_GetPCLK1Freq();
 
@@ -72,12 +75,11 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   htim3.Instance = TIM3;
 
   /* Initialize TIMx peripheral as follow:
-
-  + Period = [(TIM3CLK/1000) - 1]. to have a (1/1000) s time base.
-  + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
-  + ClockDivision = 0
-  + Counter direction = Up
-  */
+   * Period = [(TIM3CLK/1000) - 1]. to have a (1/1000) s time base.
+   * Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
+   * ClockDivision = 0
+   * Counter direction = Up
+   */
   htim3.Init.Period = (1000000U / 1000U) - 1U;
   htim3.Init.Prescaler = uwPrescalerValue;
   htim3.Init.ClockDivision = 0;

@@ -36,9 +36,9 @@
 			<locationURI>PARENT-1-PROJECT_LOC/ADC_DiscontinuousConversion_TriggerSW.ioc</locationURI>
 		</link>
 		<link>
-			<name>Doc/readme.md</name>
+			<name>Doc/README.md</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/readme.md</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/README.md</locationURI>
 		</link>
 		<link>
 			<name>Application/User/main.c</name>

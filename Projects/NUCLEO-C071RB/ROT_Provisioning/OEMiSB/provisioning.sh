@@ -9,6 +9,7 @@ source ../env.sh
 
 SCRIPT=$(absolutpath $0)
 project_dir=`dirname $SCRIPT`
+echo $project_dir
 if [ $# -ge 1 ]; then mode=$1; else mode=MANUAL; fi
 
 state_change_log="${project_dir}/OEMiSB/provisioning.log"
@@ -126,8 +127,10 @@ action="Define data area size in Kbytes"
     esac
 }
 
+#Application path
+appli_dir="../$oemisb_appli_path_project"
 # Application binary file
-appli_binary="${project_dir}/../$oemisb_appli_path_project/Binary/OEMiSB_Appli.bin"
+appli_binary="${project_dir}/$appli_dir/Binary/OEMiSB_Appli.bin"
 boot_binary="${project_dir}/../$oemisb_boot_path_project/Binary/OEMiSB_Boot.bin"
 # Sha.bin
 sha256="${project_dir}/OEMiSB/Binary/sha256.bin"
@@ -158,12 +161,10 @@ erase_all="-e all"
 # ================================================ hardening ===============================================================================
 hide_protect="SEC_SIZE=${SecSize} SEC_SIZE=1"
 
-isGeneratedByCubeMX="${PROJECT_GENERATED_BY_CUBEMX}"
-
-appli_main_h="${project_dir}/../Applications/ROT/OEMiSB_Appli/Inc/main.h"
+appli_main_h="${project_dir}/$appli_dir/Inc/main.h"
 boot_main_h="${project_dir}/../Applications/ROT/OEMiSB_Boot/Inc/main.h"
 boot_cfg_h="${project_dir}/../Applications/ROT/OEMiSB_Boot/Inc/boot_cfg.h"
-ld_appli="${project_dir}/../Applications/ROT/OEMiSB_Appli/STM32CubeIDE/STM32C071RBTX_FLASH.ld"
+ld_appli="${project_dir}/$appli_dir/STM32CubeIDE/STM32C071RBTX_FLASH.ld"
 
 #line for python
 echo AppliCfg with python script

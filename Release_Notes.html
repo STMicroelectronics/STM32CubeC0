@@ -75,11 +75,282 @@ C® guidelines. Reports are available on demand.</p>
 <section id="update-history" class="col-sm-12 col-lg-8">
 <h2><strong>Update History</strong></h2>
 <div class="collapse">
-<input type="checkbox" id="collapse-section6" checked aria-hidden="true">
-<label for="collapse-section6" checked aria-hidden="true"><strong>V1.3.1
-/ 10-January-2025</strong></label>
+<input type="checkbox" id="collapse-section7" checked aria-hidden="true">
+<label for="collapse-section7" checked aria-hidden="true"><strong>V1.4.0
+/ 05-February-2025</strong></label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
+<ul>
+<li>Maintenance Release of STM32CubeC0 Firmware package supporting
+<strong>STM32C011xx/C031xx/C051xx/C071xx/C091xx/C092xx</strong>
+devices.</li>
+</ul>
+<h2 id="contents">Contents</h2>
+<h3 id="features"><strong>Features</strong></h3>
+<p>STM32CubeC0 gathers in one single package all the generic embedded
+software components required to develop an application on STM32C0
+microcontrollers.</p>
+<ul>
+<li>Production–ready HAL and LL API drivers, checked with Coverity®
+static analysis tool, and developed in compliance with MISRA C®
+guidelines.</li>
+<li>CMSIS CORE, DSP and RTOS software components.</li>
+<li>Consistent set of middleware components (Azure® RTOS USBX,
+FileX/LevelX, ThreadX, mbed-crypto, and OpenBootloader).</li>
+<li>Up to <strong>318</strong> examples and applications for easy
+understanding, compatible with STM32CubeMX to facilitate the
+configuration through a graphical tool.</li>
+</ul>
+<p><strong>HAL/LL Drivers</strong> Updates</p>
+<ul>
+<li>General updates to fix known defects and implementation
+enhancements</li>
+</ul>
+<p><strong>Middleware</strong> Updates</p>
+<ul>
+<li>Update mbed-crypto version to mbed-tls-v3.6.2</li>
+</ul>
+<h3 id="projects"><strong>Projects</strong></h3>
+<ul>
+<li><strong>56</strong> new examples on NUCLEO-C092RC board are provided
+in this release</li>
+<li>Update ROT_Provisioning scripts to handle any user application</li>
+</ul>
+<p>The <strong>STM32CubeC0</strong> Firmware package comes with template
+running on STMicroelectronics boards, organized by board and provided
+with preconfigured projects for the main supported toolchains. The
+exhaustive list of projects is provided in this table <a
+href="Projects/STM32CubeProjectsList.html">STM32CubeProjectsList.html</a></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Release note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Projects <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">V1.4.0</td>
+<td style="text-align: left;"><a
+href="Projects/Release_Notes.html">release notes</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="components">Components</h2>
+<p><small>The components flagged by “<span
+class="icon-st-update"></span>” have changed since the previous release.
+“<span class="icon-st-add"></span>” are new.</small></p>
+<table>
+<caption><strong>Drivers</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Release note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CMSIS</td>
+<td style="text-align: left;">V5.9.0</td>
+<td style="text-align: left;"><a
+href="Drivers/CMSIS/Documentation/General/html/index.html">release
+notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32C0xx CMSIS <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">V1.4.0</td>
+<td style="text-align: left;"><a
+href="Drivers/CMSIS/Device/ST/STM32C0xx/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32C0xx HAL/LL <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">V1.4.0</td>
+<td style="text-align: left;"><a
+href="Drivers/STM32C0xx_HAL_Driver/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSP STM32C0xx NUCLEO</td>
+<td style="text-align: left;">V1.1.0</td>
+<td style="text-align: left;"><a
+href="Drivers/BSP/STM32C0xx_Nucleo/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSP STM32C0316-DK</td>
+<td style="text-align: left;">V1.0.1</td>
+<td style="text-align: left;"><a
+href="Drivers/BSP/STM32C0316-DK/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSP STM32C0116-DK</td>
+<td style="text-align: left;">V1.1.1</td>
+<td style="text-align: left;"><a
+href="Drivers/BSP/STM32C0116-DK/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSP Components</td>
+<td style="text-align: left;">V7.1.0</td>
+<td style="text-align: left;"><a
+href="Drivers/BSP/Components/Common/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Release note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">OpenBootloader</td>
+<td style="text-align: left;">V6.0.0</td>
+<td style="text-align: left;"><a
+href="Middlewares/ST/OpenBootloader/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Azure RTOS ThreadX <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">threadx-6.4.0.241011</td>
+<td style="text-align: left;"><a
+href="https://github.com/eclipse-threadx/threadx/releases/tag/v6.4.0_rel">release
+notes</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Azure RTOS FileX <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">filex-6.4.0.241011</td>
+<td style="text-align: left;"><a
+href="https://github.com/azure-rtos/filex/releases/tag/v6.4.0_rel">release
+notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Azure RTOS LeveLX <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">levelx-6.4.0.241011</td>
+<td style="text-align: left;"><a
+href="https://github.com/eclipse-threadx/levelx/releases/tag/v6.4.0_rel">release
+notes</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Azure RTOS USBX <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">usbx-6.4.0.241011</td>
+<td style="text-align: left;"><a
+href="https://github.com/eclipse-threadx/usbx/releases/tag/v6.4.0_rel">release
+notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mbed-crypto <span
+class="icon-st-update"></span></td>
+<td style="text-align: left;">mbed-tls-v3.6.2</td>
+<td style="text-align: left;"><a
+href="Middlewares/Third_Party/mbed-crypto/st_readme.txt">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="development-toolchains-and-compilers">Development Toolchains and
+Compilers</h1>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.4 + ST-LINK,
+patch available here:
+<ul>
+<li><a
+href="Utilities\PC_Software\IDEs_Patches\EWARM\EWARMv9_STM32C05x-09x_V1.0.1.zip">Utilities\PC_Software\IDEs_Patches\EWARM\EWARMv9_STM32C05x-09x_V1.0.1.zip</a>
+<ul>
+<li>This patch supports <strong>STM32C051xx</strong> and
+<strong>STM32C091xx/92xx</strong> devices</li>
+</ul></li>
+<li><a
+href="Utilities\PC_Software\IDEs_Patches\EWARM\EWARMv9_STM32C07x_V1.0.1.zip">Utilities\PC_Software\IDEs_Patches\EWARM\EWARMv9_STM32C07x_V1.0.1.zip</a>
+<ul>
+<li>This patch supports <strong>STM32C071xx</strong> devices</li>
+</ul></li>
+<li><a
+href="Utilities\PC_Software\IDEs_Patches\EWARM\EWARMv8_STM32C01x-03x_V1.0.2.zip">Utilities\PC_Software\IDEs_Patches\EWARM\EWARMv8_STM32C01x-03x_V1.0.2.zip</a>
+<ul>
+<li>This patch supports <strong>STM32C031xx and STM32C011xx</strong>
+devices</li>
+</ul></li>
+</ul></li>
+<li>RealView Microcontroller Development Kit (MDK-ARM) toolchain V5.39 +
+ST-LINK, patch available here:
+<ul>
+<li><a
+href="Utilities\PC_Software\IDEs_Patches\MDK-ARM\Keil.STM32C0xx_DFP.2.1.1.zip">Utilities\PC_Software\IDEs_Patches\MDK-ARM\Keil.STM32C0xx_DFP.2.1.1.zip</a>
+<ul>
+<li>This patch supports <strong>STM32C031/011xx</strong>,
+<strong>STM32C071xx</strong>, <strong>STM32C051xx</strong> and
+<strong>STM32C091/92xx</strong> devices</li>
+</ul></li>
+</ul></li>
+<li>STM32CubeIDE V1.18.0 (GCC13)</li>
+</ul>
+<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<ul>
+<li>STM32C051x6 and STM32C051x8 devices</li>
+<li>STM32C091xB, STM32C091xC and STM32C091x8 devices</li>
+<li>STM32C092xB, STM32C092xC and STM32C092x8 devices</li>
+<li>STM32C071xB and STM32C071x8 devices</li>
+<li>STM32C031 and STM32C011 devices</li>
+<li>NUCLEO-C092RC board rev.B</li>
+<li>NUCLEO-C051C6 board rev.C</li>
+<li>NUCLEO-C071RB board rev.B</li>
+<li>NUCLEO-C031C6 board rev.B</li>
+<li>STM32C0116-DK board rev.B</li>
+<li>STM32C0316-DK board rev.B</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>STM32CubeMX V6.14.0
+<ul>
+<li>Projects (Applications and Examples) are generated using STM32CubeMX
+version V6.14.0.</li>
+</ul></li>
+</ul>
+<h2 id="known-limitations">Known Limitations</h2>
+<ul>
+<li><p>Some projects are not generated with STM32CubeMX tool. For the
+exhaustive list please refer to this table <a
+href="Projects/STM32CubeProjectsList.html">STM32CubeProjectsList.html</a></p></li>
+<li><p>The following projects are not supported with STM32CubeIDE
+toolchain (<strong>Release</strong>):</p>
+<ul>
+<li>NUCLEO-C071RB/Examples_LL/SPI/SPI_OneBoard_HalfDuplex_IT_Init</li>
+</ul></li>
+<li><p>The following projects are not supported with MDK-ARM toolchain
+:</p>
+<ul>
+<li>NUCLEO-C071RB/Examples_LL/I2C/I2C_OneBoard_AdvCommunication_DMAAndIT_Init</li>
+</ul></li>
+</ul>
+<h2 id="backward-compatibility">Backward Compatibility</h2>
+<ul>
+<li>Not applicable</li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section6" aria-hidden="true">
+<label for="collapse-section6" aria-hidden="true"><strong>V1.3.1 /
+10-January-2025</strong></label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
 <ul>
 <li>This patch release does not bring any functional changes, it
 highlights a limitation fixed in release v1.3.0 but undisclosed in the
@@ -88,7 +359,7 @@ Release Notes.</li>
 conditions under which this issue occurs, the root cause, and the
 proposed solution.</li>
 </ul>
-<h2 id="contents">Contents</h2>
+<h2 id="contents-1">Contents</h2>
 <h4 id="description-of-the-limitation"><u>Description of the
 limitation</u></h4>
 <p>Before setting the system clock (SYSCLK) frequency to 48 MHz, the
@@ -150,14 +421,14 @@ href="https://www.st.com/en/development-tools/stm32cubemx.html#get-software">lin
 <label for="collapse-section5" aria-hidden="true"><strong>V1.3.0 /
 30-October-2024</strong></label>
 <div>
-<h2 id="main-changes-1">Main Changes</h2>
+<h2 id="main-changes-2">Main Changes</h2>
 <ul>
 <li>Official release of <strong>STM32CubeC0</strong> Firmware Package to
 support <span style="font-weight: bold;">STM32CubeC051xx and
 STM32CubeC091/92xx devices</span></li>
 </ul>
-<h2 id="contents-1">Contents</h2>
-<h3 id="features"><strong>Features</strong></h3>
+<h2 id="contents-2">Contents</h2>
+<h3 id="features-1"><strong>Features</strong></h3>
 <p>STM32CubeC0 gathers in one single package all the generic embedded
 software components required to develop an application on STM32C0
 microcontrollers.</p>
@@ -192,7 +463,7 @@ enhancements</li>
 <ul>
 <li>Update mbed-crypto version to mbed-tls-v3.6.1</li>
 </ul>
-<h3 id="projects"><strong>Projects</strong></h3>
+<h3 id="projects-1"><strong>Projects</strong></h3>
 <ul>
 <li>Add <strong>56</strong> new projects on NUCLEO-C051C8 board:
 <ul>
@@ -238,7 +509,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components">Components</h2>
+<h2 id="components-1">Components</h2>
 <p><small>The components flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -359,8 +630,8 @@ notes</a></td>
 </tr>
 </tbody>
 </table>
-<h1 id="development-toolchains-and-compilers">Development Toolchains and
-Compilers</h1>
+<h1 id="development-toolchains-and-compilers-1">Development Toolchains
+and Compilers</h1>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.4 + ST-LINK,
 patch available here:
@@ -396,7 +667,8 @@ href="Utilities\PC_Software\IDEs_Patches\MDK-ARM\Keil.STM32C0xx_DFP.1.2.0.zip">U
 </ul></li>
 <li>STM32CubeIDE V1.17.0 (GCC12)</li>
 </ul>
-<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<h2 id="supported-devices-and-boards-1">Supported Devices and
+boards</h2>
 <ul>
 <li><strong>STM32C051x6</strong> and <strong>STM32C051x8</strong>
 devices</li>
@@ -413,7 +685,7 @@ devices</li>
 <li>STM32C0116-DK board rev.B</li>
 <li>STM32C0316-DK board rev.B</li>
 </ul>
-<h2 id="dependencies">Dependencies</h2>
+<h2 id="dependencies-1">Dependencies</h2>
 <ul>
 <li>STM32CubeMX V6.13.0
 <ul>
@@ -421,7 +693,7 @@ devices</li>
 version V6.13.0.</li>
 </ul></li>
 </ul>
-<h2 id="known-limitations">Known Limitations</h2>
+<h2 id="known-limitations-1">Known Limitations</h2>
 <ul>
 <li><p>Some projects are not generated with STM32CubeMX tool. For the
 exhaustive list please refer to this table <a
@@ -437,7 +709,7 @@ toolchain (<strong>Release</strong>):</p>
 <li>NUCLEO-C071RB/Examples_LL/I2C/I2C_OneBoard_AdvCommunication_DMAAndIT_Init</li>
 </ul></li>
 </ul>
-<h2 id="backward-compatibility">Backward Compatibility</h2>
+<h2 id="backward-compatibility-1">Backward Compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -448,14 +720,14 @@ toolchain (<strong>Release</strong>):</p>
 <label for="collapse-section4" aria-hidden="true"><strong>V1.2.0 /
 05-June-2024</strong></label>
 <div>
-<h2 id="main-changes-2">Main Changes</h2>
+<h2 id="main-changes-3">Main Changes</h2>
 <ul>
 <li>First official release of <strong>STM32CubeC0</strong> Firmware
 Package to support <span style="font-weight: bold;">STM32CubeC071xx
 devices</span></li>
 </ul>
-<h2 id="contents-2">Contents</h2>
-<h3 id="features-1"><strong>Features</strong></h3>
+<h2 id="contents-3">Contents</h2>
+<h3 id="features-2"><strong>Features</strong></h3>
 <p>STM32CubeC0 gathers in one single package all the generic embedded
 software components required to develop an application on STM32C0
 microcontrollers.</p>
@@ -498,7 +770,7 @@ enhancements</li>
 <li>Add the AzureRTOS USBX middleware component</li>
 <li>Add mbed-crypto and mcuboot Middleware</li>
 </ul>
-<h3 id="projects-1"><strong>Projects</strong></h3>
+<h3 id="projects-2"><strong>Projects</strong></h3>
 <ul>
 <li>Add <strong>75</strong> new projects on NUCLEO-C071RB board:
 <ul>
@@ -531,7 +803,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components-1">Components</h2>
+<h2 id="components-2">Components</h2>
 <p><small>The components flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -667,7 +939,7 @@ notes</a></td>
 </tr>
 </tbody>
 </table>
-<h1 id="development-toolchains-and-compilers-1">Development Toolchains
+<h1 id="development-toolchains-and-compilers-2">Development Toolchains
 and Compilers</h1>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.4 + ST-LINK,
@@ -697,7 +969,7 @@ href="Utilities\PC_Software\IDEs_Patches\MDK-ARM\Keil.STM32C0xx_DFP.1.1.0.zip">U
 </ul></li>
 <li>STM32CubeIDE V1.16.0 (GCC12)</li>
 </ul>
-<h2 id="supported-devices-and-boards-1">Supported Devices and
+<h2 id="supported-devices-and-boards-2">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32C071xB and STM32C071x8 devices</li>
@@ -707,7 +979,7 @@ boards</h2>
 <li>STM32C0116-DK board rev.B</li>
 <li>STM32C0316-DK board rev.B</li>
 </ul>
-<h2 id="dependencies-1">Dependencies</h2>
+<h2 id="dependencies-2">Dependencies</h2>
 <ul>
 <li>STM32CubeMX V6.12.0
 <ul>
@@ -715,7 +987,7 @@ boards</h2>
 version V6.12.0.</li>
 </ul></li>
 </ul>
-<h2 id="known-limitations-1">Known Limitations</h2>
+<h2 id="known-limitations-2">Known Limitations</h2>
 <ul>
 <li><p>Some projects are not generated with STM32CubeMX tool. For the
 exhaustive list please refer to this table <a
@@ -731,7 +1003,7 @@ toolchain (<strong>Release</strong>):</p>
 <li>NUCLEO-C071RB/Examples_LL/I2C/I2C_OneBoard_AdvCommunication_DMAAndIT_Init</li>
 </ul></li>
 </ul>
-<h2 id="backward-compatibility-1">Backward Compatibility</h2>
+<h2 id="backward-compatibility-2">Backward Compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -742,7 +1014,7 @@ toolchain (<strong>Release</strong>):</p>
 <label for="collapse-section3" aria-hidden="true"><strong>V1.1.0 /
 07-June-2023</strong></label>
 <div>
-<h2 id="main-changes-3">Main Changes</h2>
+<h2 id="main-changes-4">Main Changes</h2>
 <ul>
 <li>Maintenance Release of <span
 style="font-weight: bold;">STM32CubeC0</span> Firmware Package</li>
@@ -832,8 +1104,8 @@ setting.</li>
 <li>Update of AzureRtos Middleware to new version V6.2.0</li>
 <li>Update of OpenBootloader to new version V6.1.0</li>
 </ul>
-<h2 id="contents-3">Contents</h2>
-<h3 id="projects-2"><strong>Projects</strong></h3>
+<h2 id="contents-4">Contents</h2>
+<h3 id="projects-3"><strong>Projects</strong></h3>
 <p>The <strong>STM32CubeC0</strong> Firmware package comes with template
 running on STMicroelectronics boards, organized by board and provided
 with preconfigured projects for the main supported toolchains. The
@@ -858,7 +1130,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="components-2"><strong>Components</strong></h3>
+<h3 id="components-3"><strong>Components</strong></h3>
 <p><small>The Project categories flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -971,7 +1243,7 @@ notes</a></td>
 </tr>
 </tbody>
 </table>
-<h1 id="development-toolchains-and-compilers-2">Development Toolchains
+<h1 id="development-toolchains-and-compilers-3">Development Toolchains
 and Compilers</h1>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V8.50.9 + ST-LINK,
@@ -991,7 +1263,7 @@ href="Utilities\PC_Software\IDEs_Patches\MDK-ARM\Keil.STM32C0xx_DFP.1.0.0.zip">U
 </ul></li>
 <li>STM32CubeIDE v1.12.0 using GCC10</li>
 </ul>
-<h2 id="supported-devices-and-boards-2">Supported Devices and
+<h2 id="supported-devices-and-boards-3">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32C031 and STM32C011 devices Rev A</li>
@@ -999,7 +1271,7 @@ boards</h2>
 <li>STM32C0116-DK board rev.B</li>
 <li>STM32C0316-DK board rev.B</li>
 </ul>
-<h2 id="dependencies-2">Dependencies</h2>
+<h2 id="dependencies-3">Dependencies</h2>
 <ul>
 <li>STM32CubeMX V6.9.0
 <ul>
@@ -1007,11 +1279,11 @@ boards</h2>
 version V6.9.0.</li>
 </ul></li>
 </ul>
-<h2 id="known-limitations-2">Known Limitations</h2>
+<h2 id="known-limitations-3">Known Limitations</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
-<h2 id="backward-compatibility-2">Backward Compatibility</h2>
+<h2 id="backward-compatibility-3">Backward Compatibility</h2>
 <ul>
 <li>HAL_SYSCFG_GetPinBinding() and LL_SYSCFG_GetConfigPinMux() are
 updated.</li>
@@ -1023,7 +1295,7 @@ updated.</li>
 <label for="collapse-section2" checked aria-hidden="true"><strong>V1.0.1
 / 12-January-2023</strong></label>
 <div>
-<h2 id="main-changes-4">Main Changes</h2>
+<h2 id="main-changes-5">Main Changes</h2>
 <ul>
 <li><p>Patch Release of <span
 style="font-weight: bold;">STM32CubeC0</span> Firmware Package</p>
@@ -1036,8 +1308,8 @@ example is updated to use
 <li><p>Update RCC LL driver by adding missing AHB Prescaler.</p></li>
 </ul></li>
 </ul>
-<h2 id="contents-4">Contents</h2>
-<h3 id="projects-3"><strong>Projects</strong></h3>
+<h2 id="contents-5">Contents</h2>
+<h3 id="projects-4"><strong>Projects</strong></h3>
 <p>The <strong>STM32CubeC0</strong> Firmware package comes with template
 running on STMicroelectronics boards, organized by board and provided
 with preconfigured projects for the main supported toolchains. The
@@ -1063,7 +1335,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="components-3"><strong>Components</strong></h3>
+<h3 id="components-4"><strong>Components</strong></h3>
 <p><small>The Project categories flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -1174,13 +1446,13 @@ notes</a></td>
 <label for="collapse-section1" checked aria-hidden="true"><strong>V1.0.0
 / 09-February-2022</strong></label>
 <div>
-<h2 id="main-changes-5">Main Changes</h2>
+<h2 id="main-changes-6">Main Changes</h2>
 <ul>
 <li>First Official Release of <span
 style="font-weight: bold;">STM32CubeC0</span> Firmware Package</li>
 </ul>
-<h2 id="contents-5">Contents</h2>
-<h3 id="projects-4"><strong>Projects</strong></h3>
+<h2 id="contents-6">Contents</h2>
+<h3 id="projects-5"><strong>Projects</strong></h3>
 <p>The <strong>STM32CubeC0</strong> Firmware package comes with template
 running on STMicroelectronics boards, organized by board and provided
 with preconfigured projects for the main supported toolchains. The
@@ -1205,7 +1477,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="components-4"><strong>Components</strong></h3>
+<h3 id="components-5"><strong>Components</strong></h3>
 <table>
 <caption><strong>Drivers</strong></caption>
 <thead>
@@ -1306,7 +1578,7 @@ notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="development-toolchains-and-compilers-3">Development Toolchains
+<h2 id="development-toolchains-and-compilers-4">Development Toolchains
 and Compilers</h2>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V8.50.9 + ST-LINK,
@@ -1326,7 +1598,7 @@ href="Utilities\PC_Software\IDEs_Patches\MDK-ARM\Keil.STM32C0xx_DFP.1.0.0.zip">U
 </ul></li>
 <li>STM32CubeIDE v1.9.0 using GCC10</li>
 </ul>
-<h2 id="supported-devices-and-boards-3">Supported Devices and
+<h2 id="supported-devices-and-boards-4">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32C031 and STM32C011 devices Rev A</li>
@@ -1334,7 +1606,7 @@ boards</h2>
 <li>STM32C0116-DK board rev.B</li>
 <li>STM32C0316-DK board rev.B</li>
 </ul>
-<h2 id="dependencies-3">Dependencies</h2>
+<h2 id="dependencies-4">Dependencies</h2>
 <ul>
 <li>STM32CubeMX V6.5.0
 <ul>
@@ -1342,11 +1614,11 @@ boards</h2>
 version V6.5.0.</li>
 </ul></li>
 </ul>
-<h2 id="known-limitations-3">Known Limitations</h2>
+<h2 id="known-limitations-4">Known Limitations</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="backward-compatibility-3">Backward Compatibility</h2>
+<h2 id="backward-compatibility-4">Backward Compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
