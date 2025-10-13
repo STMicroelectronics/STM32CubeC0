@@ -3,7 +3,7 @@
 ![latest tag](https://img.shields.io/github/v/tag/STMicroelectronics/STM32CubeC0.svg?color=brightgreen)
 
 > [!IMPORTANT]
-> This repository has been created using the `git submodule` command. Please refer to the ["How to use"](README.md#how-to-use) section for more details.
+> This repository contains **submodule**. Please refer to the ["How to"](README.md#how-to-clone-and-get-updates) section for more details.
 
 ## Overview
 
@@ -22,39 +22,23 @@ The **STM32CubeC0 MCU Package** projects are directly running on the STM32C0 ser
 
 Details about the content of this release are available in the release note [here](https://htmlpreview.github.io/?https://github.com/STMicroelectronics/STM32CubeC0/blob/master/Release_Notes.html).
 
-## How to use
+## How to clone and get updates
 
-This repository has been created using the `git submodule` command. Please check the instructions below for proper use. Please check also **the notes at the end of this section** for further information.
-
-1. To **clone** this repository along with the linked submodules, option `--recursive` has to be specified as shown below.
-
-```bash
+This repository contains **submodules**.
+* To **clone** it, run the command below
+```
 git clone --recursive https://github.com/STMicroelectronics/STM32CubeC0.git
 ```
-
-2. To get the **latest updates**, in case this repository is **already** on your local machine, issue the following **two** commands (with this repository as the **current working directory**).
-
-```bash
-git pull
-git submodule update --init --recursive
+* To **pull** the latest updates, run the commands below from the root of the repository
+```
+git pull; git submodule update --init --recursive
 ```
 
-3. To use the **same firmware version** as the one available on [st.com](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html), issue the command below **after** specifying the targeted `vX.Y.Z` version. This should be done **after** the command(s) indicated in instruction (1) or in instruction (2) above have been successfully executed.
-
-```bash
-git checkout vX.Y.Z # Specify the targeted vX.Y.Z version
-```
-
-4. To **avoid** going through the above instructions and **directly** clone the same firmware version as the one available on [st.com](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html), issue the command below **after** specifying the targeted `vX.Y.Z` version.
-
-```bash
-git clone --recursive  --depth 1 --branch vX.Y.Z https://github.com/STMicroelectronics/STM32CubeC0.git
-```
+> [!CAUTION]
+> If the "Download ZIP" option is used instead of the `git clone` command, then the different **submodules** have to be collected and added **manually**.
 
 > [!NOTE]
-> * The latest version of this firmware available on GitHub may be **ahead** of the one available on [st.com](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html) or via [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html). This is due to the **rolling release** process deployed on GitHub. Please refer to [this](https://github.com/STMicroelectronics/STM32Cube_MCU_Overall_Offer/discussions/21) post for more details.
-> * Option `--depth 1` specified in instruction (4) above is **not** mandatory. It may be useful to skip downloading all previous commits up to the one corresponding to the targeted version.
-> * If GitHub "Download ZIP" option is used instead of the `git clone` command, then the different submodules have to be collected and added **manually**.
+> The latest version of this firmware available on GitHub may be **ahead** of the one available on [st.com](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html) or via [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html). This is due to the **rolling release**. Please refer to [this](https://github.com/STMicroelectronics/STM32Cube_MCU_Overall_Offer/discussions/21) post for more details.
 
 ## Boards available
 
