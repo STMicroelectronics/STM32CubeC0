@@ -22,3 +22,31 @@
 	path = Drivers/BSP/Components/Common
 	url = https://github.com/STMicroelectronics/stm32-bsp-common
 	branch = main
+[submodule "Middlewares/Third_Party/mbed-crypto"]
+	path = Middlewares/Third_Party/mbed-crypto
+	url = https://github.com/STMicroelectronics/stm32-mw-mbedtls.git
+	branch = main
+[submodule "Middlewares/ST/cmsis_rtos_threadx"]
+	path = Middlewares/ST/cmsis_rtos_threadx
+	url = https://github.com/STMicroelectronics/stm32-mw-cmsis-rtos-tx.git
+	branch = main
+[submodule "Middlewares/ST/filex"]
+	path = Middlewares/ST/filex
+	url = https://github.com/STMicroelectronics/stm32-mw-filex.git
+	branch = main
+[submodule "Middlewares/ST/levelx"]
+	path = Middlewares/ST/levelx
+	url = https://github.com/STMicroelectronics/stm32-mw-levelx.git
+	branch = main
+[submodule "Middlewares/ST/threadx"]
+	path = Middlewares/ST/threadx
+	url = https://github.com/STMicroelectronics/stm32-mw-threadx.git
+	branch = main
+[submodule "Middlewares/ST/usbx"]
+	path = Middlewares/ST/usbx
+	url = https://github.com/STMicroelectronics/stm32-mw-usbx.git
+	branch = main
+[submodule "Middlewares/ST/OpenBootloader"]
+	path = Middlewares/ST/OpenBootloader
+	url = https://github.com/STMicroelectronics/stm32-mw-openbl.git
+	branch = main
