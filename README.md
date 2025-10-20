@@ -5,18 +5,20 @@
 > [!IMPORTANT]
 > This repository contains **submodule**. Please refer to the ["How to"](README.md#how-to-clone-and-get-updates) section for more details.
 
-## Overview
+## Overview of the STM32Cube MCU offer on GitHub
 
-**STM32Cube** is an STMicroelectronics original initiative to ease developers' life by reducing efforts, time and cost.
+**STM32Cube** is an original initiative by STMicroelectronics to **simplify** prototyping and development by **reducing** effort, time, and cost. It supports the entire ARM™ Cortex-based STM32 microcontroller portfolio and provides a **comprehensive** software solution including:
+  * The CMSIS Core and Device interfaces enabling access to processor core features and device-specific peripherals of STM32 microcontrollers.
+  * The STM32 HAL-LL drivers, an abstraction layer offering a set of APIs ensuring maximized portability across the STM32 portfolio.
+  * The BSP drivers enabling access to peripherals on the STM32 development boards, external to the microcontroller itself.
+  * A consistent set of middleware libraries offering standardized, high-level functionalities — such as USB, TCP/IP, file systems, and graphics.
+  * A full set of software projects (basic examples, applications, and demonstrations) that showcase specific functionalities or use cases, and provided with support for multiple IDEs.
 
-**STM32Cube** covers the overall STM32 products portfolio. It includes a comprehensive embedded software platform delivered for each STM32 series.
-   * The CMSIS modules (core and device) corresponding to the ARM(tm) core implemented in this STM32 product.
-   * The STM32 HAL-LL drivers, an abstraction layer offering a set of APIs ensuring maximized portability across the STM32 portfolio.
-   * The BSP drivers of each evaluation, demonstration or nucleo board provided for this STM32 series.
-   * A consistent set of middleware libraries such as RTOS, USB, Bootloader...
-   * A full set of software projects (basic examples, applications, and demonstrations) for each board provided for this STM32 series.
+The **STM32Cube embedded software** is available in two flavors:
+  * The **MCU Firmware** _monolithic_ offer, where **all** software components (Drivers, Middleware, Projects, Utilities) are included in a **single** repository for each STM32 series.
+  * The **MCU Software Components** _modular_ offer, where **each** software component (mainly Drivers and Middleware) is provided in a **dedicated** repository, allowing users to **select** only the components they need.
 
-The **STM32CubeC0 MCU Package** projects are directly running on the STM32C0 series boards. You can find in each Projects/*Board name* directories a set of software projects (Applications/Demonstration/Examples).
+The complete list of repositories is available [here](https://github.com/STMicroelectronics/STM32Cube_MCU_Overall_Offer/blob/master/README.md#content).
 
 ## Release note
 
@@ -47,6 +49,6 @@ git pull; git submodule update --init --recursive
     * [STM32C0116-DK](https://www.st.com/en/evaluation-tools/stm32c0116-dk.html)
     * [STM32C0316-DK](https://www.st.com/en/evaluation-tools/stm32c0316-dk.html)
 
-## Troubleshooting
+## Feedback and contributions
 
 Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
