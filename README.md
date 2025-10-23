@@ -1,9 +1,9 @@
-# STM32CubeC0 MCU Firmware Package
+# STM32CubeC0 MCU Firmware
 
 ![latest tag](https://img.shields.io/github/v/tag/STMicroelectronics/STM32CubeC0.svg?color=brightgreen)
 
 > [!IMPORTANT]
-> This repository contains **submodule**. Please refer to the ["How to"](README.md#how-to-clone-and-get-updates) section for more details.
+> This repository contains **submodules**. Please refer to the ["How to"](README.md#how-to-clone-and-get-updates) section for more details.
 
 ## Overview of the STM32Cube MCU offer on GitHub
 
