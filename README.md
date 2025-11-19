@@ -20,6 +20,10 @@ The **STM32Cube embedded software** is available in two flavors:
 
 The complete list of repositories is available [here](https://github.com/STMicroelectronics/STM32Cube_MCU_Overall_Offer/blob/master/README.md#content).
 
+## Repository content
+
+This repository provides the **STM32CubeC0** MCU firmware, including **all** software components (Drivers, Middleware, Projects, Utilities).
+
 ## Release note
 
 Details about the content of this release are available in the release note [here](https://htmlpreview.github.io/?https://github.com/STMicroelectronics/STM32CubeC0/blob/master/Release_Notes.html).
