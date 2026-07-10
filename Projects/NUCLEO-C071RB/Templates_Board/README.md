@@ -8,12 +8,12 @@ It was created from STM32CubeMX using the 'Start My project from ST board' featu
 This template shows how to use the BSP drivers for the leds, user push-button and VCP COM port of the NUCLEO-C071RB
 board thanks to BSP resources initialization and demonstration codes:
 
-  - BSP Led: LED_GREEN and LED_BLUE are initialized and switched on.
+  - BSP Led: LED_GREEN is initialized and switched on.
 
   - BSP Push-button: BUTTON_USER is initialized in interrupt mode and each key-press is detected through
     the corresponding EXTI4_15_IRQHandler(). Led is toggled at each key press.
 
-  - BSP COM:  Virtual COM port associated to ST-LINK is initialized and used to redirect the C library printf(). 
+  - BSP COM:  Virtual COM port associated to ST-LINK is initialized and used to redirect the C library printf().
     As an example it outputs the "Welcome to STM32 world !\n\r" message on a terminal.
     The USART is configured as follows:
       - Baudrate = 115200 bps

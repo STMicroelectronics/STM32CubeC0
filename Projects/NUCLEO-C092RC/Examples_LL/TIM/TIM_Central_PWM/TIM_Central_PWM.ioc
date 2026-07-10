@@ -130,5 +130,3 @@ VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 VP_TIM1_VS_ClockSourceINT.Mode=Internal
 VP_TIM1_VS_ClockSourceINT.Signal=TIM1_VS_ClockSourceINT
 board=custom
-ProjectManager.Example=TIM_Central_PWM
-ProjectManager.ExampleSource=CubeFw

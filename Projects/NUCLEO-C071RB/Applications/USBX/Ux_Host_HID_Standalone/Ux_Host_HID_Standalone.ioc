@@ -150,5 +150,3 @@ VP_USBX_UX\ Host\ HID\ Keyboard_FS.Signal=USBX_UX Host HID Keyboard_FS
 VP_USBX_UX\ Host\ HID\ Mouse_FS.Mode=UX_Host_class_HID_Mouse_FS
 VP_USBX_UX\ Host\ HID\ Mouse_FS.Signal=USBX_UX Host HID Mouse_FS
 board=custom
-ProjectManager.Example=Ux_Host_HID_Standalone
-ProjectManager.ExampleSource=CubeFw

@@ -124,7 +124,8 @@ RTOS, ThreadX, Threading, Message Queue, Module Manager, Module, MPU
 In order to make the program work, you must do the following :
 
  - Open Multi-projects workspace using your pereferred IDE
- - Rebuild Tx_Module project (Tx_Module will be loaded automatically by Tx_Module_Manager at address defined by "MODULE_FLASH_ADDRESS")
+ - Rebuild Tx_Module project
  - Rebuild Tx_Module_Manager project
+ - Flash the Tx_Module binary at address defined by MODULE_FLASH_ADDRESS
  - Set the Tx_Module_Manager as active application
  - Run the example

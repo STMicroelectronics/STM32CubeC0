@@ -85,19 +85,19 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 
-#if defined(__ARMCC_VERSION)
+#if defined(__ARMCC_VERSION) || defined(__clang__)
 #define DEVICE_ID "Device ID = 0x%X"
 #else
 #define DEVICE_ID "Device ID = 0x%lX"
-#endif /* defined(__ARMCC_VERSION) */
+#endif /* defined(__ARMCC_VERSION) || defined(__clang__) */
 
-#if defined(__ARMCC_VERSION)
+#if defined(__ARMCC_VERSION) || defined(__clang__)
 #define REVISION_ID "Revision ID = 0x%X"
 #else
 #define REVISION_ID "Revision ID = 0x%lX"
-#endif /* defined(__ARMCC_VERSION) */
+#endif /* defined(__ARMCC_VERSION) || defined(__clang__) */
   
-#if defined(__ARMCC_VERSION)
+#if defined(__ARMCC_VERSION) || defined(__clang__)
 #define UID_WORD0 "UID Word0 = 0x%X"
 #define UID_WORD1 "UID Word1 = 0x%X"
 #define UID_WORD2 "UID Word2 = 0x%X"
@@ -105,7 +105,7 @@ void Error_Handler(void);
 #define UID_WORD0 "UID Word0 = 0x%lX"
 #define UID_WORD1 "UID Word1 = 0x%lX"
 #define UID_WORD2 "UID Word2 = 0x%lX"
-#endif /* defined(__ARMCC_VERSION) */
+#endif /* defined(__ARMCC_VERSION) || defined(__clang__) */
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -156,5 +156,3 @@ VP_TIM1_VS_CH1.Signal=TIM1_VS_CH1
 VP_TIM1_VS_ClockSourceITR.Mode=TriggerSource_ITR0
 VP_TIM1_VS_ClockSourceITR.Signal=TIM1_VS_ClockSourceITR
 board=custom
-ProjectManager.Example=I2C_TwoBoards_MultiMasterIT_Master
-ProjectManager.ExampleSource=CubeFw

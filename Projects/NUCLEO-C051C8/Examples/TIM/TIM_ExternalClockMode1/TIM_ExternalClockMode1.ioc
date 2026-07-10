@@ -103,5 +103,3 @@ VP_TIM1_VS_ControllerModeClock.Signal=TIM1_VS_ControllerModeClock
 VP_TIM1_VS_no_output1.Mode=Output Compare1 No Output
 VP_TIM1_VS_no_output1.Signal=TIM1_VS_no_output1
 board=custom
-ProjectManager.Example=TIM_ExternalClockMode1
-ProjectManager.ExampleSource=CubeFw

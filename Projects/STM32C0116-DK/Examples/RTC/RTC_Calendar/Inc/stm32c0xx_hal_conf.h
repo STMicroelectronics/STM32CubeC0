@@ -59,7 +59,6 @@ extern "C" {
 #define HAL_FLASH_MODULE_ENABLED
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_CORTEX_MODULE_ENABLED
-
 /* ########################## Register Callbacks selection ############################## */
 /**
   * @brief Set below the peripheral configuration  to "1U" to add the support
@@ -271,5 +270,3 @@ void assert_failed(uint8_t *file, uint32_t line);
 #endif
 
 #endif /* STM32C0xx_HAL_CONF_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

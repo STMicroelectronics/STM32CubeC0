@@ -91,9 +91,8 @@ int main(void)
 
   /* USER CODE END 2 */
 
-  /* Initialize leds */
+  /* Initialize led */
   BSP_LED_Init(LED_GREEN);
-  BSP_LED_Init(LED_BLUE);
 
   /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
   BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
@@ -114,9 +113,8 @@ int main(void)
   /* -- Sample board code to send message over COM1 port ---- */
   printf("Welcome to STM32 world !\n");
 
-  /* Switch on leds */
+  /* Switch on led */
   BSP_LED_On(LED_GREEN);
-  BSP_LED_On(LED_BLUE);
 
   /* USER CODE END BSP */
 
@@ -129,9 +127,8 @@ int main(void)
     {
       /* Update button state */
       BspButtonState = BUTTON_RELEASED;
-      /* -- Sample board code to toggle leds ---- */
+      /* -- Sample board code to toggle led ---- */
       BSP_LED_Toggle(LED_GREEN);
-      BSP_LED_Toggle(LED_BLUE);
       /* ..... Perform your action ..... */
 
     }

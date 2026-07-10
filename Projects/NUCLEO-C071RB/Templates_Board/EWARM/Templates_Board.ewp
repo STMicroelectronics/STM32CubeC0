@@ -210,7 +210,7 @@
         </option>
         <option>
           <name>CCDefines</name>
-          <state>USE_NUCLEO_64</state>
+          <state>USE_NUCLEO_48</state>
           <state>USE_HAL_DRIVER</state>
           <state>STM32C071xx</state>
           <state></state>

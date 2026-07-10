@@ -132,5 +132,3 @@ TIM3.Pulse-PWM\ Generation1\ CH1=tim_pulse_value
 VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=custom
-ProjectManager.Example=TIM_InputCapture_Init
-ProjectManager.ExampleSource=CubeFw

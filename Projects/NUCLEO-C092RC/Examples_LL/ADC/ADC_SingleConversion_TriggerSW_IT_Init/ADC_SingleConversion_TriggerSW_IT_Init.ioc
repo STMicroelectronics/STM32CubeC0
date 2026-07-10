@@ -102,5 +102,3 @@ RCC.USART1Freq_Value=48000000
 VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=custom
-ProjectManager.Example=ADC_SingleConversion_TriggerSW_IT_Init
-ProjectManager.ExampleSource=CubeFw

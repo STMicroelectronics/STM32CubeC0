@@ -166,12 +166,21 @@ boot_main_h="${project_dir}/../Applications/ROT/OEMiSB_Boot/Inc/main.h"
 boot_cfg_h="${project_dir}/../Applications/ROT/OEMiSB_Boot/Inc/boot_cfg.h"
 ld_appli="${project_dir}/$appli_dir/STM32CubeIDE/STM32C071RBTX_FLASH.ld"
 
-#line for python
-echo AppliCfg with python script
-applicfg="${cube_fw_path}/Utilities/PC_Software/ROT_AppliConfig/AppliCfg.py"
-#determine/check python version command
-python="python "
+# Check if Python is installed
+python3 --version >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  python --version >/dev/null 2>&1
+  if [ $? -ne 0 ]; then
+  echo "Python installation missing. Refer to Utilities/PC_Software/ROT_AppliConfig/README.md"
+  exit 1
+  fi
+  python="python "
+else
+  python="python3 "
+fi
 
+# Environment variable for AppliCfg
+applicfg="$cube_fw_path/Utilities/PC_Software/ROT_AppliConfig/AppliCfg.py"
 
 echo "======"
 echo "====== Provisioning of OEMiSB boot path"

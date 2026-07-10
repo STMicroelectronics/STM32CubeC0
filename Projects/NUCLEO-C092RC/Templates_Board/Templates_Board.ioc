@@ -140,5 +140,3 @@ VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=NUCLEO-C092RC
 boardIOC=true
-ProjectManager.Example=Templates_Board
-ProjectManager.ExampleSource=CubeFw

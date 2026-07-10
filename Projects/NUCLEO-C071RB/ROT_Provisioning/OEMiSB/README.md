@@ -51,11 +51,4 @@ For more details, refer to STM32C0 Wiki articles:
 
 ### <b>Notes</b>
 
-Two versions of AppliCfg (used during **provisioning process**) are available: windows executable and python version.<br>
-On Windows environment, the executable is used. On other environment, the python version is automatically used.<br>
-To use Python version, it is needed to:
-
-- have python installed (Python 3.6 or newer) and available in execution path variable
-- have required python modules installed (Utilities/PC_Software/ROT_AppliConfig/requirements.txt):
-
-        pip install -r requirements.txt
+AppliCfg.py (located in Firmware\Utilities\PC_Software\ROT_AppliConfig) is used during build process.It is needed to have python and some python packages installed in your environment. Refer to Firmware\Utilities\PC_Software\ROT_AppliConfig\README.md for mor details.

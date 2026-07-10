@@ -150,5 +150,3 @@ VP_USBX_UX\ Device\ HID_MOUSE_FS.Mode=UX_Device_class_HID_MOUSE_FS
 VP_USBX_UX\ Device\ HID_MOUSE_FS.Signal=USBX_UX Device HID_MOUSE_FS
 board=NUCLEO-C071RB
 boardIOC=true
-ProjectManager.Example=Ux_Device_HID
-ProjectManager.ExampleSource=CubeFw

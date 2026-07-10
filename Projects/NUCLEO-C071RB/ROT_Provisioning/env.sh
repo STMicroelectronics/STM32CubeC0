@@ -7,18 +7,49 @@ else
     projectdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 fi
 
+#=================================================================================================
+# Managing HOST OS diversity : begin
+#=================================================================================================
+OS=$(uname)
+
+echo ${OS} | grep -i -e windows -e mingw >/dev/null
+if [ $? == 0 ]; then
+  echo ""
+  echo " =========================================="
+  echo "| For Windows OS, please use .bat scripts. |"
+  echo " =========================================="
+  echo ""
+  echo "       Press any key to continue..."
+  echo
+  read -p "" -n1 -s
+  exit 0
+fi
+
+if [ "$OS" == "Linux" ]; then
+  echo "HOST OS : Linux detected"
+elif [ "$OS" == "Darwin" ]; then
+  echo "HOST OS : MacOS detected"
+else
+  echo "!!!HOST OS not supported : >$OS<!!!"
+  exit 1
+fi
+
+#=================================================================================================
+# Managing HOST OS diversity : end
+#=================================================================================================
+
 # ==============================================================================
 #                               General
 # ==============================================================================
 #Configure tools installation path
 if [ "$OS" == "Windows_NT" ]; then
-    stm32programmercli="C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe"
-    stm32tpccli="C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32TrustedPackageCreator_CLI.exe"
+    stm32programmercli="C:/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI.exe"
+    stm32tpccli="C:/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32TrustedPackageCreator_CLI.exe"
 else
-    stm32programmercli_path=~/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/
+    stm32programmercli_path="C:/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin"
     PATH=$stm32programmercli_path:$PATH
-    stm32programmercli="STM32_Programmer_CLI"
-    stm32tpccli="STM32TrustedPackageCreator_CLI"
+    stm32programmercli="C:/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI.exe"
+    stm32tpccli="C:/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32TrustedPackageCreator_CLI.exe"
 fi
 
 # ==============================================================================

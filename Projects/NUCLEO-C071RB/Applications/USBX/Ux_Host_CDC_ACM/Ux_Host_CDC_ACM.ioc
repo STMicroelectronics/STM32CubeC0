@@ -166,5 +166,3 @@ VP_USBX_UX\ Host\ Controller_FS.Signal=USBX_UX Host Controller_FS
 VP_USBX_UX\ Host\ CoreStack_FS.Mode=UX_Host_CoreStack_FS
 VP_USBX_UX\ Host\ CoreStack_FS.Signal=USBX_UX Host CoreStack_FS
 board=custom
-ProjectManager.Example=Ux_Host_CDC_ACM
-ProjectManager.ExampleSource=CubeFw

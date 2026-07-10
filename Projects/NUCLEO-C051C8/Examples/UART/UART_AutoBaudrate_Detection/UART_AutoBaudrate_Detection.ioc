@@ -95,5 +95,3 @@ USART1.VirtualMode-Asynchronous=VM_ASYNC
 VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=custom
-ProjectManager.Example=UART_AutoBaudrate_Detection
-ProjectManager.ExampleSource=CubeFw

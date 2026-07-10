@@ -123,5 +123,3 @@ VP_FILEX_VS_InternalOoRAMOointerface.Signal=FILEX_VS_InternalOoRAMOointerface
 VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=custom
-ProjectManager.Example=Fx_SRAM_File_Edit_Standalone
-ProjectManager.ExampleSource=CubeFw

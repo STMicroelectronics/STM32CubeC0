@@ -86,5 +86,3 @@ RCC.USART1Freq_Value=48000000
 VP_SYS_VS_tim3.Mode=TIM3
 VP_SYS_VS_tim3.Signal=SYS_VS_tim3
 board=custom
-ProjectManager.Example=HAL_TimeBase_TIM
-ProjectManager.ExampleSource=CubeFw

@@ -47,32 +47,59 @@ set boot_main_h="%projectdir%..\..\Applications\ROT\OEMiSB_Boot\Inc\main.h"
 set boot_cfg_h="%projectdir%..\..\Applications\ROT\OEMiSB_Boot\Inc\boot_cfg.h"
 set icf_appli="%projectdir%%appli_dir%\EWARM\stm32c071xx_flash.icf"
 set sct_appli="%projectdir%%appli_dir%\MDK-ARM\stm32c0xx_app.sct"
+set ld_appli="%projectdir%%appli_dir%\STM32CubeIDE\STM32C071RBTX_FLASH.ld"
+
+
 
 :: Initial configuration
 set connect_no_reset=-c port=SWD mode=Hotplug
 set connect_reset=-c port=SWD mode=UR
 
-goto exe:
-goto py:
-:exe
-::line for window executable
-set "applicfg=%cube_fw_path%\Utilities\PC_Software\ROT_AppliConfig\dist\AppliCfg.exe"
-set "python= "
-if exist %applicfg% (
-echo run config Appli with windows executable
-goto prov
+::=================================================================================================
+:: Check if Python V3 is installed
+::-------------------------------------------------------------------------------------------------
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+  echo.
+  echo Python installation missing. Refer to Utilities\PC_Software\ROT_AppliConfig\README.md
+  echo.
+  set "command=Python installation"
+  goto :error
 )
-:py
-::line for python
-echo run config Appli with python script
-set "applicfg=%cube_fw_path%\Utilities\PC_Software\ROT_AppliConfig\AppliCfg.py"
 set "python=python "
+:: If found, capture version string removing "Python "
+for /f "tokens=2 delims= " %%A in ('python --version 2^>^&1') do (
+    set "full_version=%%A"
+)
+:: extract version details
+for /F "tokens=1,2,3 delims=." %%A in ("!full_version!") do (
+  set MAJOR_VER=%%A
+  set MINOR_VER=%%B
+  set PATCH_VER=%%C
+)
+:: is v3
+if not "%MAJOR_VER%" == "3" (
+  python3 --version >nul 2>&1
+  if !errorlevel! neq 0 (
+    echo.
+    echo Python installation missing. Refer to Utilities\PC_Software\ROT_AppliConfig\README.md
+    echo.
+    set "command=Python installation"
+    goto :error
+  )
+  set "python=python3 "
+)
+::=================================================================================================
+
+:: Environment variable for AppliCfg
+set "applicfg=%cube_fw_path%\Utilities\PC_Software\ROT_AppliConfig\AppliCfg.py"
 
 :prov
 echo =====
 echo ===== Provisioning of OEMiSB boot path
 echo ===== Application selected through env.bat:
 echo ===== %oemisb_boot_path_project%
+echo ===== Python and some python packages are required to execute this script: Refer to Utilities/PC_Software/ROT_AppliConfig/README.md for more details.
 echo =====
 echo.
 
@@ -195,6 +222,7 @@ echo DATA_MPU_SUB_REG=%subregion_val% >> %tmp_file%
 %python%%applicfg% definevalue -l %tmp_file% -m DATA_MPU_SUB_REG -n DATA_MPU_SUB_REG %boot_main_h%
 %python%%applicfg% linker -l %tmp_file% -m DATA_SIZE -n FLASH_DATA_AREA_SIZE %icf_appli%
 %python%%applicfg% linker -l %tmp_file% -m DATA_SIZE -n FLASH_DATA_AREA_SIZE %sct_appli%
+%python%%applicfg% linker -l %tmp_file% -m DATA_SIZE -n FLASH_DATA_AREA_SIZE %ld_appli%
 %python%%applicfg% modifyfilevalue --variable OEMISB_OB_RDP_LEVEL_VALUE --value %rdp_str% %boot_cfg_h% --str
 
 if /i "%product_id%" == "STM32C071XX" (
