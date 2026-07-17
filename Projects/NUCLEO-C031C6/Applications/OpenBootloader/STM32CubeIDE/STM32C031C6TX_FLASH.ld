@@ -46,7 +46,7 @@ MEMORY
 {
   RAM1    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 5K
   RAM2    (xrw)    : ORIGIN = 0x20001400,   LENGTH = 1K
-  ROM    (rx)    : ORIGIN = 0x08000000,   LENGTH = 15K
+  ROM    (rx)    : ORIGIN = 0x08000000,   LENGTH = 32K
 }
 
 /* Sections */
